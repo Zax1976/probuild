@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Build Digital - Digital Solutions for Small Businesses</title>
+    <meta name="description" content="Pro Build Digital: Professional website development, AI chatbots, automation, and digital invoicing solutions for small businesses and contractors. Get your free consultation today.">
+    <meta name="keywords" content="website development, AI chatbots, business automation, digital invoicing, small business solutions, contractor websites, professional web design, lead generation, CRM integration">
+    <meta name="author" content="Pro Build Digital">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Pro Build Digital - Digital Solutions for Small Businesses">
+    <meta property="og:description" content="Pro Build Digital: Professional website development, AI chatbots, automation, and digital invoicing solutions for small businesses and contractors. Get your free consultation today.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://probuilddigital.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#0B1F3A',
+                        'secondary': '#FFFFFF',
+                        'accent': '#D3D3D3',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <nav class="navbar sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-md">
+        <div class="nav-container max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <div class="nav-logo">
+                <picture>
+                    <source type="image/webp" srcset="assets/images/logo.webp">
+                    <img src="assets/images/logo.png" alt="Pro Build Digital Logo" loading="lazy" class="rounded-lg">
+                </picture>
+                <span class="logo-text text-xl font-semibold text-primary">Pro Build Digital</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active hover:text-blue-600 transition-colors">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="services.html" class="nav-link hover:text-blue-600 transition-colors">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link hover:text-blue-600 transition-colors">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link hover:text-blue-600 transition-colors">Contact</a>
+                </li>
+            </ul>
+            <div class="nav-toggle md:hidden">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero bg-gradient-to-r from-slate-900 to-slate-800 text-white py-16 md:py-24">
+        <div class="hero-container max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <div class="hero-content text-center">
+                <h1 class="hero-title text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Build Your Digital Foundation</h1>
+                <p class="hero-subtitle text-lg md:text-xl lg:text-2xl mb-6 text-gray-200">Professional digital solutions designed for small businesses and contractors. No tech jargon, just results.</p>
+                <div class="guarantee-highlight bg-white/10 backdrop-blur border border-white/20 rounded-lg p-4 mb-8 text-center">
+                    <div class="flex items-center justify-center gap-3 mb-2">
+                        <span class="text-2xl text-white">✓</span>
+                        <h3 class="text-xl font-bold text-white">Pay-If-Satisfied Guarantee</h3>
+                    </div>
+                    <p class="text-blue-100">I'll build your complete website first. You only pay if you're 100% satisfied.</p>
+                </div>
+                <div class="hero-buttons flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contact.html" class="btn btn-primary bg-blue-600 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300 font-semibold text-lg">Let's Talk</a>
+                    <a href="services.html" class="btn btn-secondary bg-white text-slate-900 px-8 py-4 rounded-lg shadow-lg hover:bg-gray-100 hover:shadow-xl transition-all duration-300 font-semibold text-lg">View Services</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-visual">
+                    <div class="gear-icon"><i class="fas fa-cog"></i></div>
+                    <div class="tech-elements">
+                        <div class="element"><i class="fas fa-mobile-alt"></i></div>
+                        <div class="element"><i class="fas fa-laptop"></i></div>
+                        <div class="element"><i class="fas fa-robot"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="services-overview py-16 md:py-24 bg-gray-50">
+        <div class="container max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-4 text-gray-900">What We Do</h2>
+            <p class="section-subtitle text-lg text-center text-gray-600 mb-6">Simple, effective digital solutions that work for your business</p>
+            <div class="guarantee-banner bg-blue-50 border border-blue-200 rounded-xl p-6 mb-12 text-center max-w-3xl mx-auto">
+                <div class="flex items-center justify-center gap-3 mb-2">
+                    <span class="text-2xl text-blue-600">✓</span>
+                    <h3 class="text-xl font-bold text-blue-800">The Only Web Developer Who Builds First, Gets Paid Later</h3>
+                </div>
+                <p class="text-blue-700">See your exact website before paying anything. No risk, no contracts, no hidden fees.</p>
+            </div>
+            
+            <div class="services-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                <div class="service-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 text-center group">
+                    <div class="service-icon text-4xl text-blue-600 mb-4 group-hover:scale-110 transition-transform duration-300"><i class="fas fa-globe"></i></div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-900">Website Development</h3>
+                    <p class="text-gray-600">Fast, mobile-friendly websites that bring in customers and showcase your work professionally.</p>
+                </div>
+                
+                <div class="service-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 text-center group">
+                    <div class="service-icon text-4xl text-blue-600 mb-4 group-hover:scale-110 transition-transform duration-300"><i class="fas fa-robot"></i></div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-900">AI Chatbots</h3>
+                    <p class="text-gray-600">24/7 customer support that answers questions and captures leads while you focus on the job.</p>
+                </div>
+                
+                <div class="service-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 text-center group">
+                    <div class="service-icon text-4xl text-blue-600 mb-4 group-hover:scale-110 transition-transform duration-300"><i class="fas fa-bolt"></i></div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-900">Automation</h3>
+                    <p class="text-gray-600">Streamline your workflow with automated invoicing, scheduling, and customer follow-ups.</p>
+                </div>
+                
+                <div class="service-card bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 text-center group">
+                    <div class="service-icon text-4xl text-blue-600 mb-4 group-hover:scale-110 transition-transform duration-300"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-900">Digital Invoicing</h3>
+                    <p class="text-gray-600">Get paid faster with professional digital invoices and automated payment reminders.</p>
+                </div>
+            </div>
+            
+            <div class="services-cta text-center mt-12">
+                <a href="services.html" class="btn btn-primary bg-blue-600 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300 font-semibold text-lg inline-block">View All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-us py-16 md:py-24 bg-white">
+        <div class="container max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <div class="why-content grid lg:grid-cols-2 gap-12 items-center">
+                <div class="why-text">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Built for Small Business</h2>
+                    <p class="text-lg text-gray-600 mb-8">We understand that small business owners don't have time for complicated tech solutions. That's why we create simple, effective digital tools that work right out of the box.</p>
+                    
+                    <div class="benefits space-y-6">
+                        <div class="benefit flex items-start gap-4">
+                            <div class="benefit-icon bg-blue-100 text-blue-600 p-3 rounded-full flex-shrink-0"><i class="fas fa-check"></i></div>
+                            <div class="benefit-text">
+                                <h4 class="text-xl font-semibold mb-2 text-gray-900">No Technical Jargon</h4>
+                                <p class="text-gray-600">Plain English explanations and straightforward solutions</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit flex items-start gap-4">
+                            <div class="benefit-icon bg-blue-100 text-blue-600 p-3 rounded-full flex-shrink-0"><i class="fas fa-check"></i></div>
+                            <div class="benefit-text">
+                                <h4 class="text-xl font-semibold mb-2 text-gray-900">Mobile-First Design</h4>
+                                <p class="text-gray-600">Everything works perfectly on phones and tablets</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit flex items-start gap-4">
+                            <div class="benefit-icon bg-blue-100 text-blue-600 p-3 rounded-full flex-shrink-0"><i class="fas fa-check"></i></div>
+                            <div class="benefit-text">
+                                <h4 class="text-xl font-semibold mb-2 text-gray-900">Ongoing Support</h4>
+                                <p class="text-gray-600">We're here to help when you need it most</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="why-image">
+                    <div class="stats-card bg-gradient-to-br from-blue-600 to-blue-700 p-8 rounded-2xl shadow-xl text-white">
+                        <div class="grid grid-cols-1 gap-6">
+                            <div class="stat text-center">
+                                <div class="stat-number text-4xl font-bold mb-2">< 3s</div>
+                                <div class="stat-label text-blue-100">Load Time</div>
+                            </div>
+                            <div class="stat text-center">
+                                <div class="stat-number text-4xl font-bold mb-2">100%</div>
+                                <div class="stat-label text-blue-100">Mobile Ready</div>
+                            </div>
+                            <div class="stat text-center">
+                                <div class="stat-number text-4xl font-bold mb-2">24/7</div>
+                                <div class="stat-label text-blue-100">Support</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CTA Section -->
+    <section class="cta-section py-16 md:py-24 bg-gradient-to-r from-blue-600 to-blue-700">
+        <div class="container max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <div class="cta-content text-center text-white">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Build Your Digital Foundation?</h2>
+                <p class="text-xl mb-8 text-blue-100">Let's discuss how we can help your business grow with the right digital tools.</p>
+                <a href="contact.html" class="btn btn-primary btn-large bg-white text-blue-600 px-8 py-4 rounded-lg shadow-lg hover:bg-gray-100 hover:shadow-xl transition-all duration-300 font-semibold text-lg inline-block">Get Started Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-gray-900 text-white py-12">
+        <div class="container max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+            <div class="footer-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="footer-section">
+                    <div class="footer-logo flex items-center gap-3 mb-4">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/logo.webp">
+                            <img src="assets/images/logo.png" alt="Pro Build Digital Logo" loading="lazy" class="w-10 h-10 rounded-lg">
+                        </picture>
+                        <span class="logo-text text-xl font-semibold">Pro Build Digital</span>
+                    </div>
+                    <p class="text-gray-400">Professional digital solutions for small businesses and contractors.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Website Development</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">AI Chatbots</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Automation</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Digital Invoicing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="text-lg font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <p class="text-gray-400 mb-2">Email: probuilddigital1@gmail.com</p>
+                    <p class="text-gray-400 mb-4">Phone: (614) 403-8014</p>
+                    <div class="social-links flex gap-4">
+                        <a href="https://www.google.com/maps/place/Pro+Build+Digital" target="_blank" rel="noopener" class="social-link bg-gray-800 p-3 rounded-lg hover:bg-blue-600 transition-all duration-300">
+                            <i class="fab fa-google text-xl"></i>
+                        </a>
+                        <a href="https://www.facebook.com/probuilddigital" target="_blank" rel="noopener" class="social-link bg-gray-800 p-3 rounded-lg hover:bg-blue-600 transition-all duration-300">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/probuilddigital" target="_blank" rel="noopener" class="social-link bg-gray-800 p-3 rounded-lg hover:bg-blue-600 transition-all duration-300">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2025 Pro Build Digital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Business Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Pro Build Digital",
+        "description": "Professional digital solutions for small businesses and contractors including website development, AI chatbots, automation, and digital invoicing.",
+        "url": "https://probuilddigital.com",
+        "logo": "https://probuilddigital.com/assets/images/logo.png",
+        "telephone": "(614) 403-8014",
+        "email": "probuilddigital1@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Your City",
+            "addressRegion": "Your State",
+            "postalCode": "12345",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "40.7128",
+            "longitude": "-74.0060"
+        },
+        "areaServed": {
+            "@type": "Country",
+            "name": "United States"
+        },
+        "serviceArea": {
+            "@type": "Country",
+            "name": "United States"
+        },
+        "founder": {
+            "@type": "Person",
+            "name": "Zack Pearson",
+            "jobTitle": "Founder & Lead Digital Solutions Architect",
+            "description": "19 years experience at Verizon Communications in operations, project management, and systems optimization"
+        },
+        "foundingDate": "2025",
+        "numberOfEmployees": "1-10",
+        "priceRange": "$199-$5000",
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Digital Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Website Development",
+                        "description": "Professional website development for small businesses and contractors"
+                    },
+                    "price": "1200",
+                    "priceCurrency": "USD"
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "AI Chatbots",
+                        "description": "24/7 AI chatbot solutions for customer support and lead generation"
+                    },
+                    "price": "199",
+                    "priceCurrency": "USD",
+                    "priceSpecification": {
+                        "@type": "UnitPriceSpecification",
+                        "price": "300",
+                        "priceCurrency": "USD",
+                        "unitText": "monthly"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Business Automation",
+                        "description": "Workflow automation and process optimization for small businesses"
+                    },
+                    "price": "199",
+                    "priceCurrency": "USD",
+                    "priceSpecification": {
+                        "@type": "UnitPriceSpecification",
+                        "price": "200",
+                        "priceCurrency": "USD",
+                        "unitText": "monthly"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Digital Invoicing",
+                        "description": "Professional digital invoicing and payment processing solutions"
+                    },
+                    "price": "50",
+                    "priceCurrency": "USD",
+                    "priceSpecification": {
+                        "@type": "UnitPriceSpecification",
+                        "price": "50",
+                        "priceCurrency": "USD",
+                        "unitText": "monthly"
+                    }
+                }
+            ]
+        },
+        "sameAs": [
+            "https://www.facebook.com/probuilddigital",
+            "https://www.linkedin.com/company/probuilddigital",
+            "https://twitter.com/probuilddigital"
+        ],
+        "openingHours": "Mo-Fr 09:00-17:00",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "47"
+        }
+    }
+    </script>
+
+    <!-- Scripts -->
+    <script src="js/security.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/image-optimization.js"></script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
+    <!-- n8n Chat Widget -->
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+        createChat({
+            webhookUrl: 'https://zax76.app.n8n.cloud/webhook/2610f1f4-f38d-4b33-ba97-da199e6a15bc/chat',
+            mode: 'window',
+            loadPreviousSession: true,
+            initialMessages: [
+                'Welcome to Pro Build Digital! I\'m here to help with your digital needs.',
+                '✓ **Pay-If-Satisfied Guarantee** - We build your complete website first. You only pay if you\'re 100% satisfied!',
+                'What can I help you with today?'
+            ],
+            i18n: {
+                en: {
+                    title: 'BuildBot',
+                    subtitle: 'Ask about websites, chatbots, or automation!',
+                    footer: '',
+                    getStarted: 'Start Chat',
+                    inputPlaceholder: 'Type your message here...',
+                    endOfSessionMessage: 'Thanks for chatting! Feel free to reach out anytime.',
+                    loadingMessage: 'Please wait...',
+                    errorMessage: 'Sorry, there was an error. Please try again.'
+                }
+            }
+        });
+    </script>
+    <style>
+        /* n8n Chat Widget Custom Styling */
+        :root {
+            --chat--color-primary: #0B1F3A;
+            --chat--color-primary-shade-50: #E6EBF0;
+            --chat--color-primary-shade-100: #C2D1E0;
+            --chat--color-secondary: #FFFFFF;
+            --chat--color-secondary-shade-10: #F3F4F6;
+            --chat--color-white: #FFFFFF;
+            --chat--color-light: #E5E7EB;
+            --chat--color-light-shade-50: #F9FAFB;
+            --chat--color-light-shade-100: #F3F4F6;
+            --chat--color-medium: #6B7280;
+            --chat--color-dark: #1F2937;
+            --chat--color-disabled: #9CA3AF;
+            --chat--color-danger: #EF4444;
+            --chat--spacing: 1rem;
+            --chat--border-radius: 12px;
+            --chat--transition-duration: 0.15s;
+            --chat--window-width: 400px;
+            --chat--window-height: 600px;
+            --chat--header-height: 80px;
+            --chat--input-height: 56px;
+            --chat--button-size: 56px;
+            --chat--message-font-size: 14px;
+            --chat--heading-font-size: 18px;
+            --chat--subtitle-font-size: 13px;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 480px) {
+            :root {
+                --chat--window-width: 100vw;
+                --chat--window-height: 100vh;
+            }
+        }
+        
+        /* Fix header and message display issues */
+        .n8n-chat__header {
+            min-height: var(--chat--header-height) !important;
+            padding: 1rem !important;
+        }
+        
+        .n8n-chat__header-title {
+            font-size: var(--chat--heading-font-size) !important;
+            line-height: 1.4 !important;
+        }
+        
+        .n8n-chat__header-subtitle {
+            font-size: var(--chat--subtitle-font-size) !important;
+            line-height: 1.3 !important;
+        }
+        
+        /* Hide empty messages */
+        .n8n-chat__message:empty,
+        .n8n-chat__message-text:empty {
+            display: none !important;
+        }
+        
+        /* Fix message bubble styling */
+        .n8n-chat__message {
+            margin-bottom: 0.75rem !important;
+        }
+        
+        .n8n-chat__message-text {
+            padding: 0.75rem 1rem !important;
+            min-height: auto !important;
+        }
+        
+        /* Ensure proper text wrapping */
+        .n8n-chat__message-text p {
+            margin: 0 !important;
+            word-wrap: break-word !important;
+        }
+    </style>
+</body>
+</html>
