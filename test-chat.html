@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Widget Test - Pro Build Digital</title>
+    <link rel="stylesheet" href="css/n8n-chat.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-6">Chat Widget Test Page</h1>
+        
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
+            <h2 class="text-xl font-semibold mb-4">Chat Widget Status</h2>
+            <div id="status" class="space-y-2">
+                <div id="css-status" class="flex items-center gap-2">
+                    <span class="w-3 h-3 bg-gray-400 rounded-full"></span>
+                    <span>CSS Loading...</span>
+                </div>
+                <div id="js-status" class="flex items-center gap-2">
+                    <span class="w-3 h-3 bg-gray-400 rounded-full"></span>
+                    <span>JavaScript Loading...</span>
+                </div>
+                <div id="widget-status" class="flex items-center gap-2">
+                    <span class="w-3 h-3 bg-gray-400 rounded-full"></span>
+                    <span>Widget Status: Initializing...</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4">Instructions</h2>
+            <ol class="list-decimal list-inside space-y-2">
+                <li>Look for the blue chat button in the bottom-right corner</li>
+                <li>It should appear automatically after 3 seconds</li>
+                <li>Click the chat button to open the chat window</li>
+                <li>Type a test message to see the demo response</li>
+                <li>Check the browser console (F12) for any errors</li>
+            </ol>
+            
+            <div class="mt-4">
+                <button id="force-show" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                    Force Show Chat Button
+                </button>
+                <button id="test-chat" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 ml-2">
+                    Test Chat Function
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/n8n-chat-config.js"></script>
+    <script>
+        // Status checking
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if CSS loaded
+            const cssStatus = document.getElementById('css-status');
+            const chatWidget = document.querySelector('.n8n-chat-widget');
+            
+            setTimeout(() => {
+                if (chatWidget) {
+                    cssStatus.innerHTML = '<span class="w-3 h-3 bg-green-500 rounded-full"></span><span>CSS Loaded ✓</span>';
+                } else {
+                    cssStatus.innerHTML = '<span class="w-3 h-3 bg-red-500 rounded-full"></span><span>CSS Not Loaded ✗</span>';
+                }
+            }, 1000);
+            
+            // Check if JavaScript loaded
+            const jsStatus = document.getElementById('js-status');
+            if (typeof N8nChatConfig !== 'undefined') {
+                jsStatus.innerHTML = '<span class="w-3 h-3 bg-green-500 rounded-full"></span><span>JavaScript Loaded ✓</span>';
+            } else {
+                jsStatus.innerHTML = '<span class="w-3 h-3 bg-red-500 rounded-full"></span><span>JavaScript Not Loaded ✗</span>';
+            }
+            
+            // Widget status
+            const widgetStatus = document.getElementById('widget-status');
+            setTimeout(() => {
+                const widget = document.getElementById('n8n-chat-widget');
+                if (widget) {
+                    widgetStatus.innerHTML = '<span class="w-3 h-3 bg-green-500 rounded-full"></span><span>Widget Created ✓</span>';
+                } else {
+                    widgetStatus.innerHTML = '<span class="w-3 h-3 bg-red-500 rounded-full"></span><span>Widget Not Created ✗</span>';
+                }
+            }, 2000);
+            
+            // Force show button
+            document.getElementById('force-show').addEventListener('click', function() {
+                const widget = document.getElementById('n8n-chat-widget');
+                if (widget) {
+                    widget.classList.add('visible');
+                    console.log('Forced chat widget to show');
+                } else {
+                    console.error('Chat widget not found');
+                }
+            });
+            
+            // Test chat function
+            document.getElementById('test-chat').addEventListener('click', function() {
+                if (typeof N8nChatConfig !== 'undefined') {
+                    const chatButton = document.getElementById('chat-button');
+                    if (chatButton) {
+                        chatButton.click();
+                        console.log('Triggered chat button click');
+                    } else {
+                        console.error('Chat button not found');
+                    }
+                } else {
+                    console.error('N8nChatConfig not available');
+                }
+            });
+        });
+        
+        console.log('Chat test page loaded');
+    </script>
+</body>
+</html>
