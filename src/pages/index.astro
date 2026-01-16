@@ -1,0 +1,418 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const pageTitle = 'Pro Build Digital - Digital Solutions for Small Businesses';
+const pageDescription = 'Pro Build Digital: Professional website development, AI chatbots, automation, and digital invoicing solutions for small businesses and contractors. Get your free consultation today.';
+
+// Service cards data with numbers
+const services = [
+  {
+    number: '01',
+    icon: 'fa-globe',
+    title: 'Website Development',
+    description: 'Fast, mobile-friendly websites that bring in customers and showcase your work professionally.',
+  },
+  {
+    number: '02',
+    icon: 'fa-robot',
+    title: 'AI Chatbots',
+    description: '24/7 customer support that answers questions and captures leads while you focus on the job.',
+  },
+  {
+    number: '03',
+    icon: 'fa-bolt',
+    title: 'Automation',
+    description: 'Streamline your workflow with automated invoicing, scheduling, and customer follow-ups.',
+  },
+  {
+    number: '04',
+    icon: 'fa-chart-line',
+    title: 'Digital Invoicing',
+    description: 'Get paid faster with professional digital invoices and automated payment reminders.',
+  },
+];
+
+// Benefits data
+const benefits = [
+  {
+    icon: 'fa-comments',
+    title: 'No Technical Jargon',
+    description: 'Plain English explanations and straightforward solutions you can understand.',
+  },
+  {
+    icon: 'fa-mobile-screen',
+    title: 'Mobile-First Design',
+    description: 'Everything works perfectly on phones, tablets, and desktops.',
+  },
+  {
+    icon: 'fa-life-ring',
+    title: 'Ongoing Support',
+    description: "We're here to help when you need it most. Real humans, real help.",
+  },
+];
+
+// Stats data
+const stats = [
+  { value: '<3s', label: 'Load Time' },
+  { value: '100%', label: 'Mobile Ready' },
+  { value: '24/7', label: 'Support' },
+];
+
+// LocalBusiness Schema
+const businessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Pro Build Digital",
+  "description": "Professional digital solutions for small businesses and contractors including website development, AI chatbots, automation, and digital invoicing.",
+  "url": "https://probuilddigital.com",
+  "logo": "https://probuilddigital.com/images/logo.png",
+  "telephone": "(614) 403-8014",
+  "email": "zack.pearson@probuilddigital.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Columbus",
+    "addressRegion": "OH",
+    "addressCountry": "US"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "United States"
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Zack Pearson",
+    "jobTitle": "Founder & Lead Digital Solutions Architect"
+  },
+  "foundingDate": "2025",
+  "priceRange": "$$",
+  "sameAs": [
+    "https://www.linkedin.com/in/zachary-pearson1/"
+  ],
+  "openingHours": "Mo-Fr 09:00-17:00"
+};
+---
+
+<PageLayout title={pageTitle} description={pageDescription}>
+
+  <!-- ========================================
+       HERO SECTION - Blueprint Precision
+       ======================================== -->
+  <section class="blueprint-grid noise-overlay relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
+    <!-- Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-br from-[#0a1628]/95 via-[#0d1b2a]/90 to-[#1b263b]/85"></div>
+
+    <!-- Floating Accent Elements -->
+    <div class="absolute top-1/4 right-[10%] w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-1/4 left-[5%] w-48 h-48 bg-amber-400/10 rounded-full blur-3xl animate-float delay-700"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-16 md:py-24">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+        <!-- Left Column - Content -->
+        <div class="space-y-8">
+          <!-- Badge -->
+          <div class="animate-fade-in-up">
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium">
+              <span class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
+              Digital Solutions for Small Business
+            </span>
+          </div>
+
+          <!-- Main Headline -->
+          <h1 class="animate-fade-in-up delay-100">
+            <span class="block text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight">
+              Build Your
+            </span>
+            <span class="block text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-gradient mt-2">
+              Digital Foundation
+            </span>
+          </h1>
+
+          <!-- Subheadline -->
+          <p class="text-lg md:text-xl text-slate-300 max-w-xl leading-relaxed animate-fade-in-up delay-200">
+            Professional websites, AI chatbots, and automation tools designed for contractors and small businesses.
+            <span class="text-white font-medium">No tech jargon, just results.</span>
+          </p>
+
+          <!-- Guarantee Banner -->
+          <div class="animate-fade-in-up delay-300">
+            <div class="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 backdrop-blur border border-white/10">
+              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center text-white">
+                <i class="fas fa-shield-check text-lg" aria-hidden="true"></i>
+              </div>
+              <div>
+                <div class="text-white font-semibold">Pay-If-Satisfied Guarantee</div>
+                <div class="text-slate-400 text-sm">See your website before you pay anything</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-400">
+            <a href="/contact" class="btn btn-primary btn-large glow-cyan">
+              <span>Let's Talk</span>
+              <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a href="/services" class="btn btn-ghost btn-large">
+              <span>View Services</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column - Stats Card -->
+        <div class="animate-scale-in delay-500 lg:justify-self-end">
+          <div class="relative">
+            <!-- Glow Effect -->
+            <div class="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 to-amber-500/20 rounded-3xl blur-2xl"></div>
+
+            <!-- Card -->
+            <div class="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-10">
+              <div class="text-center mb-8">
+                <h2 class="text-lg font-semibold text-white mb-2">Why Choose Pro Build?</h2>
+                <p class="text-slate-400 text-sm">Built for small business success</p>
+              </div>
+
+              <div class="space-y-6">
+                {stats.map((stat, index) => (
+                  <div class={`flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/5 animate-slide-in-right delay-${(index + 6) * 100}`}>
+                    <div class="stat-number text-3xl md:text-4xl">{stat.value}</div>
+                    <div class="text-slate-300 font-medium">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              <!-- Trust Indicator -->
+              <div class="mt-8 pt-6 border-t border-white/10 text-center">
+                <p class="text-slate-400 text-sm">
+                  <i class="fas fa-check-circle text-cyan-400 mr-2" aria-hidden="true"></i>
+                  The only web developer who builds first, gets paid later
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Gradient Fade -->
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 to-transparent"></div>
+  </section>
+
+  <!-- ========================================
+       SERVICES SECTION
+       ======================================== -->
+  <section class="py-20 md:py-32 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-cyan-100 text-cyan-700 text-sm font-semibold mb-4">
+          Our Services
+        </span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+          Everything You Need to <span class="text-gradient">Go Digital</span>
+        </h2>
+        <p class="text-lg text-slate-600">
+          Simple, effective solutions that work for your business. No complicated setup, no hidden fees.
+        </p>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        {services.map((service, index) => (
+          <div
+            class="service-card group"
+            data-number={service.number}
+          >
+            <div class="service-icon">
+              <i class={`fas ${service.icon}`} aria-hidden="true"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">
+              {service.title}
+            </h3>
+            <p class="text-slate-600 leading-relaxed">
+              {service.description}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center mt-12">
+        <a href="/services" class="btn btn-dark btn-large">
+          View All Services
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       WHY CHOOSE US SECTION
+       ======================================== -->
+  <section class="py-20 md:py-32 bg-white relative overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-[0.02]">
+      <div class="absolute inset-0" style="background-image: radial-gradient(#0d1b2a 1px, transparent 1px); background-size: 24px 24px;"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left Column - Content -->
+        <div>
+          <span class="inline-block px-4 py-1.5 rounded-full bg-amber-100 text-amber-700 text-sm font-semibold mb-4">
+            Built Different
+          </span>
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+            Built for <span class="text-gradient">Small Business</span> Success
+          </h2>
+          <p class="text-lg text-slate-600 mb-10 leading-relaxed">
+            We understand that small business owners don't have time for complicated tech solutions.
+            That's why we create simple, effective digital tools that work right out of the box.
+          </p>
+
+          <!-- Benefits List -->
+          <div class="space-y-6">
+            {benefits.map((benefit) => (
+              <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center text-white flex-shrink-0">
+                  <i class={`fas ${benefit.icon} text-lg`} aria-hidden="true"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-slate-900 mb-1">{benefit.title}</h3>
+                  <p class="text-slate-600">{benefit.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Right Column - Visual -->
+        <div class="relative">
+          <!-- Decorative Elements -->
+          <div class="absolute -top-8 -right-8 w-72 h-72 bg-gradient-to-br from-cyan-100 to-transparent rounded-full blur-3xl opacity-60"></div>
+          <div class="absolute -bottom-8 -left-8 w-48 h-48 bg-gradient-to-br from-amber-100 to-transparent rounded-full blur-2xl opacity-60"></div>
+
+          <!-- Card Stack -->
+          <div class="relative">
+            <!-- Background Card -->
+            <div class="absolute top-4 left-4 right-4 bottom-4 bg-slate-200 rounded-2xl"></div>
+
+            <!-- Main Card -->
+            <div class="relative bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 md:p-10 shadow-2xl">
+              <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-cyan-600 mb-4">
+                  <i class="fas fa-rocket text-2xl text-white" aria-hidden="true"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">Ready to Launch?</h3>
+                <p class="text-slate-400">Your digital transformation starts here</p>
+              </div>
+
+              <!-- Feature Checks -->
+              <div class="space-y-4 mb-8">
+                <div class="flex items-center gap-3 text-slate-300">
+                  <i class="fas fa-check-circle text-cyan-400" aria-hidden="true"></i>
+                  <span>Free consultation & quote</span>
+                </div>
+                <div class="flex items-center gap-3 text-slate-300">
+                  <i class="fas fa-check-circle text-cyan-400" aria-hidden="true"></i>
+                  <span>No contracts or commitments</span>
+                </div>
+                <div class="flex items-center gap-3 text-slate-300">
+                  <i class="fas fa-check-circle text-cyan-400" aria-hidden="true"></i>
+                  <span>Pay only if satisfied</span>
+                </div>
+              </div>
+
+              <a href="/contact" class="btn btn-primary w-full justify-center">
+                Get Your Free Quote
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       CTA SECTION
+       ======================================== -->
+  <section class="relative py-20 md:py-32 overflow-hidden">
+    <!-- Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-cyan-600 via-cyan-700 to-slate-900"></div>
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 32px 32px;"></div>
+    </div>
+
+    <!-- Floating Elements -->
+    <div class="absolute top-1/4 left-[10%] w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+    <div class="absolute bottom-1/4 right-[10%] w-48 h-48 bg-amber-400/20 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+        Ready to Build Your <br class="hidden md:block" />
+        <span class="text-amber-300">Digital Foundation?</span>
+      </h2>
+      <p class="text-xl text-cyan-100 mb-10 max-w-2xl mx-auto">
+        Let's discuss how we can help your business grow with the right digital tools.
+        Free consultation, no obligations.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="btn btn-large bg-white text-slate-900 hover:bg-slate-100 shadow-xl hover:shadow-2xl transition-all">
+          Get Started Today
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <a href="tel:+16144038014" class="btn btn-large btn-ghost border-white/30 hover:bg-white/10">
+          <i class="fas fa-phone" aria-hidden="true"></i>
+          (614) 403-8014
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+</PageLayout>
+
+<!-- n8n Chat Widget -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" />
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+  createChat({
+    webhookUrl: 'https://zax76.app.n8n.cloud/webhook/2610f1f4-f38d-4b33-ba97-da199e6a15bc/chat',
+    mode: 'window',
+    loadPreviousSession: false,
+    initialMessages: [
+      'Welcome to Pro Build Digital! I\'m here to help with your digital needs.',
+      '&#10003; **Pay-If-Satisfied Guarantee** - We build your complete website first. You only pay if you\'re 100% satisfied!',
+      'What can I help you with today?'
+    ],
+    i18n: {
+      en: {
+        title: 'BuildBot',
+        subtitle: 'Digital Solutions Assistant',
+        footer: '',
+        getStarted: 'Start Chat',
+        inputPlaceholder: 'Type your message here...',
+        endOfSessionMessage: 'Thanks for chatting! Feel free to reach out anytime.',
+        loadingMessage: 'Please wait...',
+        errorMessage: 'Sorry, there was an error. Please try again.'
+      }
+    },
+    showWelcomeScreen: false,
+    theme: {
+      header: {
+        background: '#0d1b2a',
+        color: '#FFFFFF'
+      },
+      button: {
+        background: '#0d1b2a',
+        color: '#FFFFFF'
+      }
+    }
+  });
+</script>

@@ -1,0 +1,336 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const pageTitle = 'Contact Us - Pro Build Digital';
+const pageDescription = 'Get in touch with Pro Build Digital for a free consultation. Professional website development, AI chatbots, automation, and digital invoicing solutions.';
+
+// FAQ data
+const faqs = [
+  { question: 'How long does it take to build a website?', answer: 'Most websites are completed within 1-2 weeks. Simple sites can be done even faster, while complex projects may take 3-4 weeks.' },
+  { question: 'Do you offer payment plans?', answer: "Yes! We understand cash flow is important for small businesses. We offer flexible payment options." },
+  { question: 'What if I need changes after the website is live?', answer: 'We offer ongoing support and maintenance packages. Small changes and updates are often included.' },
+  { question: 'Do you work with businesses outside my area?', answer: 'Absolutely! We work with clients nationwide via video calls, phone, and email.' },
+];
+
+// FAQPage Schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+  }))
+};
+---
+
+<PageLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero Section -->
+  <section class="blueprint-grid noise-overlay relative py-20 md:py-32 pt-28 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#0a1628]/95 via-[#0d1b2a]/90 to-[#1b263b]/85"></div>
+    <div class="absolute bottom-1/3 left-[10%] w-64 h-64 bg-amber-400/10 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 text-center">
+      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium mb-6">
+        <span class="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
+        Get In Touch
+      </span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        Let's <span class="text-gradient">Talk</span>
+      </h1>
+      <p class="text-xl text-slate-300 max-w-2xl mx-auto">
+        Ready to take your business digital? Get your free consultation today.
+      </p>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-20 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-3 gap-12">
+        <!-- Contact Form -->
+        <div class="lg:col-span-2">
+          <span class="inline-block px-4 py-1.5 rounded-full bg-cyan-100 text-cyan-700 text-sm font-semibold mb-4">
+            Send a Message
+          </span>
+          <h2 class="text-3xl font-bold mb-2 text-slate-900">How Can We Help?</h2>
+          <p class="text-slate-600 mb-8">Fill out the form below and we'll get back to you within 24 hours.</p>
+
+          <form id="contact-form" action="https://formspree.io/f/mkgzrnvd" method="POST" class="space-y-6" novalidate>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="form-group">
+                <label for="name" class="block text-sm font-semibold text-slate-700 mb-2">Name *</label>
+                <input type="text" id="name" name="name" required aria-describedby="name-error"
+                  class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-cyan-500 focus:ring-0 transition-colors bg-white">
+                <span id="name-error" class="error-message text-red-500 text-sm mt-1 hidden" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">Email *</label>
+                <input type="email" id="email" name="email" required aria-describedby="email-error"
+                  class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-cyan-500 focus:ring-0 transition-colors bg-white">
+                <span id="email-error" class="error-message text-red-500 text-sm mt-1 hidden" role="alert"></span>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="form-group">
+                <label for="phone" class="block text-sm font-semibold text-slate-700 mb-2">Phone</label>
+                <input type="tel" id="phone" name="phone"
+                  class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-cyan-500 focus:ring-0 transition-colors bg-white">
+              </div>
+              <div class="form-group">
+                <label for="service" class="block text-sm font-semibold text-slate-700 mb-2">Service Interested In</label>
+                <select id="service" name="service"
+                  class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-cyan-500 focus:ring-0 transition-colors bg-white">
+                  <option value="">Select a service</option>
+                  <option value="website">Website Development</option>
+                  <option value="chatbot">AI Chatbot</option>
+                  <option value="automation">Automation</option>
+                  <option value="invoicing">Digital Invoicing</option>
+                  <option value="multiple">Multiple Services</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="block text-sm font-semibold text-slate-700 mb-2">Message *</label>
+              <textarea id="message" name="message" rows="5" required aria-describedby="message-error"
+                class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-cyan-500 focus:ring-0 transition-colors bg-white resize-vertical"
+                placeholder="Tell us about your project or ask a question..."></textarea>
+              <span id="message-error" class="error-message text-red-500 text-sm mt-1 hidden" role="alert"></span>
+            </div>
+
+            <!-- Success/Error Messages -->
+            <div id="form-success" class="hidden bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-green-500 flex items-center justify-center text-white flex-shrink-0">
+                  <i class="fas fa-check" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-green-800">Message Sent!</h3>
+                  <p class="text-sm text-green-700">Thank you for reaching out. We'll get back to you within 24 hours.</p>
+                </div>
+              </div>
+            </div>
+
+            <div id="form-error" class="hidden bg-gradient-to-r from-red-50 to-rose-50 border border-red-200 rounded-xl p-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-red-500 flex items-center justify-center text-white flex-shrink-0">
+                  <i class="fas fa-times" aria-hidden="true"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-red-800">Something went wrong</h3>
+                  <p class="text-sm text-red-700">Please try again or contact us directly at zack.pearson@probuilddigital.com</p>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large w-full justify-center">
+              <span class="btn-text">Send Message</span>
+              <span class="btn-loading hidden">
+                <svg class="animate-spin w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Sending...
+              </span>
+              <i class="fas fa-paper-plane btn-text" aria-hidden="true"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Info Sidebar -->
+        <div>
+          <span class="inline-block px-4 py-1.5 rounded-full bg-amber-100 text-amber-700 text-sm font-semibold mb-4">
+            Contact Info
+          </span>
+          <h3 class="text-2xl font-bold mb-4 text-slate-900">Get in Touch</h3>
+          <p class="text-slate-600 mb-8">Prefer to reach out directly? Here's how you can contact us.</p>
+
+          <div class="space-y-6">
+            <a href="mailto:zack.pearson@probuilddigital.com" class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 hover:bg-cyan-50 border border-slate-200 hover:border-cyan-300 transition-all group">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-slate-900">Email</h4>
+                <span class="text-cyan-600 text-sm">zack.pearson@probuilddigital.com</span>
+              </div>
+            </a>
+
+            <a href="tel:+16144038014" class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 hover:bg-cyan-50 border border-slate-200 hover:border-cyan-300 transition-all group">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform">
+                <i class="fas fa-phone" aria-hidden="true"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-slate-900">Phone</h4>
+                <span class="text-cyan-600 text-sm">(614) 403-8014</span>
+              </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/zachary-pearson1/" target="_blank" rel="noopener noreferrer" class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 hover:bg-cyan-50 border border-slate-200 hover:border-cyan-300 transition-all group">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform">
+                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold text-slate-900">LinkedIn</h4>
+                <span class="text-cyan-600 text-sm">Connect with Zack</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Response Guarantee -->
+          <div class="mt-8 bg-gradient-to-r from-amber-50 to-amber-100 border border-amber-200 rounded-xl p-6">
+            <h4 class="font-bold text-amber-900 mb-4">Response Guarantee</h4>
+            <ul class="space-y-3">
+              <li class="flex items-center gap-3 text-amber-800">
+                <span class="w-5 h-5 rounded-full bg-amber-400 flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-check text-white text-xs" aria-hidden="true"></i>
+                </span>
+                <span class="text-sm">Response within 24 hours</span>
+              </li>
+              <li class="flex items-center gap-3 text-amber-800">
+                <span class="w-5 h-5 rounded-full bg-amber-400 flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-check text-white text-xs" aria-hidden="true"></i>
+                </span>
+                <span class="text-sm">Free initial consultation</span>
+              </li>
+              <li class="flex items-center gap-3 text-amber-800">
+                <span class="w-5 h-5 rounded-full bg-amber-400 flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-check text-white text-xs" aria-hidden="true"></i>
+                </span>
+                <span class="text-sm">No pressure, no obligation</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 md:py-32 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-cyan-100 text-cyan-700 text-sm font-semibold mb-4">
+          FAQ
+        </span>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {faqs.map((faq) => (
+          <div class="bg-white p-6 rounded-xl border border-slate-200 hover:border-cyan-300 hover:shadow-lg transition-all">
+            <h3 class="text-lg font-bold mb-3 text-slate-900">{faq.question}</h3>
+            <p class="text-slate-600">{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</PageLayout>
+
+<!-- Form handling script -->
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const successMessage = document.getElementById('form-success');
+  const errorMessage = document.getElementById('form-error');
+  const submitBtn = form?.querySelector('button[type="submit"]');
+  const btnText = submitBtn?.querySelectorAll('.btn-text');
+  const btnLoading = submitBtn?.querySelector('.btn-loading');
+
+  const nameError = document.getElementById('name-error');
+  const emailError = document.getElementById('email-error');
+  const messageError = document.getElementById('message-error');
+
+  const nameInput = document.getElementById('name') as HTMLInputElement;
+  const emailInput = document.getElementById('email') as HTMLInputElement;
+  const messageInput = document.getElementById('message') as HTMLTextAreaElement;
+
+  function showError(input: HTMLElement | null, errorEl: HTMLElement | null, message: string) {
+    if (errorEl) { errorEl.textContent = message; errorEl.classList.remove('hidden'); }
+    input?.classList.add('border-red-500');
+    input?.classList.remove('border-slate-200');
+  }
+
+  function clearError(input: HTMLElement | null, errorEl: HTMLElement | null) {
+    if (errorEl) { errorEl.textContent = ''; errorEl.classList.add('hidden'); }
+    input?.classList.remove('border-red-500');
+    input?.classList.add('border-slate-200');
+  }
+
+  function clearAllErrors() {
+    clearError(nameInput, nameError);
+    clearError(emailInput, emailError);
+    clearError(messageInput, messageError);
+  }
+
+  function validateForm(): boolean {
+    let isValid = true;
+    clearAllErrors();
+
+    if (!nameInput?.value.trim()) { showError(nameInput, nameError, 'Please enter your name'); isValid = false; }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailInput?.value.trim()) { showError(emailInput, emailError, 'Please enter your email'); isValid = false; }
+    else if (!emailRegex.test(emailInput.value)) { showError(emailInput, emailError, 'Please enter a valid email'); isValid = false; }
+
+    if (!messageInput?.value.trim()) { showError(messageInput, messageError, 'Please enter a message'); isValid = false; }
+    else if (messageInput.value.trim().length < 10) { showError(messageInput, messageError, 'Please enter at least 10 characters'); isValid = false; }
+
+    return isValid;
+  }
+
+  nameInput?.addEventListener('input', () => clearError(nameInput, nameError));
+  emailInput?.addEventListener('input', () => clearError(emailInput, emailError));
+  messageInput?.addEventListener('input', () => clearError(messageInput, messageError));
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    btnText?.forEach(el => el.classList.add('hidden'));
+    if (btnLoading) btnLoading.classList.remove('hidden');
+    if (submitBtn) (submitBtn as HTMLButtonElement).disabled = true;
+
+    successMessage?.classList.add('hidden');
+    errorMessage?.classList.add('hidden');
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+
+      if (response.ok) {
+        successMessage?.classList.remove('hidden');
+        form.reset();
+        clearAllErrors();
+      } else { throw new Error('Form submission failed'); }
+    } catch (error) {
+      errorMessage?.classList.remove('hidden');
+    } finally {
+      btnText?.forEach(el => el.classList.remove('hidden'));
+      if (btnLoading) btnLoading.classList.add('hidden');
+      if (submitBtn) (submitBtn as HTMLButtonElement).disabled = false;
+    }
+  });
+</script>
+
+<!-- n8n Chat Widget -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" />
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+  createChat({
+    webhookUrl: 'https://zax76.app.n8n.cloud/webhook/2610f1f4-f38d-4b33-ba97-da199e6a15bc/chat',
+    mode: 'window',
+    loadPreviousSession: false,
+    initialMessages: ['Welcome to Pro Build Digital!', 'What can I help you with today?'],
+    i18n: { en: { title: 'BuildBot', subtitle: 'Digital Solutions Assistant', getStarted: 'Start Chat' }},
+    showWelcomeScreen: false,
+    theme: { header: { background: '#0d1b2a', color: '#FFFFFF' }, button: { background: '#0d1b2a', color: '#FFFFFF' }}
+  });
+</script>

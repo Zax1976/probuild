@@ -1,0 +1,150 @@
+---
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
+  { href: '/about', label: 'About' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<nav class="navbar sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-slate-200/50">
+  <div class="nav-container max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between h-20">
+    <a href="/" class="nav-logo flex items-center gap-3 group">
+      <picture>
+        <source type="image/webp" srcset="/images/logo.webp">
+        <img
+          src="/images/logo.png"
+          alt="Pro Build Digital Logo"
+          width="48"
+          height="48"
+          loading="eager"
+          class="rounded-xl group-hover:scale-105 transition-transform duration-300"
+        >
+      </picture>
+      <span class="logo-text hidden sm:inline" style="font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1.35rem; font-weight: 700; color: #0d1b2a; letter-spacing: -0.02em;">
+        Pro Build Digital
+      </span>
+    </a>
+
+    <ul class="nav-menu hidden lg:flex items-center gap-1" id="nav-menu">
+      {navItems.map((item) => (
+        <li class="nav-item">
+          <a
+            href={item.href}
+            class:list={[
+              'nav-link px-4 py-2 rounded-full text-sm font-medium transition-all duration-200',
+              currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
+                ? 'bg-slate-900 text-white'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+            ]}
+            aria-current={currentPath === item.href ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <button
+      class="nav-toggle lg:hidden flex flex-col gap-1.5 p-2"
+      id="nav-toggle"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="nav-menu"
+    >
+      <span class="bar w-6 h-0.5 bg-slate-800 rounded-full transition-all"></span>
+      <span class="bar w-6 h-0.5 bg-slate-800 rounded-full transition-all"></span>
+      <span class="bar w-6 h-0.5 bg-slate-800 rounded-full transition-all"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden opacity-0 transition-opacity duration-300"></div>
+
+<!-- Mobile Menu Panel -->
+<div id="mobile-menu-panel" class="fixed top-0 right-0 h-full w-72 bg-[#0d1b2a] z-50 transform translate-x-full transition-transform duration-300 lg:hidden">
+  <div class="p-6">
+    <div class="flex items-center justify-between mb-8">
+      <span class="text-white font-bold text-lg" style="font-family: 'Space Grotesk', system-ui, sans-serif;">Menu</span>
+      <button id="mobile-menu-close" class="text-slate-400 hover:text-white p-2" aria-label="Close menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <ul class="space-y-2">
+      {navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class:list={[
+              'mobile-nav-link block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200',
+              currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
+                ? 'bg-cyan-500/20 text-cyan-400'
+                : 'text-slate-300 hover:text-white hover:bg-white/10'
+            ]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Mobile CTA -->
+    <div class="mt-8 pt-6 border-t border-white/10">
+      <a href="/contact" class="block w-full py-3 px-4 bg-gradient-to-r from-cyan-500 to-cyan-600 text-white text-center font-semibold rounded-lg hover:from-cyan-400 hover:to-cyan-500 transition-all">
+        Get Started
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Mobile navigation toggle
+  const navToggle = document.getElementById('nav-toggle');
+  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+  const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+  const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+  function openMenu() {
+    mobileMenuOverlay?.classList.remove('hidden');
+    setTimeout(() => {
+      mobileMenuOverlay?.classList.remove('opacity-0');
+      mobileMenuPanel?.classList.remove('translate-x-full');
+    }, 10);
+    navToggle?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    mobileMenuOverlay?.classList.add('opacity-0');
+    mobileMenuPanel?.classList.add('translate-x-full');
+    navToggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      mobileMenuOverlay?.classList.add('hidden');
+    }, 300);
+  }
+
+  navToggle?.addEventListener('click', openMenu);
+  mobileMenuClose?.addEventListener('click', closeMenu);
+  mobileMenuOverlay?.addEventListener('click', closeMenu);
+
+  // Close menu when clicking on a link
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+</script>

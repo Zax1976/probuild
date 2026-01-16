@@ -1,0 +1,148 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+
+const pageTitle = 'Blog - Pro Build Digital';
+const pageDescription = 'Tips, insights, and guides for small businesses on website development, AI chatbots, automation, and digital solutions.';
+
+// Get all published blog posts, sorted by date
+const posts = (await getCollection('blog', ({ data }) => {
+  return data.draft !== true;
+})).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Format date helper
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+---
+
+<PageLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero Section -->
+  <section class="blueprint-grid noise-overlay relative py-20 md:py-32 pt-28 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#0a1628]/95 via-[#0d1b2a]/90 to-[#1b263b]/85"></div>
+    <div class="absolute top-1/3 right-[15%] w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 text-center">
+      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium mb-6">
+        <span class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
+        Insights & Tips
+      </span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        Our <span class="text-gradient">Blog</span>
+      </h1>
+      <p class="text-xl text-slate-300 max-w-2xl mx-auto">
+        Tips, insights, and guides to help your small business succeed in the digital world.
+      </p>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 to-transparent"></div>
+  </section>
+
+  <!-- Blog Posts -->
+  <section class="py-20 md:py-32 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      {posts.length > 0 ? (
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post) => (
+            <article class="bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-cyan-300 hover:shadow-xl transition-all group">
+              {post.data.image && (
+                <div class="relative overflow-hidden">
+                  <img
+                    src={post.data.image}
+                    alt={post.data.title}
+                    class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  >
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+              )}
+              <div class="p-6">
+                <div class="flex items-center gap-4 text-sm text-slate-500 mb-4">
+                  <time datetime={post.data.date.toISOString()} class="flex items-center gap-1.5">
+                    <i class="fas fa-calendar text-xs text-cyan-500" aria-hidden="true"></i>
+                    {formatDate(post.data.date)}
+                  </time>
+                  {post.data.readTime && (
+                    <span class="flex items-center gap-1.5">
+                      <i class="fas fa-clock text-xs text-cyan-500" aria-hidden="true"></i>
+                      {post.data.readTime}
+                    </span>
+                  )}
+                </div>
+                <h2 class="text-xl font-bold mb-3 text-slate-900 group-hover:text-cyan-600 transition-colors">
+                  <a href={`/blog/${post.slug}`}>
+                    {post.data.title}
+                  </a>
+                </h2>
+                <p class="text-slate-600 mb-4 line-clamp-3">{post.data.description}</p>
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-2">
+                    {post.data.tags.slice(0, 3).map((tag) => (
+                      <span class="text-xs bg-cyan-50 text-cyan-700 px-2.5 py-1 rounded-full font-medium">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-16">
+          <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center mx-auto mb-8">
+            <i class="fas fa-pen-nib text-4xl text-white" aria-hidden="true"></i>
+          </div>
+          <h2 class="text-3xl font-bold mb-4 text-slate-900">Coming Soon</h2>
+          <p class="text-slate-600 max-w-md mx-auto mb-8 text-lg">
+            We're working on some great content for you. Check back soon for tips and insights on growing your business digitally.
+          </p>
+          <a href="/contact" class="btn btn-primary btn-large">
+            Get in Touch
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="relative py-20 md:py-32 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-cyan-600 via-cyan-700 to-slate-900"></div>
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 32px 32px;"></div>
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+        Have a <span class="text-amber-300">Question?</span>
+      </h2>
+      <p class="text-xl text-cyan-100 mb-10 max-w-2xl mx-auto">
+        We're here to help with your digital needs. Get in touch for a free consultation.
+      </p>
+      <a href="/contact" class="btn btn-large bg-white text-slate-900 hover:bg-slate-100 shadow-xl hover:shadow-2xl transition-all">
+        Contact Us
+        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
+  </section>
+</PageLayout>
+
+<!-- n8n Chat Widget -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" />
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+  createChat({
+    webhookUrl: 'https://zax76.app.n8n.cloud/webhook/2610f1f4-f38d-4b33-ba97-da199e6a15bc/chat',
+    mode: 'window',
+    loadPreviousSession: false,
+    initialMessages: ['Welcome to Pro Build Digital!', 'What can I help you with today?'],
+    i18n: { en: { title: 'BuildBot', subtitle: 'Digital Solutions Assistant', getStarted: 'Start Chat' }},
+    showWelcomeScreen: false,
+    theme: { header: { background: '#0d1b2a', color: '#FFFFFF' }, button: { background: '#0d1b2a', color: '#FFFFFF' }}
+  });
+</script>

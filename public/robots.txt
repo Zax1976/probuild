@@ -1,0 +1,7 @@
+# robots.txt for probuilddigital.com
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://probuilddigital.com/sitemap-index.xml

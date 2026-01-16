@@ -1,0 +1,38 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+}
+
+const { title, description, keywords, ogImage, canonicalUrl } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  ogImage={ogImage}
+  canonicalUrl={canonicalUrl}
+>
+  <!-- Skip Link for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <Header currentPath={currentPath} />
+
+  <main id="main-content">
+    <slot />
+  </main>
+
+  <Footer />
+
+  <!-- n8n Chat Widget - loaded as island -->
+  <slot name="chat-widget" />
+</BaseLayout>

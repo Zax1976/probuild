@@ -1,0 +1,125 @@
+---
+const currentYear = new Date().getFullYear();
+
+const services = [
+  { name: 'Website Development', href: '/services#website-development' },
+  { name: 'AI Chatbots', href: '/services#ai-chatbots' },
+  { name: 'Automation', href: '/services#automation' },
+  { name: 'Digital Invoicing', href: '/services#digital-invoicing' },
+];
+
+const company = [
+  { name: 'About Us', href: '/about' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Contact', href: '/contact' },
+];
+---
+
+<footer class="footer bg-[#0a1628]">
+  <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+    <!-- Main Footer Content -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 py-16">
+
+      <!-- Brand Column -->
+      <div class="lg:col-span-1">
+        <a href="/" class="flex items-center gap-3 mb-6 group">
+          <picture>
+            <source type="image/webp" srcset="/images/logo.webp">
+            <img
+              src="/images/logo.png"
+              alt="Pro Build Digital Logo"
+              width="44"
+              height="44"
+              loading="lazy"
+              class="w-11 h-11 rounded-xl bg-white p-1.5 group-hover:scale-105 transition-transform"
+            >
+          </picture>
+          <span class="text-xl font-bold text-white">Pro Build Digital</span>
+        </a>
+        <p class="text-slate-400 leading-relaxed mb-6">
+          Professional digital solutions for small businesses and contractors. No tech jargon, just results.
+        </p>
+        <!-- Social Links -->
+        <div class="flex gap-3">
+          <a
+            href="https://www.linkedin.com/in/zachary-pearson1/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:bg-cyan-500 hover:text-white hover:border-cyan-500 transition-all duration-300"
+            aria-label="Connect on LinkedIn"
+          >
+            <i class="fab fa-linkedin-in text-lg" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Services Column -->
+      <div>
+        <h4 class="footer-heading">Services</h4>
+        <ul class="space-y-3">
+          {services.map((service) => (
+            <li>
+              <a href={service.href} class="text-slate-400 hover:text-cyan-400 transition-colors inline-flex items-center gap-2 group">
+                <span class="w-1.5 h-1.5 rounded-full bg-slate-600 group-hover:bg-cyan-400 transition-colors"></span>
+                {service.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Company Column -->
+      <div>
+        <h4 class="footer-heading">Company</h4>
+        <ul class="space-y-3">
+          {company.map((item) => (
+            <li>
+              <a href={item.href} class="text-slate-400 hover:text-cyan-400 transition-colors inline-flex items-center gap-2 group">
+                <span class="w-1.5 h-1.5 rounded-full bg-slate-600 group-hover:bg-cyan-400 transition-colors"></span>
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact Column -->
+      <div>
+        <h4 class="footer-heading">Get In Touch</h4>
+        <div class="space-y-4">
+          <a href="mailto:zack.pearson@probuilddigital.com" class="flex items-start gap-3 text-slate-400 hover:text-cyan-400 transition-colors group">
+            <span class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-500/20 transition-colors">
+              <i class="fas fa-envelope text-sm" aria-hidden="true"></i>
+            </span>
+            <span class="text-sm whitespace-nowrap">zack.pearson@probuilddigital.com</span>
+          </a>
+          <a href="tel:+16144038014" class="flex items-center gap-3 text-slate-400 hover:text-cyan-400 transition-colors group">
+            <span class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-cyan-500/20 transition-colors">
+              <i class="fas fa-phone text-sm" aria-hidden="true"></i>
+            </span>
+            <span class="text-sm">(614) 403-8014</span>
+          </a>
+          <div class="flex items-start gap-3 text-slate-400">
+            <span class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-map-marker-alt text-sm" aria-hidden="true"></i>
+            </span>
+            <span class="text-sm">Columbus, OH</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-white/10 py-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-slate-500 text-sm">
+          &copy; {currentYear} Pro Build Digital. All rights reserved.
+        </p>
+        <p class="text-slate-500 text-sm flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+          Built with precision for small businesses
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

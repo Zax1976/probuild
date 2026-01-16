@@ -1,0 +1,256 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const pageTitle = 'About Us - Pro Build Digital';
+const pageDescription = 'Pro Build Digital: Founded by Zack Pearson to help small businesses and contractors succeed with simple, effective digital solutions.';
+
+// Values data
+const values = [
+  { icon: 'fa-bullseye', title: 'Simple', description: 'Easy to use, no technical knowledge required' },
+  { icon: 'fa-bolt', title: 'Fast', description: 'Quick implementation, immediate results' },
+  { icon: 'fa-shield-alt', title: 'Reliable', description: 'Systems that work when you need them' },
+  { icon: 'fa-handshake', title: 'Supportive', description: 'Always here to help when you need it' },
+];
+
+// Why choose data
+const whyChoose = [
+  { icon: 'fa-crosshairs', title: 'We Understand Your Business', description: "We specialize in working with contractors, tradespeople, and service businesses. We know your challenges." },
+  { icon: 'fa-mobile-screen', title: 'Mobile-First Approach', description: "Your customers are on their phones. Every solution we build works perfectly on mobile devices." },
+  { icon: 'fa-rocket', title: 'Fast Implementation', description: "Most of our solutions are up and running within days, not months, so you can start seeing results immediately." },
+  { icon: 'fa-life-ring', title: 'Ongoing Support', description: "We provide ongoing maintenance, updates, and support so your digital tools keep working as your business grows." },
+  { icon: 'fa-tag', title: 'Transparent Pricing', description: 'No hidden fees or surprise charges. We tell you exactly what everything costs upfront.' },
+  { icon: 'fa-user', title: 'Personal Service', description: "When you work with us, you get direct access to real people who understand your business." },
+];
+
+// Process steps
+const processSteps = [
+  { number: '01', title: 'Discovery Call', description: "Free consultation to understand your business, challenges, and goals." },
+  { number: '02', title: 'Custom Solution', description: 'A custom plan that fits your specific needs and budget.' },
+  { number: '03', title: 'Quick Implementation', description: 'Most projects are completed and live within 1-2 weeks.' },
+  { number: '04', title: 'Training & Support', description: "We ensure you're comfortable and provide ongoing support." },
+];
+
+// Credentials
+const credentials = [
+  { icon: 'fa-graduation-cap', title: 'MBA + 19 Years Experience', description: 'Jack Welch Management Institute, Verizon Operations' },
+  { icon: 'fa-trophy', title: 'Certified Project Manager', description: 'Scrum Master, Product Owner, ISTQB Certified' },
+  { icon: 'fa-briefcase', title: 'Enterprise Systems Expert', description: 'Revenue assurance, billing systems, automation' },
+];
+---
+
+<PageLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero Section -->
+  <section class="blueprint-grid noise-overlay relative py-20 md:py-32 pt-28 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#0a1628]/95 via-[#0d1b2a]/90 to-[#1b263b]/85"></div>
+    <div class="absolute bottom-1/4 left-[10%] w-48 h-48 bg-amber-400/10 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 text-center">
+      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium mb-6">
+        <span class="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
+        Our Story
+      </span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        About <span class="text-gradient">Pro Build Digital</span>
+      </h1>
+      <p class="text-xl text-slate-300 max-w-2xl mx-auto">
+        We're here to make digital simple for small businesses and contractors
+      </p>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="py-20 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <span class="inline-block px-4 py-1.5 rounded-full bg-cyan-100 text-cyan-700 text-sm font-semibold mb-4">
+            Our Mission
+          </span>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-slate-900">
+            Professional Digital Tools <span class="text-gradient">Without the Complexity</span>
+          </h2>
+          <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+            We believe that every small business deserves access to professional digital tools without the complexity, high costs, or technical headaches that usually come with them.
+          </p>
+          <p class="text-slate-600 mb-4">
+            Most small business owners didn't get into business to become tech experts. They got into business to provide great service, build things, and solve problems.
+          </p>
+          <p class="text-slate-600">
+            That's why we create digital solutions that work seamlessly in the background, letting you focus on what you do best. <span class="font-semibold text-slate-900">No confusing jargon. No overcomplicated systems. Just simple, effective tools.</span>
+          </p>
+        </div>
+
+        <!-- Values Grid -->
+        <div class="grid grid-cols-2 gap-4">
+          {values.map((value) => (
+            <div class="bg-white p-6 rounded-xl border border-slate-200 hover:border-cyan-300 hover:shadow-lg transition-all group">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
+                <i class={`fas ${value.icon}`} aria-hidden="true"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-2 text-slate-900">{value.title}</h3>
+              <p class="text-sm text-slate-600">{value.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder Section -->
+  <section class="py-20 md:py-32 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-3 gap-12 items-start">
+        <!-- Photo -->
+        <div class="flex justify-center lg:justify-start">
+          <div class="relative">
+            <div class="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 to-amber-500/20 rounded-full blur-2xl"></div>
+            <img
+              src="https://i.imgur.com/N9QBKHN.jpg"
+              alt="Zack Pearson - Founder of Pro Build Digital"
+              class="relative w-48 h-48 rounded-full object-cover shadow-2xl border-4 border-white"
+              loading="lazy"
+            >
+          </div>
+        </div>
+
+        <!-- Bio -->
+        <div class="lg:col-span-2">
+          <span class="inline-block px-4 py-1.5 rounded-full bg-amber-100 text-amber-700 text-sm font-semibold mb-4">
+            Meet the Founder
+          </span>
+          <h2 class="text-3xl md:text-4xl font-bold mb-2 text-slate-900">Zack Pearson</h2>
+          <p class="text-lg text-slate-500 font-medium mb-6">Founder & Lead Digital Solutions Architect</p>
+
+          <p class="text-slate-600 mb-4 leading-relaxed">
+            With over 19 years of experience in operations, project management, and systems optimization at Verizon Communications, I understand what it takes to build digital solutions that actually work for business.
+          </p>
+          <p class="text-slate-600 mb-6 leading-relaxed">
+            I've spent two decades perfecting complex billing systems, managing multi-million dollar projects, and ensuring 99.9% accuracy in mission-critical operations. Now I'm bringing that same level of precision and reliability to small businesses.
+          </p>
+
+          <!-- Personal Guarantee -->
+          <div class="bg-gradient-to-r from-amber-50 to-amber-100 border border-amber-200 rounded-xl p-5 mb-8">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center text-white flex-shrink-0">
+                <i class="fas fa-shield-check text-lg" aria-hidden="true"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-bold text-amber-900 mb-1">My Personal Guarantee</h4>
+                <p class="text-amber-800 text-sm">I'll build your complete website first. You only pay if you're 100% satisfied. No upfront costs, no contracts, no risk.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Credentials -->
+          <div class="grid sm:grid-cols-3 gap-4">
+            {credentials.map((cred) => (
+              <div class="flex items-start gap-3 p-4 bg-white rounded-xl border border-slate-200">
+                <div class="w-10 h-10 rounded-lg bg-cyan-100 flex items-center justify-center text-cyan-600 flex-shrink-0">
+                  <i class={`fas ${cred.icon}`} aria-hidden="true"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-slate-900 text-sm">{cred.title}</h4>
+                  <p class="text-xs text-slate-500">{cred.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Section -->
+  <section class="py-20 md:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-cyan-100 text-cyan-700 text-sm font-semibold mb-4">
+          Why Us
+        </span>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900">
+          Why Choose <span class="text-gradient">Pro Build Digital?</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {whyChoose.map((item) => (
+          <div class="bg-white p-6 rounded-xl border border-slate-200 hover:border-cyan-300 hover:shadow-lg transition-all group">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
+              <i class={`fas ${item.icon}`} aria-hidden="true"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3 text-slate-900">{item.title}</h3>
+            <p class="text-slate-600">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-20 md:py-32 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-amber-100 text-amber-700 text-sm font-semibold mb-4">
+          Our Process
+        </span>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">How We Work</h2>
+        <p class="text-lg text-slate-600">Our simple, straightforward process gets you results fast</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {processSteps.map((step, index) => (
+          <div class="relative">
+            {index < processSteps.length - 1 && (
+              <div class="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-cyan-300 to-transparent -translate-x-8"></div>
+            )}
+            <div class="text-center">
+              <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
+                {step.number}
+              </div>
+              <h3 class="text-xl font-bold mb-3 text-slate-900">{step.title}</h3>
+              <p class="text-slate-600">{step.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="relative py-20 md:py-32 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-cyan-600 via-cyan-700 to-slate-900"></div>
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 32px 32px;"></div>
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+        Ready to Work <span class="text-amber-300">Together?</span>
+      </h2>
+      <p class="text-xl text-cyan-100 mb-10 max-w-2xl mx-auto">
+        Let's have a conversation about how we can help your business grow with the right digital tools.
+      </p>
+      <a href="/contact" class="btn btn-large bg-white text-slate-900 hover:bg-slate-100 shadow-xl hover:shadow-2xl transition-all">
+        Get Your Free Consultation
+        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
+  </section>
+</PageLayout>
+
+<!-- n8n Chat Widget -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" />
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+  createChat({
+    webhookUrl: 'https://zax76.app.n8n.cloud/webhook/2610f1f4-f38d-4b33-ba97-da199e6a15bc/chat',
+    mode: 'window',
+    loadPreviousSession: false,
+    initialMessages: ['Welcome to Pro Build Digital!', 'What can I help you with today?'],
+    i18n: { en: { title: 'BuildBot', subtitle: 'Digital Solutions Assistant', getStarted: 'Start Chat' }},
+    showWelcomeScreen: false,
+    theme: { header: { background: '#0d1b2a', color: '#FFFFFF' }, button: { background: '#0d1b2a', color: '#FFFFFF' }}
+  });
+</script>

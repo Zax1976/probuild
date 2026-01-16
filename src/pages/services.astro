@@ -1,0 +1,230 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const pageTitle = 'Our Services - Pro Build Digital';
+const pageDescription = 'Professional digital services for small businesses: Website development, AI chatbots, automation, and digital invoicing.';
+
+// Services data
+const services = [
+  {
+    id: 'website-development',
+    number: '01',
+    icon: 'fa-globe',
+    title: 'Website Development',
+    description: 'Get a professional website that works on all devices and brings in customers. We build fast, mobile-friendly websites that showcase your work and make it easy for customers to contact you.',
+    features: [
+      'Mobile-responsive design',
+      'Fast loading times (under 3 seconds)',
+      'SEO optimization for Google',
+      'Contact forms and lead capture',
+      'Photo galleries for your work',
+      'Easy content updates',
+      'SSL security certificate',
+    ],
+    perfectFor: 'Contractors, plumbers, electricians, landscapers, and any service-based business that needs a professional online presence.',
+    hasGuarantee: true,
+  },
+  {
+    id: 'ai-chatbots',
+    number: '02',
+    icon: 'fa-robot',
+    title: 'AI Chatbots',
+    description: "Never miss a customer inquiry again. Our AI chatbots provide 24/7 customer support, answer common questions, and capture leads while you're busy working.",
+    features: [
+      '24/7 automated customer support',
+      'Common question answering',
+      'Lead capture and qualification',
+      'Appointment scheduling',
+      'Custom responses for your business',
+      'Integration with your website',
+      'Performance analytics',
+    ],
+    perfectFor: "Busy contractors who can't always answer the phone, service businesses with common customer questions, and anyone who wants to capture leads 24/7.",
+  },
+  {
+    id: 'automation',
+    number: '03',
+    icon: 'fa-bolt',
+    title: 'Automation',
+    description: "Save hours every week with automated workflows. From invoicing to customer follow-ups, we'll automate the repetitive tasks so you can focus on what you do best.",
+    features: [
+      'Automated invoicing and billing',
+      'Customer follow-up sequences',
+      'Appointment scheduling automation',
+      'Email marketing campaigns',
+      'Payment reminders',
+      'Lead nurturing workflows',
+      'Custom automation setup',
+    ],
+    perfectFor: 'Small business owners who want to streamline their operations, reduce manual work, and improve customer communication.',
+  },
+  {
+    id: 'digital-invoicing',
+    number: '04',
+    icon: 'fa-chart-line',
+    title: 'Digital Invoicing',
+    description: 'Get paid faster with professional digital invoices. Our system creates, sends, and tracks invoices automatically, with payment reminders that actually work.',
+    features: [
+      'Professional invoice design',
+      'Automated invoice generation',
+      'Online payment processing',
+      'Automatic payment reminders',
+      'Payment tracking and reporting',
+      'Tax-ready financial reports',
+      'Integration with accounting software',
+    ],
+    perfectFor: 'Contractors and service providers who want to get paid faster, reduce paperwork, and have better control over their cash flow.',
+  },
+];
+---
+
+<PageLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero Section -->
+  <section class="blueprint-grid noise-overlay relative py-20 md:py-32 pt-28 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#0a1628]/95 via-[#0d1b2a]/90 to-[#1b263b]/85"></div>
+    <div class="absolute top-1/4 right-[10%] w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 text-center">
+      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium mb-6">
+        <span class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
+        What We Offer
+      </span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+        Our <span class="text-gradient">Services</span>
+      </h1>
+      <p class="text-xl text-slate-300 max-w-2xl mx-auto">
+        Professional digital solutions designed specifically for small businesses and contractors
+      </p>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 to-transparent"></div>
+  </section>
+
+  <!-- Services Detailed -->
+  <section class="py-16 md:py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+      {services.map((service, index) => (
+        <div id={service.id} class={`py-16 ${index !== services.length - 1 ? 'border-b border-slate-200' : ''}`}>
+          <div class={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-start ${index % 2 === 1 ? '' : ''}`}>
+            <!-- Content -->
+            <div class={index % 2 === 1 ? 'lg:order-2' : ''}>
+              <!-- Number Badge -->
+              <div class="flex items-center gap-4 mb-6">
+                <span class="text-6xl font-bold text-slate-400">{service.number}</span>
+                <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center text-white text-2xl">
+                  <i class={`fas ${service.icon}`} aria-hidden="true"></i>
+                </div>
+              </div>
+
+              <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-900">{service.title}</h2>
+
+              {service.hasGuarantee && (
+                <div class="bg-gradient-to-r from-amber-50 to-amber-100 border border-amber-200 rounded-xl p-5 mb-6">
+                  <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center text-white flex-shrink-0">
+                      <i class="fas fa-shield-check text-lg" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-bold text-amber-900 mb-1">Pay-If-Satisfied Guarantee</h3>
+                      <p class="text-amber-800 text-sm">I'll build your complete website first. You only pay if you're 100% satisfied.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <p class="text-slate-600 text-lg mb-8 leading-relaxed">{service.description}</p>
+
+              <!-- Features -->
+              <div class="mb-8">
+                <h3 class="text-lg font-bold mb-4 text-slate-900">What's Included:</h3>
+                <div class="grid sm:grid-cols-2 gap-3">
+                  {service.features.map((feature) => (
+                    <div class="flex items-center gap-3 text-slate-600">
+                      <span class="w-5 h-5 rounded-full bg-cyan-100 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-check text-cyan-600 text-xs" aria-hidden="true"></i>
+                      </span>
+                      <span class="text-sm">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Perfect For -->
+              <div class="bg-white rounded-xl p-6 border border-slate-200">
+                <h3 class="text-lg font-bold mb-3 text-slate-900">Perfect For:</h3>
+                <p class="text-slate-600">{service.perfectFor}</p>
+              </div>
+            </div>
+
+            <!-- Visual -->
+            <div class={`hidden lg:block ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+              <div class="relative">
+                <div class="absolute -inset-4 bg-gradient-to-r from-cyan-500/10 to-amber-500/10 rounded-3xl blur-2xl"></div>
+                <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-12 flex items-center justify-center min-h-[400px]">
+                  <div class="text-center">
+                    <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-cyan-400 to-cyan-600 flex items-center justify-center mx-auto mb-6">
+                      <i class={`fas ${service.icon} text-4xl text-white`} aria-hidden="true"></i>
+                    </div>
+                    <div class="text-7xl font-bold text-white/20">{service.number}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="relative py-20 md:py-32 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-cyan-600 via-cyan-700 to-slate-900"></div>
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 32px 32px;"></div>
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+        Ready to Get <span class="text-amber-300">Started?</span>
+      </h2>
+      <p class="text-xl text-cyan-100 mb-10 max-w-2xl mx-auto">
+        Let's discuss which services are right for your business and create a custom solution that fits your needs.
+      </p>
+      <a href="/contact" class="btn btn-large bg-white text-slate-900 hover:bg-slate-100 shadow-xl hover:shadow-2xl transition-all">
+        Get Your Free Consultation
+        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
+  </section>
+</PageLayout>
+
+<!-- n8n Chat Widget -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" />
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+  createChat({
+    webhookUrl: 'https://zax76.app.n8n.cloud/webhook/2610f1f4-f38d-4b33-ba97-da199e6a15bc/chat',
+    mode: 'window',
+    loadPreviousSession: false,
+    initialMessages: [
+      'Welcome to Pro Build Digital! I\'m here to help with your digital needs.',
+      '&#10003; **Pay-If-Satisfied Guarantee** - We build your complete website first. You only pay if you\'re 100% satisfied!',
+      'What can I help you with today?'
+    ],
+    i18n: {
+      en: {
+        title: 'BuildBot',
+        subtitle: 'Digital Solutions Assistant',
+        footer: '',
+        getStarted: 'Start Chat',
+        inputPlaceholder: 'Type your message here...',
+      }
+    },
+    showWelcomeScreen: false,
+    theme: {
+      header: { background: '#0d1b2a', color: '#FFFFFF' },
+      button: { background: '#0d1b2a', color: '#FFFFFF' }
+    }
+  });
+</script>

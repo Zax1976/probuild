@@ -1,0 +1,44 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const pageTitle = '404 - Page Not Found | Pro Build Digital';
+const pageDescription = 'The page you are looking for could not be found. Return to Pro Build Digital homepage.';
+---
+
+<PageLayout title={pageTitle} description={pageDescription}>
+  <section class="min-h-[70vh] flex items-center justify-center bg-gradient-to-r from-slate-900 to-slate-800 text-white pt-20">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <div class="text-8xl mb-6">&#128533;</div>
+      <h1 class="text-6xl md:text-8xl font-bold mb-4">404</h1>
+      <h2 class="text-2xl md:text-3xl font-semibold mb-6">Page Not Found</h2>
+      <p class="text-lg text-gray-300 mb-8">
+        Oops! The page you're looking for doesn't exist or has been moved.
+        Don't worry, let's get you back on track.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/"
+          class="btn btn-primary bg-blue-600 text-white px-8 py-4 rounded-lg shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300 font-semibold text-lg"
+        >
+          Go to Homepage
+        </a>
+        <a
+          href="/contact"
+          class="btn bg-white text-slate-900 px-8 py-4 rounded-lg shadow-lg hover:bg-gray-100 hover:shadow-xl transition-all duration-300 font-semibold text-lg"
+        >
+          Contact Us
+        </a>
+      </div>
+
+      <div class="mt-12 text-gray-400">
+        <p class="mb-4">Or try one of these popular pages:</p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="/services" class="text-blue-400 hover:text-blue-300 underline">Our Services</a>
+          <a href="/about" class="text-blue-400 hover:text-blue-300 underline">About Us</a>
+          <a href="/blog" class="text-blue-400 hover:text-blue-300 underline">Blog</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

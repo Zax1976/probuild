@@ -1,0 +1,288 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+// Format date helper
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+
+// Article Schema
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "datePublished": post.data.date.toISOString(),
+  "author": {
+    "@type": "Person",
+    "name": post.data.author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pro Build Digital",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://probuilddigital.com/images/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://probuilddigital.com/blog/${post.slug}`
+  }
+};
+---
+
+<PageLayout
+  title={`${post.data.title} - Pro Build Digital Blog`}
+  description={post.data.description}
+  ogImage={post.data.image}
+>
+  <article>
+    <!-- Article Header -->
+    <header class="blueprint-grid noise-overlay relative py-20 md:py-28 pt-28 overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-[#0a1628]/95 via-[#0d1b2a]/90 to-[#1b263b]/85"></div>
+      <div class="absolute top-1/3 right-[15%] w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl"></div>
+
+      <div class="relative z-10 max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+        <!-- Meta Info -->
+        <div class="flex flex-wrap items-center gap-4 text-sm text-slate-400 mb-6">
+          <time datetime={post.data.date.toISOString()} class="flex items-center gap-1.5">
+            <i class="fas fa-calendar text-xs text-cyan-500" aria-hidden="true"></i>
+            {formatDate(post.data.date)}
+          </time>
+          {post.data.readTime && (
+            <span class="flex items-center gap-1.5">
+              <i class="fas fa-clock text-xs text-cyan-500" aria-hidden="true"></i>
+              {post.data.readTime}
+            </span>
+          )}
+          {post.data.author && (
+            <span class="flex items-center gap-1.5">
+              <i class="fas fa-user text-xs text-cyan-500" aria-hidden="true"></i>
+              {post.data.author}
+            </span>
+          )}
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+          {post.data.title}
+        </h1>
+
+        <!-- Description -->
+        <p class="text-xl text-slate-300 leading-relaxed">
+          {post.data.description}
+        </p>
+
+        <!-- Tags -->
+        {post.data.tags && post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mt-8">
+            {post.data.tags.map((tag) => (
+              <span class="text-sm bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full font-medium">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+    </header>
+
+    <!-- Article Content -->
+    <div class="py-16 md:py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 md:px-6 lg:px-8">
+        <div class="prose prose-lg max-w-none">
+          <Content />
+        </div>
+
+        <!-- Author Bio -->
+        <div class="mt-16 pt-10 border-t border-slate-200">
+          <div class="flex items-start gap-5">
+            <div class="relative">
+              <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 to-amber-500/20 rounded-full blur"></div>
+              <img
+                src="https://i.imgur.com/N9QBKHN.jpg"
+                alt={post.data.author}
+                class="relative w-16 h-16 rounded-full object-cover border-2 border-white"
+                loading="lazy"
+              >
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 text-lg">{post.data.author}</h3>
+              <p class="text-slate-600 text-sm mb-2">Founder & Lead Digital Solutions Architect at Pro Build Digital</p>
+              <a href="/about" class="text-cyan-600 text-sm hover:text-cyan-700 font-medium inline-flex items-center gap-1">
+                Learn more about Zack
+                <i class="fas fa-arrow-right text-xs" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Back to Blog -->
+        <div class="mt-10">
+          <a href="/blog" class="inline-flex items-center gap-2 text-slate-600 hover:text-cyan-600 font-medium transition-colors">
+            <i class="fas fa-arrow-left" aria-hidden="true"></i>
+            Back to all posts
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- CTA Section -->
+  <section class="relative py-20 md:py-28 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-cyan-600 via-cyan-700 to-slate-900"></div>
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 32px 32px;"></div>
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+        Ready to Build Your <span class="text-amber-300">Digital Foundation?</span>
+      </h2>
+      <p class="text-xl text-cyan-100 mb-10 max-w-2xl mx-auto">
+        Get a free consultation and see how we can help your business grow with the right digital tools.
+      </p>
+      <a href="/contact" class="btn btn-large bg-white text-slate-900 hover:bg-slate-100 shadow-xl hover:shadow-2xl transition-all">
+        Get Started
+        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Article Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+</PageLayout>
+
+<!-- n8n Chat Widget -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" />
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+  createChat({
+    webhookUrl: 'https://zax76.app.n8n.cloud/webhook/2610f1f4-f38d-4b33-ba97-da199e6a15bc/chat',
+    mode: 'window',
+    loadPreviousSession: false,
+    initialMessages: ['Welcome to Pro Build Digital!', 'What can I help you with today?'],
+    i18n: { en: { title: 'BuildBot', subtitle: 'Digital Solutions Assistant', getStarted: 'Start Chat' }},
+    showWelcomeScreen: false,
+    theme: { header: { background: '#0d1b2a', color: '#FFFFFF' }, button: { background: '#0d1b2a', color: '#FFFFFF' }}
+  });
+</script>
+
+<style>
+  /* Prose styling for markdown content */
+  .prose {
+    color: #334155;
+  }
+  .prose h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: #0f172a;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+  .prose h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: #0f172a;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+  .prose h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: #0f172a;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+  .prose p {
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
+  }
+  .prose ul {
+    list-style-type: disc;
+    padding-left: 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .prose ol {
+    list-style-type: decimal;
+    padding-left: 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .prose li {
+    margin-bottom: 0.5rem;
+    line-height: 1.75;
+  }
+  .prose blockquote {
+    border-left: 4px solid #06b6d4;
+    padding-left: 1.25rem;
+    font-style: italic;
+    margin: 1.5rem 0;
+    color: #475569;
+    background: #f8fafc;
+    padding: 1rem 1.25rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+  .prose code {
+    background-color: #f1f5f9;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    color: #0f172a;
+  }
+  .prose pre {
+    background-color: #0f172a;
+    color: #e2e8f0;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+  .prose pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+  }
+  .prose hr {
+    margin: 2.5rem 0;
+    border-color: #e2e8f0;
+  }
+  .prose a {
+    color: #0891b2;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .prose a:hover {
+    border-bottom-color: #0891b2;
+  }
+  .prose strong {
+    font-weight: 700;
+    color: #0f172a;
+  }
+  .prose img {
+    border-radius: 0.75rem;
+    margin: 1.5rem 0;
+  }
+</style>
