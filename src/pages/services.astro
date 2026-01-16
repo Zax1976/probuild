@@ -198,33 +198,25 @@ const services = [
   </section>
 </PageLayout>
 
-<!-- n8n Chat Widget -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" />
-<script type="module">
-  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
-
-  createChat({
-    webhookUrl: 'https://zax76.app.n8n.cloud/webhook/2610f1f4-f38d-4b33-ba97-da199e6a15bc/chat',
-    mode: 'window',
-    loadPreviousSession: false,
-    initialMessages: [
-      'Welcome to Pro Build Digital! I\'m here to help with your digital needs.',
-      '&#10003; **Pay-If-Satisfied Guarantee** - We build your complete website first. You only pay if you\'re 100% satisfied!',
-      'What can I help you with today?'
-    ],
-    i18n: {
-      en: {
-        title: 'BuildBot',
-        subtitle: 'Digital Solutions Assistant',
-        footer: '',
-        getStarted: 'Start Chat',
-        inputPlaceholder: 'Type your message here...',
-      }
-    },
-    showWelcomeScreen: false,
-    theme: {
-      header: { background: '#0d1b2a', color: '#FFFFFF' },
-      button: { background: '#0d1b2a', color: '#FFFFFF' }
-    }
+<!-- n8n Chat Widget - Deferred for performance -->
+<script>
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css';
+      document.head.appendChild(link);
+      import('https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js')
+        .then(function(module) {
+          module.createChat({
+            webhookUrl: 'https://zax76.app.n8n.cloud/webhook/2610f1f4-f38d-4b33-ba97-da199e6a15bc/chat',
+            mode: 'window', loadPreviousSession: false,
+            initialMessages: ['Welcome to Pro Build Digital! I\'m here to help with your digital needs.', '&#10003; **Pay-If-Satisfied Guarantee** - We build your complete website first. You only pay if you\'re 100% satisfied!', 'What can I help you with today?'],
+            i18n: { en: { title: 'BuildBot', subtitle: 'Digital Solutions Assistant', footer: '', getStarted: 'Start Chat', inputPlaceholder: 'Type your message here...' } },
+            showWelcomeScreen: false,
+            theme: { header: { background: '#0d1b2a', color: '#FFFFFF' }, button: { background: '#0d1b2a', color: '#FFFFFF' } }
+          });
+        });
+    }, 3000);
   });
 </script>
