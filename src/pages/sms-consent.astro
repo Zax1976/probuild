@@ -1,0 +1,302 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const pageTitle = 'SMS Notifications - Pro Build Digital';
+const pageDescription = 'How property owners opt in to receive SMS notifications from Probuild Digital LLC through Cottages Concierge.';
+---
+
+<PageLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero Section -->
+  <section class="blueprint-grid noise-overlay relative py-16 md:py-24 pt-28 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#0a1628]/95 via-[#0d1b2a]/90 to-[#1b263b]/85"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 text-center">
+      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium mb-6">
+        <span class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
+        Legal
+      </span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+        SMS <span class="text-gradient">Notifications</span>
+      </h1>
+      <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+        How Probuild Digital LLC obtains opt-in consent for SMS messages sent through Cottages Concierge.
+      </p>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+  </section>
+
+  <!-- Legal Content -->
+  <section class="py-16 md:py-20 bg-white">
+    <div class="legal-content max-w-3xl mx-auto px-4 md:px-6">
+      <p class="legal-meta">
+        <strong>Effective Date:</strong> May 19, 2026<br>
+        <strong>Last Updated:</strong> May 19, 2026
+      </p>
+
+      <p>This page documents the SMS notifications program operated by Probuild Digital LLC ("Probuild Digital," "we," "us," or "our") through its product Cottages Concierge. It is intended to give property owners (and reviewers) a clear, visible record of how opt-in consent is obtained, what messages are sent, and how to manage or stop those messages.</p>
+
+      <hr>
+
+      <h2>Program overview</h2>
+      <p><strong>Sender:</strong> Probuild Digital LLC, operating Cottages Concierge.</p>
+
+      <p><strong>Recipients:</strong> Property owners (hosts) who have subscribed to Cottages Concierge service for their short-term rental properties.</p>
+
+      <p><strong>Program type:</strong> Transactional notifications only. No marketing or promotional messages are sent under this program.</p>
+
+      <p><strong>What messages we send:</strong> Property owners receive a text message when their property's AI concierge captures a guest booking inquiry, when the system detects an upgrade in booking intent (a guest indicating they are ready to book), or when there is other lead activity at their property requiring the owner's awareness.</p>
+
+      <hr>
+
+      <h2>How property owners opt in</h2>
+      <p>Opt-in is affirmative and per-account. SMS notifications are OFF by default for every account.</p>
+
+      <p>Property owners enable SMS notifications by toggling the "SMS notifications" option to ON in their Cottages Concierge account preferences during onboarding (or at any time afterward via their account dashboard). When the toggle is activated, the owner sees and must acknowledge the consent disclosure shown in the mockup below before SMS notifications are enabled. Until this affirmative action is taken, no SMS messages are sent to the account's phone number.</p>
+
+      <hr>
+
+      <h2>Consent UI (visual mockup)</h2>
+      <p>The card below reflects the actual in-product consent surface a property owner sees in their Cottages Concierge account preferences. SMS is OFF by default and stays OFF until the owner explicitly enables the toggle and acknowledges the disclosure shown inside the card.</p>
+
+      <div class="sms-mockup" role="img" aria-label="Mockup of the Cottages Concierge account preferences screen showing the SMS notifications toggle in the OFF state and the consent disclosure text.">
+        <div class="sms-mockup__header">
+          <span class="sms-mockup__status-dot" aria-hidden="true"></span>
+          Cottages Concierge - Account Preferences
+        </div>
+        <div class="sms-mockup__body">
+          <div class="sms-mockup__section-title">Notifications</div>
+
+          <div class="sms-mockup__row">
+            <div class="sms-mockup__row-text">
+              <div class="sms-mockup__label">SMS notifications</div>
+              <div class="sms-mockup__description">Get a text message when your property gets a new booking lead or signal.</div>
+            </div>
+            <div class="sms-mockup__toggle" aria-hidden="true"></div>
+          </div>
+
+          <p class="sms-mockup__caption">(Default: OFF. You must enable this manually.)</p>
+
+          <div class="sms-mockup__disclosure">
+            By enabling SMS notifications, I agree to receive transactional SMS messages from Cottages Concierge at the phone number on file. Approximately 5-15 messages per month per property. Message and data rates may apply. Reply STOP to opt out, HELP for help. See <a href="/sms-consent">SMS Notifications</a> and <a href="/privacy-policy">Privacy Policy</a>.
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <h2>Sample messages</h2>
+      <p>Once a property owner has opted in, they may receive messages such as the following representative examples:</p>
+      <ol class="sample-msg-list">
+        <li>"Cottages Concierge: New booking inquiry at [Property Name]. Guest asked about availability for July 12-15. Open dashboard: [link]. Reply STOP to opt out."</li>
+        <li>"Cottages Concierge: Booking-intent detected at [Property Name]. Guest mentioned they are ready to book for next weekend. Open dashboard: [link]. Reply STOP to opt out."</li>
+        <li>"Cottages Concierge: Guest at [Property Name] flagged a maintenance issue. Concierge has acknowledged and is gathering details. Reply STOP to opt out."</li>
+        <li>"Cottages Concierge: HELP - reply STOP to unsubscribe. For account issues log in at cottagesconcierge.com or email support. Msg &amp; data rates may apply."</li>
+      </ol>
+
+      <hr>
+
+      <h2>Disclosures</h2>
+      <p><strong>Message frequency:</strong> Approximately 5-15 messages per month per property, varying with booking inquiry volume.</p>
+
+      <p><strong>Message and data rates:</strong> Message and data rates may apply. Rates are determined by your mobile carrier and are your responsibility.</p>
+
+      <p><strong>Opting out:</strong> You can opt out of SMS notifications at any time by toggling SMS to OFF in your Cottages Concierge account dashboard, or by replying STOP, CANCEL, UNSUBSCRIBE, QUIT, or END to any SMS message you receive. After opting out, you will receive a confirmation message and will no longer receive SMS notifications from the program.</p>
+
+      <p><strong>Getting help:</strong> Reply HELP to any SMS message for support information, or contact us via the email on file for your account.</p>
+
+      <p><strong>Phone number handling:</strong> Probuild Digital LLC never sells, rents, or shares your phone number with third parties for marketing purposes. Phone numbers are shared only with our SMS delivery providers (such as Twilio) solely to deliver the messages you have opted in to receive, and only as necessary to operate the service.</p>
+
+      <p><strong>Compliance:</strong> Our SMS program complies with the Telephone Consumer Protection Act (TCPA) and applicable carrier requirements under the A2P 10DLC framework.</p>
+
+      <hr>
+
+      <h2>See also</h2>
+      <p>For full data-handling details, see our Privacy Policy (Section 4: SMS Notifications) and Terms of Service.</p>
+      <ul>
+        <li><a href="/privacy-policy">https://probuilddigital.com/privacy-policy</a></li>
+        <li><a href="/terms-of-service">https://probuilddigital.com/terms-of-service</a></li>
+      </ul>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .legal-content {
+    color: #334155;
+    line-height: 1.75;
+    font-size: 1rem;
+  }
+  .legal-content h2 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0d1b2a;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    letter-spacing: -0.01em;
+  }
+  .legal-content p {
+    margin-bottom: 1rem;
+  }
+  .legal-content ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .legal-content ul li {
+    margin-bottom: 0.5rem;
+  }
+  .legal-content strong {
+    color: #0d1b2a;
+    font-weight: 600;
+  }
+  .legal-content a {
+    color: #0891b2;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .legal-content a:hover {
+    color: #0e7490;
+  }
+  .legal-content hr {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 2.5rem 0;
+  }
+  .legal-meta {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    padding: 1rem 1.25rem;
+    background: #f8fafc;
+    border-left: 3px solid #06b6d4;
+    border-radius: 0.25rem;
+  }
+
+  /* Scoped consent UI mockup styles */
+  .sms-mockup {
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+    background: #ffffff;
+    box-shadow: 0 12px 28px -14px rgba(13, 27, 42, 0.25);
+    overflow: hidden;
+    margin: 1.5rem 0 2rem 0;
+  }
+  .sms-mockup__header {
+    background: linear-gradient(135deg, #0a1628 0%, #1b263b 100%);
+    color: #ffffff;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .sms-mockup__status-dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 9999px;
+    background: #06b6d4;
+    display: inline-block;
+    box-shadow: 0 0 8px rgba(6, 182, 212, 0.55);
+  }
+  .sms-mockup__body {
+    padding: 1.5rem;
+  }
+  .sms-mockup__section-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.55rem;
+  }
+  .sms-mockup__row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 0.5rem 0;
+  }
+  .sms-mockup__row-text {
+    flex: 1;
+  }
+  .sms-mockup__label {
+    font-weight: 600;
+    color: #0d1b2a;
+    font-size: 0.98rem;
+    margin-bottom: 0.2rem;
+  }
+  .sms-mockup__description {
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.5;
+    max-width: 30rem;
+  }
+  .sms-mockup__toggle {
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 1.5rem;
+    background: #cbd5e1;
+    border-radius: 9999px;
+    position: relative;
+    margin-top: 0.3rem;
+  }
+  .sms-mockup__toggle::after {
+    content: "";
+    position: absolute;
+    top: 0.15rem;
+    left: 0.15rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    background: #ffffff;
+    border-radius: 9999px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  .sms-mockup__caption {
+    font-size: 0.82rem;
+    color: #64748b;
+    font-style: italic;
+    margin: 0.6rem 0 1.1rem 0;
+  }
+  .sms-mockup__disclosure {
+    margin-top: 1rem;
+    padding: 1rem 1.15rem;
+    border: 1px solid #cbd5e1;
+    border-left: 3px solid #06b6d4;
+    border-radius: 0.5rem;
+    background: #f8fafc;
+    font-size: 0.92rem;
+    color: #334155;
+    line-height: 1.6;
+  }
+  .sms-mockup__disclosure a {
+    color: #0891b2;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* Sample messages list */
+  .sample-msg-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 1rem 0 1.5rem 0;
+    counter-reset: msg;
+  }
+  .sample-msg-list li {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 3px solid #06b6d4;
+    padding: 0.9rem 1.15rem;
+    margin-bottom: 0.85rem;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #334155;
+    position: relative;
+  }
+</style>
