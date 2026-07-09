@@ -72,4 +72,4 @@ DIY builders like Wix can be useful for quick experiments. For a growing small b
 
 If you want a site that actually works for your business, invest in one that is built to grow with you, loads fast, and is easy for customers to use. Your future leads and revenue will thank you.
 
-*Ready to move beyond DIY? Let’s build a website that brings customers to you. [Get your free consultation](../../contact.html) today.*
+*Ready to move beyond DIY? Let’s build a website that brings customers to you. [Get your free consultation](/contact) today.*

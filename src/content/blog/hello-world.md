@@ -59,4 +59,4 @@ Ready to transform your business with digital solutions? Here are three steps yo
 
 ---
 
-*Have questions about digital solutions for your business? [Contact us](../../contact.html) for a free consultation. We're here to help you build a stronger digital foundation.*
+*Have questions about digital solutions for your business? [Contact us](/contact) for a free consultation. We're here to help you build a stronger digital foundation.*
