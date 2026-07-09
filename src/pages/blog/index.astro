@@ -1,5 +1,5 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
+import NightshiftLayout from '../../layouts/NightshiftLayout.astro';
 import { getCollection } from 'astro:content';
 
 const pageTitle = 'Blog - Pro Build Digital';
@@ -20,35 +20,23 @@ function formatDate(date: Date) {
 }
 ---
 
-<PageLayout title={pageTitle} description={pageDescription}>
-  <!-- Hero Section -->
-  <section class="blueprint-grid noise-overlay relative py-20 md:py-32 pt-28 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-[#0a1628]/95 via-[#0d1b2a]/90 to-[#1b263b]/85"></div>
-    <div class="absolute top-1/3 right-[15%] w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl"></div>
-
-    <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 text-center">
-      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium mb-6">
-        <span class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></span>
-        Insights & Tips
-      </span>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-        Our <span class="text-gradient">Blog</span>
-      </h1>
-      <p class="text-xl text-slate-300 max-w-2xl mx-auto">
-        Tips, insights, and guides to help your small business succeed in the digital world.
-      </p>
-    </div>
-
-    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 to-transparent"></div>
+<NightshiftLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero -->
+  <section class="px-6 md:px-16 pt-20 pb-14 text-center">
+    <p class="ns-kicker">Insights &amp; tips</p>
+    <h1 class="ns-h1 mt-4">The Blog</h1>
+    <p class="text-lg md:text-xl text-mist max-w-2xl mx-auto mt-5">
+      Tips, insights, and guides to help your small business succeed in the digital world.
+    </p>
   </section>
 
   <!-- Blog Posts -->
-  <section class="py-20 md:py-32 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+  <section class="px-6 md:px-16 pb-24">
+    <div class="max-w-[1312px] mx-auto">
       {posts.length > 0 ? (
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post) => (
-            <article class="bg-white rounded-2xl overflow-hidden border border-slate-200 hover:border-cyan-300 hover:shadow-xl transition-all group">
+            <article class="group bg-night-surface rounded-2xl overflow-hidden border border-cream/10 hover:border-brass/40 transition-colors">
               {post.data.image && (
                 <div class="relative overflow-hidden">
                   <img
@@ -57,32 +45,32 @@ function formatDate(date: Date) {
                     class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   >
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-night/40 to-transparent"></div>
                 </div>
               )}
               <div class="p-6">
-                <div class="flex items-center gap-4 text-sm text-slate-500 mb-4">
+                <div class="flex items-center gap-4 text-sm text-faint mb-4">
                   <time datetime={post.data.date.toISOString()} class="flex items-center gap-1.5">
-                    <i class="fas fa-calendar text-xs text-cyan-500" aria-hidden="true"></i>
+                    <i class="fas fa-calendar text-xs text-brass" aria-hidden="true"></i>
                     {formatDate(post.data.date)}
                   </time>
                   {post.data.readTime && (
                     <span class="flex items-center gap-1.5">
-                      <i class="fas fa-clock text-xs text-cyan-500" aria-hidden="true"></i>
+                      <i class="fas fa-clock text-xs text-brass" aria-hidden="true"></i>
                       {post.data.readTime}
                     </span>
                   )}
                 </div>
-                <h2 class="text-xl font-bold mb-3 text-slate-900 group-hover:text-cyan-600 transition-colors">
-                  <a href={`/blog/${post.slug}`}>
+                <h2 class="font-serif-display font-medium text-[22px] leading-snug mb-3 text-cream-bright">
+                  <a href={`/blog/${post.slug}`} class="transition-colors">
                     {post.data.title}
                   </a>
                 </h2>
-                <p class="text-slate-600 mb-4 line-clamp-3">{post.data.description}</p>
+                <p class="text-mist mb-4 line-clamp-3">{post.data.description}</p>
                 {post.data.tags && post.data.tags.length > 0 && (
                   <div class="flex flex-wrap gap-2">
                     {post.data.tags.slice(0, 3).map((tag) => (
-                      <span class="text-xs bg-cyan-50 text-cyan-700 px-2.5 py-1 rounded-full font-medium">
+                      <span class="text-xs bg-brass/10 border border-brass/25 text-brass px-2.5 py-1 rounded-full font-medium">
                         {tag}
                       </span>
                     ))}
@@ -94,43 +82,26 @@ function formatDate(date: Date) {
         </div>
       ) : (
         <div class="text-center py-16">
-          <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center mx-auto mb-8">
-            <i class="fas fa-pen-nib text-4xl text-white" aria-hidden="true"></i>
-          </div>
-          <h2 class="text-3xl font-bold mb-4 text-slate-900">Coming Soon</h2>
-          <p class="text-slate-600 max-w-md mx-auto mb-8 text-lg">
+          <h2 class="ns-h2 mb-4">Coming Soon</h2>
+          <p class="text-mist max-w-md mx-auto mb-8 text-lg">
             We're working on some great content for you. Check back soon for tips and insights on growing your business digitally.
           </p>
-          <a href="/contact" class="btn btn-primary btn-large">
-            Get in Touch
-            <i class="fas fa-arrow-right" aria-hidden="true"></i>
-          </a>
+          <a href="/contact" class="btn-brass">Get in Touch</a>
         </div>
       )}
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="relative py-20 md:py-32 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-cyan-600 via-cyan-700 to-slate-900"></div>
-    <div class="absolute inset-0 opacity-10">
-      <div class="absolute inset-0" style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 32px 32px;"></div>
-    </div>
-
-    <div class="relative z-10 max-w-4xl mx-auto px-4 md:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-        Have a <span class="text-amber-300">Question?</span>
-      </h2>
-      <p class="text-xl text-cyan-100 mb-10 max-w-2xl mx-auto">
-        We're here to help with your digital needs. Get in touch for a free consultation.
-      </p>
-      <a href="/contact" class="btn btn-large bg-white text-slate-900 hover:bg-slate-100 shadow-xl hover:shadow-2xl transition-all">
-        Contact Us
-        <i class="fas fa-arrow-right" aria-hidden="true"></i>
-      </a>
-    </div>
+  <!-- CTA -->
+  <section class="px-6 md:px-16 py-20 bg-night-deep border-t border-cream/10 text-center">
+    <p class="ns-kicker">Have a question?</p>
+    <h2 class="ns-h2 mt-4 mx-auto max-w-[760px]">We're here to help with your digital needs.</h2>
+    <p class="text-lg text-mist max-w-2xl mx-auto mt-5 mb-9">
+      Get in touch for a free consultation.
+    </p>
+    <a href="/contact" class="btn-brass px-10 py-[17px]">Contact Us</a>
   </section>
-</PageLayout>
+</NightshiftLayout>
 
 <!-- n8n Chat Widget - Deferred for performance -->
 <script>
@@ -148,7 +119,7 @@ function formatDate(date: Date) {
             initialMessages: ['Welcome to Pro Build Digital!', 'What can I help you with today?'],
             i18n: { en: { title: 'BuildBot', subtitle: 'Digital Solutions Assistant', getStarted: 'Start Chat' }},
             showWelcomeScreen: false,
-            theme: { header: { background: '#0d1b2a', color: '#FFFFFF' }, button: { background: '#0d1b2a', color: '#FFFFFF' }}
+            theme: { header: { background: '#0A1422', color: '#EAE6DA' }, button: { background: '#C8A55C', color: '#0E1B2E' }}
           });
         });
     }, 3000);
