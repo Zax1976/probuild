@@ -228,12 +228,16 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Nightshift is the SITE-WIDE default: every page renders navy + cream unless
+   it explicitly opts out (nothing does). New pages inherit the theme with no
+   per-page setup. The old light default (slate-50 / navy text) is gone — any
+   page that still "looks light" is now a bug in that page, not the cascade. */
 body {
   font-family: var(--font-body);
   font-size: var(--text-base);
   line-height: 1.6;
-  color: var(--text-dark);
-  background-color: var(--surface-light);
+  color: var(--text-cream);
+  background-color: var(--bg);
   overflow-x: hidden;
 }
 
@@ -253,9 +257,9 @@ body {
   letter-spacing: -0.03em;
 }
 
-/* Focus & Accessibility */
+/* Focus & Accessibility — brass on navy (was cyan, the old light theme's accent) */
 *:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--brass);
   outline-offset: 3px;
 }
 
@@ -263,8 +267,8 @@ body {
   position: absolute;
   top: -100%;
   left: var(--space-4);
-  background: var(--accent);
-  color: var(--primary-dark);
+  background: var(--brass);
+  color: var(--on-brass);
   padding: var(--space-3) var(--space-6);
   border-radius: var(--radius-md);
   font-weight: 600;
