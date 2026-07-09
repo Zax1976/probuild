@@ -4,6 +4,22 @@ import NightshiftLayout from '../layouts/NightshiftLayout.astro';
 const pageTitle = 'Pro Build Digital - Home of the Build Bot';
 const pageDescription = 'The Build Bot answers for your business at any hour, writes down the lead, and books the call. Under your name, in your colors, on the website you already have.';
 
+// Prefilled demo request so the email draft isn't empty
+const demoSubject = 'Build Bot demo request';
+const demoBody = [
+  'Hi Zack,',
+  '',
+  "I'd like to book a 15-minute Build Bot demo.",
+  '',
+  'Business name: ',
+  'Website (if any): ',
+  'Phone number: ',
+  'Best time to call: ',
+  '',
+  'Thanks!',
+].join('\n');
+const demoMailto = `mailto:zack.pearson@probuilddigital.com?subject=${encodeURIComponent(demoSubject)}&body=${encodeURIComponent(demoBody)}`;
+
 // Stats strip
 const stats = [
   { heading: 'Every hour', detail: 'It answers nights, weekends, holidays.' },
@@ -264,7 +280,7 @@ const businessSchema = {
       pricing on the call, in plain numbers. No pressure, no contracts.
     </p>
     <div class="flex items-center justify-center gap-7 mt-[38px] flex-wrap">
-      <a href="mailto:zack.pearson@probuilddigital.com" class="btn-brass px-10 py-[17px]">Book a demo</a>
+      <a href={demoMailto} class="btn-brass px-10 py-[17px]">Book a demo</a>
       <a href="tel:+16144038014" class="inline-flex items-center min-h-11 font-serif-display text-[26px] text-cream-bright">(614) 403-8014</a>
     </div>
   </section>

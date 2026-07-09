@@ -891,31 +891,35 @@ body {
    N8N CHAT WIDGET OVERRIDES
    ======================================== */
 
+/* Nightshift tint: brass toggle so the widget is visible on the navy pages */
 :root {
-  --chat--color-primary: var(--color-navy-900) !important;
-  --chat--color-primary-shade-50: var(--color-navy-800) !important;
-  --chat--color-primary-shade-100: var(--color-navy-950) !important;
-  --chat--toggle--background: var(--color-navy-900) !important;
-  --chat--toggle--hover--background: var(--color-navy-800) !important;
-  --chat--header--background: var(--color-navy-900) !important;
-  --chat--header--color: white !important;
-  --chat--message--user--background: var(--color-navy-900) !important;
+  --chat--color-primary: var(--brass) !important;
+  --chat--color-primary-shade-50: #d4b36f !important;
+  --chat--color-primary-shade-100: #b8964f !important;
+  --chat--toggle--background: var(--brass) !important;
+  --chat--toggle--hover--background: #d4b36f !important;
+  --chat--header--background: var(--bg-deep) !important;
+  --chat--header--color: var(--text-cream) !important;
+  --chat--message--user--background: var(--bubble-user) !important;
+  --chat--message--user--color: var(--text-cream) !important;
 }
 
 .n8n-chat .chat-toggle,
 .chat-toggle {
-  background: var(--color-navy-900) !important;
-  box-shadow: 0 4px 20px rgba(10, 22, 40, 0.3) !important;
+  background: var(--brass) !important;
+  color: var(--on-brass) !important;
+  box-shadow: 0 4px 20px rgba(200, 165, 92, 0.35) !important;
 }
 
 .n8n-chat .chat-toggle:hover,
 .chat-toggle:hover {
-  background: var(--color-navy-800) !important;
+  background: #d4b36f !important;
 }
 
 .n8n-chat .chat-header,
 .chat-header {
-  background: var(--color-navy-900) !important;
+  background: var(--bg-deep) !important;
+  color: var(--text-cream) !important;
 }
 
 /* ========================================
