@@ -93,20 +93,17 @@ Every day you delay upgrading your website, you're potentially losing:
 - **Search rankings** as Google favors modern, fast websites
 - **Competitive advantage** as competitors invest in better digital experiences
 
-## Our Approach: Risk-Free Website Development
+## Our Approach
 
 Here's what makes our service unique:
 
-### 1. We Build First, You Pay Later
-Unlike other developers who require payment upfront, we create your complete website before you pay anything.
-
-### 2. No Long-Term Contracts
+### 1. No Long-Term Contracts
 You're not locked into ongoing monthly fees unless you want our maintenance services.
 
-### 3. Modern, Mobile-First Design
+### 2. Modern, Mobile-First Design
 Every site we build is optimized for mobile devices and fast loading.
 
-### 4. Lead Generation Focus
+### 3. Lead Generation Focus
 We don't just make pretty websites—we build sites that bring in customers.
 
 ## Ready for an Upgrade?
@@ -116,10 +113,9 @@ If your website shows any of these warning signs, it's time to take action. The 
 ### Next Steps:
 1. **Free Website Audit**: We'll review your current site and identify improvement opportunities
 2. **Custom Proposal**: Get a detailed plan for your new website
-3. **See It Before You Buy**: We'll build your complete site—you only pay if you love it
 
 Don't let an outdated website hold your business back. Let's build something that works for you, not against you.
 
 ---
 
-*Ready to see what a modern website can do for your business? [Get your free consultation](/contact) today. Remember—we build first, you pay only if satisfied.*
+*Ready to see what a modern website can do for your business? [Get your free consultation](/contact) today.*

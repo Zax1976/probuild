@@ -41,7 +41,7 @@ That's where we come in. Our mission is to provide practical, affordable digital
 
 ## Our Commitment to You
 
-We believe in the **Pay-If-Satisfied Guarantee** approach—not just for our services, but for the value we provide through this blog. Every post is designed to give you actionable insights you can implement immediately.
+We believe every post here should earn its keep. Each one is designed to give you actionable insights you can implement immediately.
 
 ### What Makes Us Different
 
@@ -56,8 +56,6 @@ Ready to transform your business with digital solutions? Here are three steps yo
 1. **Audit your current digital presence** - How does your website look on mobile devices?
 2. **Identify time-consuming tasks** - What could be automated to free up your time?
 3. **Talk to us** - We offer free consultations to discuss your specific needs
-
-Remember, we build your complete website first—you only pay if you're 100% satisfied with the results.
 
 ---
 

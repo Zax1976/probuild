@@ -78,4 +78,4 @@ In Search Console, track:
 
 ---
 
-*Ready to see what a modern website can do for your business? [Get your free consultation](/contact) today. Remember — we build first, you pay only if satisfied.*
+*Ready to see what a modern website can do for your business? [Get your free consultation](/contact) today.*

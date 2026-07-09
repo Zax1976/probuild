@@ -22,7 +22,6 @@ const services = [
       'SSL security certificate',
     ],
     perfectFor: 'Contractors, plumbers, electricians, landscapers, and any service-based business that needs a professional online presence.',
-    hasGuarantee: true,
   },
   {
     id: 'ai-chatbots',
@@ -118,20 +117,6 @@ const services = [
 
               <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-900">{service.title}</h2>
 
-              {service.hasGuarantee && (
-                <div class="bg-gradient-to-r from-amber-50 to-amber-100 border border-amber-200 rounded-xl p-5 mb-6">
-                  <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center text-white flex-shrink-0">
-                      <i class="fas fa-shield-check text-lg" aria-hidden="true"></i>
-                    </div>
-                    <div>
-                      <h3 class="text-lg font-bold text-amber-900 mb-1">Pay-If-Satisfied Guarantee</h3>
-                      <p class="text-amber-800 text-sm">I'll build your complete website first. You only pay if you're 100% satisfied.</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-
               <p class="text-slate-600 text-lg mb-8 leading-relaxed">{service.description}</p>
 
               <!-- Features -->
@@ -211,7 +196,7 @@ const services = [
           module.createChat({
             webhookUrl: 'https://zax76.app.n8n.cloud/webhook/2610f1f4-f38d-4b33-ba97-da199e6a15bc/chat',
             mode: 'window', loadPreviousSession: false,
-            initialMessages: ['Welcome to Pro Build Digital! I\'m here to help with your digital needs.', '&#10003; **Pay-If-Satisfied Guarantee** - We build your complete website first. You only pay if you\'re 100% satisfied!', 'What can I help you with today?'],
+            initialMessages: ['Welcome to Pro Build Digital! I\'m here to help with your digital needs.', 'What can I help you with today?'],
             i18n: { en: { title: 'BuildBot', subtitle: 'Digital Solutions Assistant', footer: '', getStarted: 'Start Chat', inputPlaceholder: 'Type your message here...' } },
             showWelcomeScreen: false,
             theme: { header: { background: '#0d1b2a', color: '#FFFFFF' }, button: { background: '#0d1b2a', color: '#FFFFFF' } }
