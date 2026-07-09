@@ -14,6 +14,12 @@ the copy in the design handoff folder (`design_handoff_nightshift_homepage/`) is
 - n8n chat embed removed from the homepage only (static mockup + demo CTA supersede it).
   Other pages keep their chat widget, GA, cookie consent, and Formspree as they were.
 - Homepage schema markup kept; address reduced to country only.
+- Services, About, and Contact restyled to Nightshift (same layout/nav/footer as the
+  homepage). Services now leads with The Build Bot; the what's-included / perfect-for
+  content and /services#<id> anchors are unchanged. Blog and 404 still use the old light
+  theme (follow-up).
+- "Need a website?" nav link and footer "Websites & invoicing" scroll to /#websites until
+  the subdomain exists (TODO comments in place).
 
 ## Drafted without a spec (needs owner sign-off)
 
@@ -47,10 +53,11 @@ in the repo, so two sections were drafted from the revamp brief and existing sit
 - [ ] **Phone / area code.** (614) 403-8014 is shown; confirm it's the right number.
 - [ ] **Real photos and testimonials.** None are used on the new homepage. Send real
       quotes (name + business) if a testimonials section is wanted.
-- [ ] **Services page restyle.** /services still has the old light style and the four-service
-      agency layout. Next step is restyling it as the Build Bot detail page in Nightshift
-      tokens (nav/footer identical to the homepage), with agency services moved to the
-      future subdomain page.
+- [x] **Services page restyle.** Done: /services is now the Nightshift Build Bot detail
+      page (bot first, agency services below). Moving agency services to the future
+      subdomain page remains open.
+- [ ] **Blog + 404 restyle.** Blog pages and the 404 page still use the old light theme
+      with the old nav/footer.
 
 ## Decisions applied
 
