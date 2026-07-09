@@ -1,8 +1,8 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
+import NightshiftLayout from '../layouts/NightshiftLayout.astro';
 
 const pageTitle = 'Contact Us - Pro Build Digital';
-const pageDescription = 'Get in touch with Pro Build Digital for a free consultation. Professional website development, AI chatbots, automation, and digital invoicing solutions.';
+const pageDescription = 'Get in touch with Pro Build Digital for a free consultation. The Build Bot, website development, automation, and digital invoicing for small businesses.';
 
 // FAQ data
 const faqs = [
@@ -22,71 +22,60 @@ const faqSchema = {
     "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
   }))
 };
+
+const inputClasses = 'w-full px-4 py-3 bg-night-deep border-2 border-cream/15 rounded-xl text-cream placeholder:text-faint focus:border-brass focus:outline-none transition-colors';
 ---
 
-<PageLayout title={pageTitle} description={pageDescription}>
-  <!-- Hero Section -->
-  <section class="blueprint-grid noise-overlay relative py-20 md:py-32 pt-28 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-[#0a1628]/95 via-[#0d1b2a]/90 to-[#1b263b]/85"></div>
-    <div class="absolute bottom-1/3 left-[10%] w-64 h-64 bg-amber-400/10 rounded-full blur-3xl"></div>
-
-    <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 text-center">
-      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium mb-6">
-        <span class="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
-        Get In Touch
-      </span>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-        Let's <span class="text-gradient">Talk</span>
-      </h1>
-      <p class="text-xl text-slate-300 max-w-2xl mx-auto">
-        Ready to take your business digital? Get your free consultation today.
-      </p>
-    </div>
-
-    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+<NightshiftLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero -->
+  <section
+    class="relative px-6 md:px-16 pt-[72px] pb-20 text-center"
+    style="background: radial-gradient(ellipse 50% 60% at 50% 30%, rgba(200,165,92,0.12) 0%, rgba(14,27,46,0) 70%);"
+  >
+    <p class="ns-kicker">Get in touch</p>
+    <h1 class="ns-h1 text-[clamp(2.25rem,1.5rem+2.5vw,3.625rem)] leading-[1.08] mt-4 mx-auto max-w-[760px]">
+      Let's talk.
+    </h1>
+    <p class="text-lg leading-[1.65] text-mist mt-[22px] mx-auto max-w-[540px]">
+      Ready to take your business digital? Get your free consultation today.
+    </p>
   </section>
 
   <!-- Contact Section -->
-  <section class="py-20 md:py-32 bg-white">
-    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-      <div class="grid lg:grid-cols-3 gap-12">
+  <section class="px-6 md:px-16 pb-24">
+    <div class="max-w-[1312px] mx-auto">
+      <div class="border-t border-cream/10 pt-[72px] grid lg:grid-cols-3 gap-12">
         <!-- Contact Form -->
         <div class="lg:col-span-2">
-          <span class="inline-block px-4 py-1.5 rounded-full bg-cyan-100 text-cyan-700 text-sm font-semibold mb-4">
-            Send a Message
-          </span>
-          <h2 class="text-3xl font-bold mb-2 text-slate-900">How Can We Help?</h2>
-          <p class="text-slate-600 mb-8">Fill out the form below and we'll get back to you within 24 hours.</p>
+          <p class="ns-kicker">Send a message</p>
+          <h2 class="ns-h2 mt-4">How can we help?</h2>
+          <p class="text-[15.5px] leading-[1.65] text-mist mt-3 mb-8">Fill out the form below and we'll get back to you within 24 hours.</p>
 
           <form id="contact-form" action="https://formspree.io/f/mkgzrnvd" method="POST" class="space-y-6" novalidate>
             <div class="grid md:grid-cols-2 gap-6">
               <div class="form-group">
-                <label for="name" class="block text-sm font-semibold text-slate-700 mb-2">Name *</label>
-                <input type="text" id="name" name="name" required aria-describedby="name-error"
-                  class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-cyan-500 focus:ring-0 transition-colors bg-white">
-                <span id="name-error" class="error-message text-red-500 text-sm mt-1 hidden" role="alert"></span>
+                <label for="name" class="block text-sm font-semibold text-cream mb-2">Name *</label>
+                <input type="text" id="name" name="name" required aria-describedby="name-error" class={inputClasses}>
+                <span id="name-error" class="error-message text-red-400 text-sm mt-1 hidden" role="alert"></span>
               </div>
               <div class="form-group">
-                <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">Email *</label>
-                <input type="email" id="email" name="email" required aria-describedby="email-error"
-                  class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-cyan-500 focus:ring-0 transition-colors bg-white">
-                <span id="email-error" class="error-message text-red-500 text-sm mt-1 hidden" role="alert"></span>
+                <label for="email" class="block text-sm font-semibold text-cream mb-2">Email *</label>
+                <input type="email" id="email" name="email" required aria-describedby="email-error" class={inputClasses}>
+                <span id="email-error" class="error-message text-red-400 text-sm mt-1 hidden" role="alert"></span>
               </div>
             </div>
 
             <div class="grid md:grid-cols-2 gap-6">
               <div class="form-group">
-                <label for="phone" class="block text-sm font-semibold text-slate-700 mb-2">Phone</label>
-                <input type="tel" id="phone" name="phone"
-                  class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-cyan-500 focus:ring-0 transition-colors bg-white">
+                <label for="phone" class="block text-sm font-semibold text-cream mb-2">Phone</label>
+                <input type="tel" id="phone" name="phone" class={inputClasses}>
               </div>
               <div class="form-group">
-                <label for="service" class="block text-sm font-semibold text-slate-700 mb-2">Service Interested In</label>
-                <select id="service" name="service"
-                  class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-cyan-500 focus:ring-0 transition-colors bg-white">
+                <label for="service" class="block text-sm font-semibold text-cream mb-2">Service Interested In</label>
+                <select id="service" name="service" class={inputClasses}>
                   <option value="">Select a service</option>
+                  <option value="chatbot">The Build Bot</option>
                   <option value="website">Website Development</option>
-                  <option value="chatbot">AI Chatbot</option>
                   <option value="automation">Automation</option>
                   <option value="invoicing">Digital Invoicing</option>
                   <option value="multiple">Multiple Services</option>
@@ -96,113 +85,80 @@ const faqSchema = {
             </div>
 
             <div class="form-group">
-              <label for="message" class="block text-sm font-semibold text-slate-700 mb-2">Message *</label>
+              <label for="message" class="block text-sm font-semibold text-cream mb-2">Message *</label>
               <textarea id="message" name="message" rows="5" required aria-describedby="message-error"
-                class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-cyan-500 focus:ring-0 transition-colors bg-white resize-vertical"
+                class={`${inputClasses} resize-y`}
                 placeholder="Tell us about your project or ask a question..."></textarea>
-              <span id="message-error" class="error-message text-red-500 text-sm mt-1 hidden" role="alert"></span>
+              <span id="message-error" class="error-message text-red-400 text-sm mt-1 hidden" role="alert"></span>
             </div>
 
             <!-- Success/Error Messages -->
-            <div id="form-success" class="hidden bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-4">
+            <div id="form-success" class="hidden bg-night-surface border border-online/40 rounded-xl p-4">
               <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-lg bg-green-500 flex items-center justify-center text-white flex-shrink-0">
-                  <i class="fas fa-check" aria-hidden="true"></i>
-                </div>
+                <span class="w-10 h-10 rounded-lg bg-online text-night flex items-center justify-center flex-shrink-0 font-bold" aria-hidden="true">&#10003;</span>
                 <div>
-                  <h3 class="font-semibold text-green-800">Message Sent!</h3>
-                  <p class="text-sm text-green-700">Thank you for reaching out. We'll get back to you within 24 hours.</p>
+                  <h3 class="font-semibold text-cream">Message sent!</h3>
+                  <p class="text-sm text-mist">Thank you for reaching out. We'll get back to you within 24 hours.</p>
                 </div>
               </div>
             </div>
 
-            <div id="form-error" class="hidden bg-gradient-to-r from-red-50 to-rose-50 border border-red-200 rounded-xl p-4">
+            <div id="form-error" class="hidden bg-night-surface border border-red-400/40 rounded-xl p-4">
               <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-lg bg-red-500 flex items-center justify-center text-white flex-shrink-0">
-                  <i class="fas fa-times" aria-hidden="true"></i>
-                </div>
+                <span class="w-10 h-10 rounded-lg bg-red-400 text-night flex items-center justify-center flex-shrink-0 font-bold" aria-hidden="true">&#10005;</span>
                 <div>
-                  <h3 class="font-semibold text-red-800">Something went wrong</h3>
-                  <p class="text-sm text-red-700">Please try again or contact us directly at zack.pearson@probuilddigital.com</p>
+                  <h3 class="font-semibold text-cream">Something went wrong</h3>
+                  <p class="text-sm text-mist">Please try again or contact us directly at zack.pearson@probuilddigital.com</p>
                 </div>
               </div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-large w-full justify-center">
-              <span class="btn-text">Send Message</span>
+            <button type="submit" class="btn-brass w-full flex items-center justify-center gap-2 py-[17px] cursor-pointer border-0">
+              <span class="btn-text">Send message</span>
               <span class="btn-loading hidden">
-                <svg class="animate-spin w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <svg class="animate-spin w-5 h-5 mr-2 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
                 Sending...
               </span>
-              <i class="fas fa-paper-plane btn-text" aria-hidden="true"></i>
             </button>
           </form>
         </div>
 
         <!-- Contact Info Sidebar -->
         <div>
-          <span class="inline-block px-4 py-1.5 rounded-full bg-amber-100 text-amber-700 text-sm font-semibold mb-4">
-            Contact Info
-          </span>
-          <h3 class="text-2xl font-bold mb-4 text-slate-900">Get in Touch</h3>
-          <p class="text-slate-600 mb-8">Prefer to reach out directly? Here's how you can contact us.</p>
+          <p class="ns-kicker">Contact info</p>
+          <h3 class="ns-h2 text-[clamp(1.5rem,1.2rem+1vw,1.75rem)] mt-4">Reach out directly.</h3>
+          <p class="text-[15px] leading-[1.65] text-mist mt-3 mb-8">Prefer to skip the form? Here's how you can contact us.</p>
 
-          <div class="space-y-6">
-            <a href="mailto:zack.pearson@probuilddigital.com" class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 hover:bg-cyan-50 border border-slate-200 hover:border-cyan-300 transition-all group">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform">
-                <i class="fas fa-envelope" aria-hidden="true"></i>
-              </div>
-              <div>
-                <h4 class="font-semibold text-slate-900">Email</h4>
-                <span class="text-cyan-600 text-sm">zack.pearson@probuilddigital.com</span>
-              </div>
+          <div class="flex flex-col gap-4">
+            <a href="mailto:zack.pearson@probuilddigital.com" class="block bg-night-surface border border-cream/15 rounded-[14px] px-5 py-4 text-mist transition-colors">
+              <span class="block font-sans font-bold text-[14.5px] text-cream">Email</span>
+              <span class="block text-sm mt-1 break-all">zack.pearson@probuilddigital.com</span>
             </a>
-
-            <a href="tel:+16144038014" class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 hover:bg-cyan-50 border border-slate-200 hover:border-cyan-300 transition-all group">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform">
-                <i class="fas fa-phone" aria-hidden="true"></i>
-              </div>
-              <div>
-                <h4 class="font-semibold text-slate-900">Phone</h4>
-                <span class="text-cyan-600 text-sm">(614) 403-8014</span>
-              </div>
+            <a href="tel:+16144038014" class="block bg-night-surface border border-cream/15 rounded-[14px] px-5 py-4 text-mist transition-colors">
+              <span class="block font-sans font-bold text-[14.5px] text-cream">Phone</span>
+              <span class="block font-serif-display text-[19px] mt-1">(614) 403-8014</span>
             </a>
-
-            <a href="https://www.linkedin.com/in/zachary-pearson1/" target="_blank" rel="noopener noreferrer" class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 hover:bg-cyan-50 border border-slate-200 hover:border-cyan-300 transition-all group">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform">
-                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-              </div>
-              <div>
-                <h4 class="font-semibold text-slate-900">LinkedIn</h4>
-                <span class="text-cyan-600 text-sm">Connect with Zack</span>
-              </div>
+            <a href="https://www.linkedin.com/in/zachary-pearson1/" target="_blank" rel="noopener noreferrer" class="block bg-night-surface border border-cream/15 rounded-[14px] px-5 py-4 text-mist transition-colors">
+              <span class="block font-sans font-bold text-[14.5px] text-cream">LinkedIn</span>
+              <span class="block text-sm mt-1">Connect with Zack</span>
             </a>
           </div>
 
           <!-- Response Guarantee -->
-          <div class="mt-8 bg-gradient-to-r from-amber-50 to-amber-100 border border-amber-200 rounded-xl p-6">
-            <h4 class="font-bold text-amber-900 mb-4">Response Guarantee</h4>
+          <div class="mt-8 bg-night-surface border border-brass/25 rounded-[14px] px-[26px] py-[22px]">
+            <h4 class="font-serif-display text-[19px] text-cream-bright mb-4">Response guarantee</h4>
             <ul class="space-y-3">
-              <li class="flex items-center gap-3 text-amber-800">
-                <span class="w-5 h-5 rounded-full bg-amber-400 flex items-center justify-center flex-shrink-0">
-                  <i class="fas fa-check text-white text-xs" aria-hidden="true"></i>
-                </span>
-                <span class="text-sm">Response within 24 hours</span>
+              <li class="flex items-center gap-3 text-mist text-sm">
+                <span class="text-brass" aria-hidden="true">&#10003;</span> Response within 24 hours
               </li>
-              <li class="flex items-center gap-3 text-amber-800">
-                <span class="w-5 h-5 rounded-full bg-amber-400 flex items-center justify-center flex-shrink-0">
-                  <i class="fas fa-check text-white text-xs" aria-hidden="true"></i>
-                </span>
-                <span class="text-sm">Free initial consultation</span>
+              <li class="flex items-center gap-3 text-mist text-sm">
+                <span class="text-brass" aria-hidden="true">&#10003;</span> Free initial consultation
               </li>
-              <li class="flex items-center gap-3 text-amber-800">
-                <span class="w-5 h-5 rounded-full bg-amber-400 flex items-center justify-center flex-shrink-0">
-                  <i class="fas fa-check text-white text-xs" aria-hidden="true"></i>
-                </span>
-                <span class="text-sm">No pressure, no obligation</span>
+              <li class="flex items-center gap-3 text-mist text-sm">
+                <span class="text-brass" aria-hidden="true">&#10003;</span> No pressure, no obligation
               </li>
             </ul>
           </div>
@@ -212,20 +168,17 @@ const faqSchema = {
   </section>
 
   <!-- FAQ Section -->
-  <section class="py-20 md:py-32 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <span class="inline-block px-4 py-1.5 rounded-full bg-cyan-100 text-cyan-700 text-sm font-semibold mb-4">
-          FAQ
-        </span>
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Frequently Asked Questions</h2>
+  <section class="px-6 md:px-16 pb-24">
+    <div class="max-w-[1312px] mx-auto">
+      <div class="border-t border-cream/10 pt-[72px]">
+        <p class="ns-kicker">FAQ</p>
+        <h2 class="ns-h2 mt-4">Frequently asked questions.</h2>
       </div>
-
-      <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-4 mt-12">
         {faqs.map((faq) => (
-          <div class="bg-white p-6 rounded-xl border border-slate-200 hover:border-cyan-300 hover:shadow-lg transition-all">
-            <h3 class="text-lg font-bold mb-3 text-slate-900">{faq.question}</h3>
-            <p class="text-slate-600">{faq.answer}</p>
+          <div class="bg-night-surface border border-cream/15 rounded-[14px] px-[26px] py-[22px]">
+            <h3 class="font-sans font-bold text-[17px] text-cream">{faq.question}</h3>
+            <p class="text-[15px] leading-[1.65] text-mist mt-2">{faq.answer}</p>
           </div>
         ))}
       </div>
@@ -233,7 +186,7 @@ const faqSchema = {
   </section>
 
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-</PageLayout>
+</NightshiftLayout>
 
 <!-- Form handling script -->
 <script>
@@ -254,14 +207,14 @@ const faqSchema = {
 
   function showError(input: HTMLElement | null, errorEl: HTMLElement | null, message: string) {
     if (errorEl) { errorEl.textContent = message; errorEl.classList.remove('hidden'); }
-    input?.classList.add('border-red-500');
-    input?.classList.remove('border-slate-200');
+    input?.classList.add('border-red-400');
+    input?.classList.remove('border-cream/15');
   }
 
   function clearError(input: HTMLElement | null, errorEl: HTMLElement | null) {
     if (errorEl) { errorEl.textContent = ''; errorEl.classList.add('hidden'); }
-    input?.classList.remove('border-red-500');
-    input?.classList.add('border-slate-200');
+    input?.classList.remove('border-red-400');
+    input?.classList.add('border-cream/15');
   }
 
   function clearAllErrors() {
@@ -336,7 +289,7 @@ const faqSchema = {
             initialMessages: ['Welcome to Pro Build Digital!', 'What can I help you with today?'],
             i18n: { en: { title: 'BuildBot', subtitle: 'Digital Solutions Assistant', getStarted: 'Start Chat' }},
             showWelcomeScreen: false,
-            theme: { header: { background: '#0d1b2a', color: '#FFFFFF' }, button: { background: '#0d1b2a', color: '#FFFFFF' }}
+            theme: { header: { background: '#0E1B2E', color: '#EAE6DA' }, button: { background: '#0E1B2E', color: '#EAE6DA' }}
           });
         });
     }, 3000);
