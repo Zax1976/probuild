@@ -4,6 +4,39 @@ import NightshiftLayout from '../layouts/NightshiftLayout.astro';
 const pageTitle = 'Pro Build Digital - Home of the Build Bot';
 const pageDescription = 'The Build Bot answers for your business at any hour, writes down the lead, and books the call. Under your name, in your colors, on the website you already have.';
 
+// Stats strip
+const stats = [
+  { heading: 'Every hour', detail: 'It answers nights, weekends, holidays.' },
+  { heading: 'Every lead', detail: 'Name, number, and the job, sent to you.' },
+  { heading: 'Your name', detail: 'Branded as part of your company.' },
+];
+
+// Example bots (invented examples, labeled as such on the page)
+const exampleBots = [
+  { name: '“Sarah” — Ridgeline Roofing', trade: 'Roofing' },
+  { name: '“Mo” — Lakeside Plumbing', trade: 'Plumbing' },
+  { name: '“Bella” — Main St. Salon', trade: 'Salon' },
+];
+
+// How it works (steps drafted by design; owner sign-off pending)
+const steps = [
+  {
+    num: '1.',
+    title: 'Book a demo',
+    desc: 'A 15-minute call where you watch the bot answer real questions about your business. No canned script, so you know exactly what customers will see.',
+  },
+  {
+    num: '2.',
+    title: 'We build and train it',
+    desc: 'We load it with your services, hours, service area, and how you talk to customers. You pick its name and look. Nothing for you to install or learn.',
+  },
+  {
+    num: '3.',
+    title: 'It goes live',
+    desc: 'One small addition to your website and it starts answering. Every lead lands in your inbox or as a text, ready for you to call back.',
+  },
+];
+
 // LocalBusiness Schema
 const businessSchema = {
   "@context": "https://schema.org",
@@ -84,6 +117,153 @@ const businessSchema = {
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       STATS STRIP
+       ======================================== -->
+  <section class="border-y border-cream/10">
+    <div class="grid md:grid-cols-3">
+      {stats.map((stat, index) => (
+        <div class:list={[
+          'px-6 md:px-12 py-9',
+          index < stats.length - 1 && 'border-b md:border-b-0 md:border-r border-cream/10',
+        ]}>
+          <div class="font-serif-display text-[32px] text-brass">{stat.heading}</div>
+          <div class="text-[15px] text-mist mt-1.5">{stat.detail}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ========================================
+       YOURS, NOT OURS
+       ======================================== -->
+  <section class="px-6 md:px-16 py-24">
+    <div class="max-w-[1312px] mx-auto grid lg:grid-cols-2 gap-12 lg:gap-[72px] items-center">
+      <div>
+        <p class="ns-kicker">Yours, not ours</p>
+        <h2 class="ns-h2 mt-4">Customers see your name, not ours.</h2>
+        <p class="text-[17px] leading-[1.65] text-mist mt-[22px] max-w-[480px]">
+          Every bot carries your business's name, your colors, and your way of talking. To the
+          person asking about a metal roof at 9pm, it's simply part of your company.
+        </p>
+      </div>
+      <div class="flex flex-col border border-cream/15 rounded-[14px] overflow-hidden">
+        {exampleBots.map((bot) => (
+          <div class="flex justify-between items-center px-[26px] py-[19px] bg-night-surface border-b border-cream/10 last:border-b-0 gap-4">
+            <span class="font-serif-display text-[19px] text-cream-bright">{bot.name}</span>
+            <span class="text-[13px] text-faint">{bot.trade}</span>
+          </div>
+        ))}
+        <div class="text-[12.5px] text-faint px-[26px] py-3 border-t border-cream/10">
+          Example names. Real customer bots will take their place as they launch.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       HOW IT WORKS
+       ======================================== -->
+  <section id="how" class="px-6 md:px-16 pb-24">
+    <div class="max-w-[1312px] mx-auto">
+      <div class="border-t border-cream/10 pt-[72px]">
+        <p class="ns-kicker">How it works</p>
+        <h2 class="ns-h2 mt-4">Live on your site in three steps.</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-10 lg:gap-14 mt-14">
+        {steps.map((step) => (
+          <div>
+            <div class="font-serif-display italic text-[44px] text-brass leading-none">{step.num}</div>
+            <h3 class="font-sans font-bold text-[21px] text-cream mt-[18px] mb-2.5">{step.title}</h3>
+            <p class="text-[15.5px] leading-[1.65] text-mist">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-[14.5px] text-faint mt-13">
+        Setup is remote, so we work with small businesses anywhere in the U.S. Most bots go from
+        demo to live in about a week.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================================
+       PROOF - Cottages Concierge
+       (spec doc for this section was missing; copy drafted from the
+       revamp brief's proof section + the SMS consent page facts.
+       Owner sign-off pending, see REVAMP-NOTES.md.)
+       ======================================== -->
+  <section class="px-6 md:px-16 pb-24">
+    <div class="max-w-[1312px] mx-auto">
+      <div class="border-t border-cream/10 pt-[72px] grid lg:grid-cols-2 gap-12 lg:gap-[72px] items-center">
+        <div>
+          <p class="ns-kicker">Already on the job</p>
+          <h2 class="ns-h2 mt-4">The first Build Bot is already answering.</h2>
+          <p class="text-[17px] leading-[1.65] text-mist mt-[22px] max-w-[480px]">
+            Cottages Concierge is a Build Bot we run for short-term rental owners. It answers
+            guests' questions about the property, captures booking inquiries, and texts the owner
+            the moment someone is ready to book. Yours will do the same for your business, under
+            your name.
+          </p>
+        </div>
+        <div class="bg-night-surface border border-cream/15 rounded-[14px] px-[26px] py-[22px]">
+          <div class="font-serif-display text-[19px] text-cream-bright">Cottages Concierge</div>
+          <div class="text-[13px] text-faint mt-0.5">Short-term rentals</div>
+          <p class="text-[15px] leading-[1.65] text-mist mt-3.5">
+            Guest asks about the lake house at midnight. The concierge answers, takes the dates,
+            and the owner wakes up to a text with a booking inquiry.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       WEBSITES (secondary, one quiet section)
+       (spec doc for this section was missing; kept small per the
+       brief: websites and invoicing are one click away, not the pitch.
+       Owner sign-off pending, see REVAMP-NOTES.md.)
+       ======================================== -->
+  <section class="px-6 md:px-16 pb-24">
+    <div class="max-w-[1312px] mx-auto">
+      <div class="border-t border-cream/10 pt-[72px]">
+        <p class="ns-kicker">Need a website?</p>
+        <h2 class="ns-h2 mt-4">We build websites too.</h2>
+        <p class="text-[17px] leading-[1.65] text-mist mt-[22px] max-w-[540px]">
+          The Build Bot works on the website you already have. If you don't have one, or yours
+          needs work, we build fast, clean websites for small businesses, with digital invoicing
+          to match.
+        </p>
+        <!-- TODO(owner): point at subdomain -->
+        <a href="#" class="inline-block text-[15px] text-brass border-b border-brass/50 pb-0.5 mt-6">
+          Websites &amp; invoicing &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       DEMO CTA
+       ======================================== -->
+  <!-- TODO(owner): final price goes here when set. No published price or payment wiring. The demo call covers pricing. -->
+  <section
+    id="demo"
+    class="px-6 md:px-16 py-24 border-t border-cream/10 text-center"
+    style="background: radial-gradient(ellipse 50% 60% at 50% 30%, rgba(200,165,92,0.12) 0%, rgba(14,27,46,0) 70%);"
+  >
+    <p class="ns-kicker">The next step</p>
+    <h2 class="ns-h2 text-[clamp(2.25rem,1.5rem+2.5vw,3.625rem)]! leading-[1.08]! mt-4 mx-auto max-w-[760px]">
+      See it answer for your business.
+    </h2>
+    <p class="text-lg leading-[1.65] text-mist mt-[22px] mx-auto max-w-[540px]">
+      Book a 15-minute demo and watch it answer real questions about your work. We'll go over
+      pricing on the call, in plain numbers. No pressure, no contracts.
+    </p>
+    <div class="flex items-center justify-center gap-7 mt-[38px] flex-wrap">
+      <a href="mailto:zack.pearson@probuilddigital.com" class="btn-brass px-10! py-[17px]!">Book a demo</a>
+      <a href="tel:+16144038014" class="font-serif-display text-[26px] text-cream-bright">(614) 403-8014</a>
     </div>
   </section>
 

@@ -205,7 +205,7 @@
 }
 
 /* Default link hover on nightshift surfaces brightens to brass */
-.ns-page a:hover {
+.ns-page a:not(.btn-brass):hover {
   color: var(--brass);
 }
 
