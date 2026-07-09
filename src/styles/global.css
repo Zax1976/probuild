@@ -140,8 +140,10 @@
 
 /* ========================================
    NIGHTSHIFT COMPONENTS (homepage direction)
+   In the components layer so Tailwind utilities can override them.
    ======================================== */
 
+@layer components {
 /* Italic serif kicker above headings */
 .ns-kicker {
   font-family: var(--font-display);
@@ -187,14 +189,18 @@
   background: #d4b36f; /* brass lightened ~8% */
 }
 
-/* Stacked text wordmark (owner rejected the PNG on dark surfaces) */
+/* Stacked text wordmark (owner rejected the PNG on dark surfaces).
+   Padding + negative margin expand the tap target to 44px without moving layout. */
 .ns-wordmark {
+  display: inline-block;
   font-family: var(--font-wordmark);
   font-weight: 900;
   font-size: 18px;
   line-height: 1.0;
   color: var(--text-cream);
   text-decoration: none;
+  padding: 4px 0;
+  margin: -4px 0;
 }
 
 .ns-wordmark span {
@@ -203,8 +209,10 @@
   font-size: 12px;
   letter-spacing: 0.24em;
 }
+}
 
-/* Default link hover on nightshift surfaces brightens to brass */
+/* Default link hover on nightshift surfaces brightens to brass.
+   Stays un-layered on purpose: it must beat utility color classes. */
 .ns-page a:not(.btn-brass):hover {
   color: var(--brass);
 }
@@ -229,12 +237,14 @@ body {
   overflow-x: hidden;
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+/* Typography - in the base layer so Tailwind utilities (font-sans etc.) can override */
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
 }
 
 .text-display {

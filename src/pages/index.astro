@@ -88,7 +88,9 @@ const businessSchema = {
         </p>
         <div class="flex items-center flex-wrap gap-[26px] mt-9">
           <a href="#demo" class="btn-brass">Book a demo</a>
-          <a href="#how" class="text-[15px] text-mist border-b border-brass/50 pb-0.5 transition-colors">See how it works</a>
+          <a href="#how" class="inline-flex items-center min-h-11 text-[15px] text-mist transition-colors">
+            <span class="border-b border-brass/50 pb-0.5">See how it works</span>
+          </a>
         </div>
       </div>
 
@@ -177,7 +179,7 @@ const businessSchema = {
         {steps.map((step) => (
           <div>
             <div class="font-serif-display italic text-[44px] text-brass leading-none">{step.num}</div>
-            <h3 class="font-sans! font-bold text-[21px] text-cream mt-[18px] mb-2.5">{step.title}</h3>
+            <h3 class="font-sans font-bold text-[21px] text-cream mt-[18px] mb-2.5">{step.title}</h3>
             <p class="text-[15.5px] leading-[1.65] text-mist">{step.desc}</p>
           </div>
         ))}
@@ -237,8 +239,8 @@ const businessSchema = {
           to match.
         </p>
         <!-- TODO(owner): point at subdomain -->
-        <a href="#" class="inline-block text-[15px] text-brass border-b border-brass/50 pb-0.5 mt-6">
-          Websites &amp; invoicing &rarr;
+        <a href="#" class="inline-flex items-center min-h-11 text-[15px] text-brass mt-4">
+          <span class="border-b border-brass/50 pb-0.5">Websites &amp; invoicing &rarr;</span>
         </a>
       </div>
     </div>
@@ -254,7 +256,7 @@ const businessSchema = {
     style="background: radial-gradient(ellipse 50% 60% at 50% 30%, rgba(200,165,92,0.12) 0%, rgba(14,27,46,0) 70%);"
   >
     <p class="ns-kicker">The next step</p>
-    <h2 class="ns-h2 text-[clamp(2.25rem,1.5rem+2.5vw,3.625rem)]! leading-[1.08]! mt-4 mx-auto max-w-[760px]">
+    <h2 class="ns-h2 text-[clamp(2.25rem,1.5rem+2.5vw,3.625rem)] leading-[1.08] mt-4 mx-auto max-w-[760px]">
       See it answer for your business.
     </h2>
     <p class="text-lg leading-[1.65] text-mist mt-[22px] mx-auto max-w-[540px]">
@@ -262,8 +264,8 @@ const businessSchema = {
       pricing on the call, in plain numbers. No pressure, no contracts.
     </p>
     <div class="flex items-center justify-center gap-7 mt-[38px] flex-wrap">
-      <a href="mailto:zack.pearson@probuilddigital.com" class="btn-brass px-10! py-[17px]!">Book a demo</a>
-      <a href="tel:+16144038014" class="font-serif-display text-[26px] text-cream-bright">(614) 403-8014</a>
+      <a href="mailto:zack.pearson@probuilddigital.com" class="btn-brass px-10 py-[17px]">Book a demo</a>
+      <a href="tel:+16144038014" class="inline-flex items-center min-h-11 font-serif-display text-[26px] text-cream-bright">(614) 403-8014</a>
     </div>
   </section>
 
