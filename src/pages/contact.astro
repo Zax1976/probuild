@@ -205,6 +205,13 @@ const inputClasses = 'w-full px-4 py-3 bg-night-deep border-2 border-cream/15 ro
   const emailInput = document.getElementById('email') as HTMLInputElement;
   const messageInput = document.getElementById('message') as HTMLTextAreaElement;
 
+  // Preselect the service from ?service= (e.g. Book a demo links to /contact?service=chatbot)
+  const serviceSelect = document.getElementById('service') as HTMLSelectElement;
+  const requestedService = new URLSearchParams(window.location.search).get('service');
+  if (serviceSelect && requestedService && [...serviceSelect.options].some(o => o.value === requestedService)) {
+    serviceSelect.value = requestedService;
+  }
+
   function showError(input: HTMLElement | null, errorEl: HTMLElement | null, message: string) {
     if (errorEl) { errorEl.textContent = message; errorEl.classList.remove('hidden'); }
     input?.classList.add('border-red-400');

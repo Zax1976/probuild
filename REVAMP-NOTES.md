@@ -73,3 +73,7 @@ in the repo, so two sections were drafted from the revamp brief and existing sit
 - No Northeast Ohio / Ashtabula / Columbus copy anywhere (terms-of-service governing-law
   clause kept, it's legal text, not marketing).
 - Voice: plain, confident, no jargon, no AI-tell phrases.
+- **Demo CTA (deviation from the handoff, owner-reported bug):** the handoff specified a
+  mailto link, but mailto silently fails on machines with no default mail app. The demo
+  section's Book-a-demo button now goes to /contact?service=chatbot (form preselects The
+  Build Bot); the prefilled mailto stays as a secondary "Or email ..." link, phone kept.
