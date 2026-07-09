@@ -56,8 +56,13 @@ in the repo, so two sections were drafted from the revamp brief and existing sit
 - [x] **Services page restyle.** Done: /services is now the Nightshift Build Bot detail
       page (bot first, agency services below). Moving agency services to the future
       subdomain page remains open.
-- [ ] **Blog + 404 restyle.** Blog pages and the 404 page still use the old light theme
-      with the old nav/footer.
+- [x] **Blog + 404 restyle.** Done — Nightshift is now the SITE-WIDE default (dark body
+      in global.css; the old light theme, PageLayout, and the old Header/Footer are
+      deleted). Blog index, all five posts (Newsreader serif long-form prose), 404, and
+      the three legal pages all use the shared Nightshift nav/footer. Every built route
+      verified at 375px + 1280px (body color, no horizontal overflow, shared chrome);
+      all 203 internal links resolve; GA consent-default, Formspree, article schema,
+      and the n8n widget all intact.
 
 ## Decisions applied
 
