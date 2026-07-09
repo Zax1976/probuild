@@ -1,9 +1,28 @@
 @import "tailwindcss";
 
 /* ========================================
-   PRO BUILD DIGITAL - Blueprint Precision
-   Design System v2.0
+   PRO BUILD DIGITAL - Nightshift
+   Design System v3.0 (homepage direction)
+   Deep navy + brass, serif editorial voice.
    ======================================== */
+
+/* Tailwind theme tokens - generate utilities like bg-night, text-brass */
+@theme {
+  --color-night: #0E1B2E;
+  --color-night-deep: #0A1422;
+  --color-night-surface: #101E33;
+  --color-bubble-user: #1C2C44;
+  --color-cream: #EAE6DA;
+  --color-cream-bright: #F4F0E4;
+  --color-mist: #9AA7BA;
+  --color-faint: #5E6B7E;
+  --color-brass: #C8A55C;
+  --color-online: #5FBF7A;
+
+  --font-serif-display: 'Newsreader', Georgia, serif;
+  --font-sans: 'Hanken Grotesk', system-ui, sans-serif;
+  --font-wordmark: 'Archivo', system-ui, sans-serif;
+}
 
 /* CSS Variables - Design Tokens */
 :root {
@@ -44,9 +63,26 @@
   --surface-light: var(--color-slate-50);
   --surface-elevated: rgba(255, 255, 255, 0.05);
 
+  /* Nightshift palette (chosen homepage direction) */
+  --bg: #0E1B2E;
+  --bg-deep: #0A1422;
+  --surface: #101E33;
+  --bubble-user: #1C2C44;
+  --text-cream: #EAE6DA;
+  --text-cream-bright: #F4F0E4;
+  --text-mist: #9AA7BA;
+  --text-faint: #5E6B7E;
+  --brass: #C8A55C;
+  --on-brass: #0E1B2E;
+  --online-green: #5FBF7A;
+  --hairline: rgba(234, 230, 218, 0.12);
+  --hairline-strong: rgba(234, 230, 218, 0.15);
+  --brass-border: rgba(200, 165, 92, 0.25);
+
   /* Typography Scale */
-  --font-display: 'Space Grotesk', system-ui, sans-serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-body: 'Hanken Grotesk', system-ui, sans-serif;
+  --font-wordmark: 'Archivo', system-ui, sans-serif;
 
   --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
   --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
