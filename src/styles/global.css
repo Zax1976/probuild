@@ -138,6 +138,77 @@
   --blue-700: #1d4ed8;
 }
 
+/* ========================================
+   NIGHTSHIFT COMPONENTS (homepage direction)
+   ======================================== */
+
+/* Italic serif kicker above headings */
+.ns-kicker {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--brass);
+}
+
+/* Display headings: Newsreader 500, tight tracking */
+.ns-h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.5rem, 1.5rem + 3.5vw, 4.375rem); /* up to 70px */
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--text-cream-bright);
+}
+
+.ns-h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 1.4rem + 2vw, 2.875rem); /* up to 46px */
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--text-cream-bright);
+}
+
+/* Brass button: Archivo 800 */
+.btn-brass {
+  display: inline-block;
+  background: var(--brass);
+  color: var(--on-brass);
+  font-family: var(--font-wordmark);
+  font-weight: 800;
+  font-size: 16px;
+  padding: 16px 34px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background var(--duration-fast) var(--ease-out-expo);
+}
+
+.btn-brass:hover {
+  background: #d4b36f; /* brass lightened ~8% */
+}
+
+/* Stacked text wordmark (owner rejected the PNG on dark surfaces) */
+.ns-wordmark {
+  font-family: var(--font-wordmark);
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 1.0;
+  color: var(--text-cream);
+  text-decoration: none;
+}
+
+.ns-wordmark span {
+  color: var(--brass);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.24em;
+}
+
+/* Default link hover on nightshift surfaces brightens to brass */
+.ns-page a:hover {
+  color: var(--brass);
+}
+
 /* Base Reset & Defaults */
 *, *::before, *::after {
   box-sizing: border-box;
