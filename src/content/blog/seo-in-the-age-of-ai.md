@@ -33,7 +33,7 @@ Add an author line with credentials, a photo, and a 1–2 sentence bio. For serv
 
 ### 3) Use structured data (schema)
 
-Add schema for **Organization**, **LocalBusiness**, **FAQ**, **HowTo**, **Product/Service**, and **Article** where relevant. Schema won't guarantee AI Overview placement, but it **helps Google understand context** and unlocks richer features (FAQ toggles, how-to steps, pricing). Keep it accurate and consistent with the visible page.
+Add schema for **Organization**, **LocalBusiness**, **FAQ**, **HowTo**, **Product/Service**, and **Article** where relevant. Schema won't guarantee AI Overview placement, but it can help Google understand the page and support richer search features. Keep it accurate and consistent with the visible page.
 
 ### 4) Target problems, not just keywords
 

@@ -15,8 +15,10 @@ const { title, description, keywords, ogImage, canonicalUrl } = Astro.props;
 const currentYear = new Date().getFullYear();
 
 const navLinks = [
-  { href: '/services', label: 'The Build Bot' },
+  { href: '/', label: 'BuildBot' },
   { href: '/#how', label: 'How it works' },
+  { href: 'https://cottagesconcierge.com/', label: 'Cottages Concierge', external: true },
+  { href: '/services', label: 'Services' },
 ];
 ---
 
@@ -40,10 +42,13 @@ const navLinks = [
 
         <div class="hidden lg:flex items-center gap-8 text-[15px] font-semibold text-mist">
           {navLinks.map((link) => (
-            <a href={link.href} class="text-mist transition-colors">{link.label}</a>
+            <a
+              href={link.href}
+              target={link.external ? '_blank' : undefined}
+              rel={link.external ? 'noopener noreferrer' : undefined}
+              class="text-mist transition-colors"
+            >{link.label}</a>
           ))}
-          <!-- TODO(owner): repoint to websites subdomain when it exists -->
-          <a href="/#websites" class="text-brass transition-colors">Need a website?</a>
           <a href="/#demo" class="btn-brass px-6 py-3 text-sm">Book a demo</a>
         </div>
 
@@ -78,17 +83,16 @@ const navLinks = [
         <ul class="space-y-2">
           {navLinks.map((link) => (
             <li>
-              <a href={link.href} class="ns-mobile-link block px-4 py-3 rounded-lg text-base font-medium text-mist hover:text-cream hover:bg-white/5 transition-all">
+              <a
+                href={link.href}
+                target={link.external ? '_blank' : undefined}
+                rel={link.external ? 'noopener noreferrer' : undefined}
+                class="ns-mobile-link block px-4 py-3 rounded-lg text-base font-medium text-mist hover:text-cream hover:bg-white/5 transition-all"
+              >
                 {link.label}
               </a>
             </li>
           ))}
-          <li>
-            <!-- TODO(owner): repoint to websites subdomain when it exists -->
-            <a href="/#websites" class="ns-mobile-link block px-4 py-3 rounded-lg text-base font-medium text-brass hover:bg-white/5 transition-all">
-              Need a website?
-            </a>
-          </li>
         </ul>
         <div class="mt-8 pt-6 border-t border-cream/10">
           <a href="/#demo" class="ns-mobile-link btn-brass block text-center">Book a demo</a>
@@ -107,15 +111,23 @@ const navLinks = [
           <div class="max-w-[340px]">
             <a href="/" class="ns-wordmark">PRO BUILD<br /><span>DIGITAL</span></a>
             <p class="mt-4 leading-relaxed text-mist">
-              Home of the Build Bot, an assistant your customers will know as yours.
+              Home of BuildBot, a website assistant built around your business information.
             </p>
           </div>
           <div class="flex flex-col gap-1 lg:gap-2.5">
-            <div class="text-cream font-bold mb-0.5">Explore</div>
-            <a href="/services" class="flex items-center min-h-11 lg:min-h-0 text-mist transition-colors">The Build Bot</a>
+            <div class="text-cream font-bold mb-0.5">Products</div>
+            <a href="/" class="flex items-center min-h-11 lg:min-h-0 text-mist transition-colors">BuildBot</a>
             <a href="/#how" class="flex items-center min-h-11 lg:min-h-0 text-mist transition-colors">How it works</a>
-            <!-- TODO(owner): repoint to websites subdomain when it exists -->
-            <a href="/#websites" class="flex items-center min-h-11 lg:min-h-0 text-mist transition-colors">Websites &amp; invoicing &rarr;</a>
+            <a href="https://cottagesconcierge.com/" target="_blank" rel="noopener noreferrer" class="flex items-center min-h-11 lg:min-h-0 text-mist transition-colors">Cottages Concierge &rarr;</a>
+          </div>
+          <div class="flex flex-col gap-1 lg:gap-2.5">
+            <div class="text-cream font-bold mb-0.5">Services</div>
+            <a href="/services#website-development" class="flex items-center min-h-11 lg:min-h-0 text-mist transition-colors">Websites</a>
+            <a href="/services#automation" class="flex items-center min-h-11 lg:min-h-0 text-mist transition-colors">Automation</a>
+            <a href="/services#digital-invoicing" class="flex items-center min-h-11 lg:min-h-0 text-mist transition-colors">Digital invoicing</a>
+          </div>
+          <div class="flex flex-col gap-1 lg:gap-2.5">
+            <div class="text-cream font-bold mb-0.5">Company</div>
             <a href="/about" class="flex items-center min-h-11 lg:min-h-0 text-mist transition-colors">About</a>
             <a href="/blog" class="flex items-center min-h-11 lg:min-h-0 text-mist transition-colors">Blog</a>
             <a href="/contact" class="flex items-center min-h-11 lg:min-h-0 text-mist transition-colors">Contact</a>

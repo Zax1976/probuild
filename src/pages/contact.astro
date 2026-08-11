@@ -2,14 +2,14 @@
 import NightshiftLayout from '../layouts/NightshiftLayout.astro';
 
 const pageTitle = 'Contact Us - Pro Build Digital';
-const pageDescription = 'Get in touch with Pro Build Digital for a free consultation. The Build Bot, website development, automation, and digital invoicing for small businesses.';
+const pageDescription = 'Book a BuildBot demo or ask Pro Build Digital about websites, automation, integrations, and digital invoicing.';
 
 // FAQ data
 const faqs = [
-  { question: 'How long does it take to build a website?', answer: 'Most websites are completed within 1-2 weeks. Simple sites can be done even faster, while complex projects may take 3-4 weeks.' },
-  { question: 'Do you offer payment plans?', answer: "Yes! We understand cash flow is important for small businesses. We offer flexible payment options." },
-  { question: 'What if I need changes after the website is live?', answer: 'We offer ongoing support and maintenance packages. Small changes and updates are often included.' },
-  { question: 'Do you work with businesses outside my area?', answer: 'Absolutely! We work with clients nationwide via video calls, phone, and email.' },
+  { question: 'What happens during a BuildBot demo?', answer: 'We use questions from your business so you can see how BuildBot answers, what it refuses to guess, and how it collects customer details.' },
+  { question: 'When does BuildBot billing begin?', answer: 'We build it and let you review it first. The $99 monthly charge begins only after you approve it.' },
+  { question: 'Will BuildBot work with my current website?', answer: 'In most cases, yes. We can add it to an existing website. A hosted link and QR kit are also available when an embed is not the right fit.' },
+  { question: 'Do you work with businesses outside Ohio?', answer: 'Yes. Setup is remote, so we work with small service businesses anywhere in the United States.' },
 ];
 
 // FAQPage Schema
@@ -37,7 +37,7 @@ const inputClasses = 'w-full px-4 py-3 bg-night-deep border-2 border-cream/15 ro
       Let's talk.
     </h1>
     <p class="text-lg leading-[1.65] text-mist mt-[22px] mx-auto max-w-[540px]">
-      Ready to take your business digital? Get your free consultation today.
+      Book a BuildBot demo or tell us what you need help building.
     </p>
   </section>
 
@@ -49,7 +49,7 @@ const inputClasses = 'w-full px-4 py-3 bg-night-deep border-2 border-cream/15 ro
         <div class="lg:col-span-2">
           <p class="ns-kicker">Send a message</p>
           <h2 class="ns-h2 mt-4">How can we help?</h2>
-          <p class="text-[15.5px] leading-[1.65] text-mist mt-3 mb-8">Fill out the form below and we'll get back to you within 24 hours.</p>
+          <p class="text-[15.5px] leading-[1.65] text-mist mt-3 mb-8">Send the details below. We will get back to you within 24 hours.</p>
 
           <form id="contact-form" action="https://formspree.io/f/mkgzrnvd" method="POST" class="space-y-6" novalidate>
             <div class="grid md:grid-cols-2 gap-6">
@@ -67,6 +67,17 @@ const inputClasses = 'w-full px-4 py-3 bg-night-deep border-2 border-cream/15 ro
 
             <div class="grid md:grid-cols-2 gap-6">
               <div class="form-group">
+                <label for="business" class="block text-sm font-semibold text-cream mb-2">Business name</label>
+                <input type="text" id="business" name="business" autocomplete="organization" class={inputClasses}>
+              </div>
+              <div class="form-group">
+                <label for="website" class="block text-sm font-semibold text-cream mb-2">Website</label>
+                <input type="url" id="website" name="website" inputmode="url" placeholder="https://" class={inputClasses}>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="form-group">
                 <label for="phone" class="block text-sm font-semibold text-cream mb-2">Phone</label>
                 <input type="tel" id="phone" name="phone" class={inputClasses}>
               </div>
@@ -74,7 +85,7 @@ const inputClasses = 'w-full px-4 py-3 bg-night-deep border-2 border-cream/15 ro
                 <label for="service" class="block text-sm font-semibold text-cream mb-2">Service Interested In</label>
                 <select id="service" name="service" class={inputClasses}>
                   <option value="">Select a service</option>
-                  <option value="chatbot">The Build Bot</option>
+                  <option value="chatbot">BuildBot demo</option>
                   <option value="website">Website Development</option>
                   <option value="automation">Automation</option>
                   <option value="invoicing">Digital Invoicing</option>
@@ -85,10 +96,10 @@ const inputClasses = 'w-full px-4 py-3 bg-night-deep border-2 border-cream/15 ro
             </div>
 
             <div class="form-group">
-              <label for="message" class="block text-sm font-semibold text-cream mb-2">Message *</label>
+              <label id="message-label" for="message" class="block text-sm font-semibold text-cream mb-2">What should we know? *</label>
               <textarea id="message" name="message" rows="5" required aria-describedby="message-error"
                 class={`${inputClasses} resize-y`}
-                placeholder="Tell us about your project or ask a question..."></textarea>
+                placeholder="Tell us about the problem you want to solve..."></textarea>
               <span id="message-error" class="error-message text-red-400 text-sm mt-1 hidden" role="alert"></span>
             </div>
 
@@ -210,6 +221,12 @@ const inputClasses = 'w-full px-4 py-3 bg-night-deep border-2 border-cream/15 ro
   const requestedService = new URLSearchParams(window.location.search).get('service');
   if (serviceSelect && requestedService && [...serviceSelect.options].some(o => o.value === requestedService)) {
     serviceSelect.value = requestedService;
+  }
+  if (requestedService === 'chatbot') {
+    const messageLabel = document.getElementById('message-label');
+    if (messageLabel) messageLabel.textContent = 'What do customers ask most often? *';
+    if (messageInput) messageInput.placeholder = 'Share one or two questions you hear from customers...';
+    btnText?.forEach(el => { el.textContent = 'Request a demo'; });
   }
 
   function showError(input: HTMLElement | null, errorEl: HTMLElement | null, message: string) {

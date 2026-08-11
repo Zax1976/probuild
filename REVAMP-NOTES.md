@@ -1,79 +1,73 @@
 # Pro Build Digital — Revamp Notes
 
-Status log for the bot-first Nightshift homepage revamp. Canonical copy of these notes;
-the copy in the design handoff folder (`design_handoff_nightshift_homepage/`) is historical.
+Status log for the BuildBot-first Nightshift site. The copy in
+`design_handoff_nightshift_homepage/` is historical.
 
-## Status (July 2026)
+## Status (July 12, 2026)
 
-- Homepage rebuilt in the Nightshift direction (deep navy + brass, Newsreader/Hanken
-  Grotesk/Archivo) per the design handoff README. Build passing.
-- Product renamed **Build Bot** (was "Built-In Bot") site-wide per owner instruction.
-- Pay-If-Satisfied guarantee removed site-wide (pages, blog posts, chat greetings).
-- Location copy fixed site-wide: only line used is "Setup is remote, so we work with small
-  businesses anywhere in the U.S."
-- n8n chat embed removed from the homepage only (static mockup + demo CTA supersede it).
-  Other pages keep their chat widget, GA, cookie consent, and Formspree as they were.
-- Homepage schema markup kept; address reduced to country only.
-- Services, About, and Contact restyled to Nightshift (same layout/nav/footer as the
-  homepage). Services now leads with The Build Bot; the what's-included / perfect-for
-  content and /services#<id> anchors are unchanged. Blog and 404 still use the old light
-  theme (follow-up).
-- "Need a website?" nav link and footer "Websites & invoicing" scroll to /#websites until
-  the subdomain exists (TODO comments in place).
+- Nightshift remains the site-wide design: deep navy, brass, cream, Newsreader,
+  Hanken Grotesk, and Archivo.
+- The working product name is **BuildBot** throughout the Astro source. Name clearance is
+  still required before a larger brand investment because an established software project
+  already uses Buildbot.
+- The homepage no longer claims that BuildBot books appointments or knows business
+  availability. The sample conversation collects details without making a promise.
+- A visible answer-rules section explains that BuildBot does not invent prices,
+  availability, or unapproved commitments.
+- The founding offer is published: setup is free, then $99/month after approval. No
+  contract; cancel anytime. The offer is limited to the first 10 founding customers, and
+  the $99 rate stays locked while an account remains active.
+- No Stripe checkout or self-service signup is present. The primary CTA remains
+  **Book a demo**.
+- Cottages Concierge is presented as a separate Pro Build Digital product and links to
+  `https://cottagesconcierge.com/`.
+- `/services` now contains professional services only: websites, automation, and digital
+  invoicing. The old `/services#ai-chatbots` anchor lands on a BuildBot cross-link.
+- The demo route `/contact?service=chatbot` preselects BuildBot, asks what customers ask
+  most often, and changes the submit label to **Request a demo**.
+- Homepage schema now uses Organization, SoftwareApplication, Offer, and FAQPage data that
+  matches visible copy.
+- The static BuildBot mockup remains on the homepage. Other content pages still load the
+  existing n8n chat widget.
 
-## Drafted without a spec (needs owner sign-off)
+## Verified
 
-`docs/PROBUILD-SITE-PORT-PROMPT.md` was referenced in the port request but does not exist
-in the repo, so two sections were drafted from the revamp brief and existing site facts:
+- `npm run build` passes: 14 static pages generated.
+- Homepage screenshots checked at 375px and 1280px.
+- Home, Services, Contact, About, and Blog return 200 at both widths with no horizontal
+  overflow.
+- The 13 internal routes reachable through site navigation return successfully.
+- The BuildBot demo query preselects the correct service and updates the form copy.
 
-- [ ] **Cottages Concierge proof section.** Copy grounded in the SMS consent page: it's a
-      Build Bot for short-term rental owners that answers guests, captures booking
-      inquiries, and texts the owner. Confirm the description and whether to name or link
-      the product's own site.
-- [ ] **Websites section.** Kept small per the brief (websites and invoicing are secondary).
-      Confirm the copy.
-- [ ] **The three "How it works" steps.** Drafted by design (1. Book a demo → 2. We build
-      and train it → 3. It goes live). Review the wording.
+## Needs the owner
 
-## Needs the owner (Zack)
-
-- [ ] **Final price.** No price is published anywhere and there is no Stripe/payment wiring.
-      The demo CTA carries a `TODO(owner): final price goes here when set` comment.
-- [ ] **Wire the live Build Bot.** The hero shows a static chat mockup marked with
-      `TODO(owner): replace this static mockup with the live Build Bot embed`. Until then
-      "Book a demo" is the fallback.
-- [ ] **Subdomain URL.** "Need a website?" (nav) and "Websites & invoicing →" (footer +
-      websites section) point at `#` with `TODO(owner)` comments until the subdomain exists.
-- [ ] **Example bot names.** "Sarah at Ridgeline Roofing", "Mo at Lakeside Plumbing",
-      "Bella at Main St. Salon" are invented examples (labeled as such on the page).
-      Replace with real customer bots as they launch.
-- [ ] **Transparent logo.** `public/images/logo.png` has a solid cream background. The
-      header/footer now use a text-only stacked wordmark; the PNG stays as favicon only.
-      A transparent PNG/SVG is still wanted.
-- [ ] **Phone / area code.** (614) 403-8014 is shown; confirm it's the right number.
-- [ ] **Real photos and testimonials.** None are used on the new homepage. Send real
-      quotes (name + business) if a testimonials section is wanted.
-- [x] **Services page restyle.** Done: /services is now the Nightshift Build Bot detail
-      page (bot first, agency services below). Moving agency services to the future
-      subdomain page remains open.
-- [x] **Blog + 404 restyle.** Done — Nightshift is now the SITE-WIDE default (dark body
-      in global.css; the old light theme, PageLayout, and the old Header/Footer are
-      deleted). Blog index, all five posts (Newsreader serif long-form prose), 404, and
-      the three legal pages all use the shared Nightshift nav/footer. Every built route
-      verified at 375px + 1280px (body color, no horizontal overflow, shared chrome);
-      all 203 internal links resolve; GA consent-default, Formspree, article schema,
-      and the n8n widget all intact.
+- [ ] **Name clearance.** Decide whether to keep BuildBot after a proper trademark and
+      search-conflict review.
+- [ ] **Founding offer scope.** Put the internal limits in the customer agreement: one
+      business, one bot, included content sources, revision rounds, reasonable usage,
+      support boundaries, and treatment of major integrations.
+- [ ] **QR kit format.** Decide whether the included kit is download-only or whether
+      physical materials ship after approval and subscription activation.
+- [ ] **First pilot.** Replace the invented bot names with a real customer, screenshot,
+      lead-notification example, and approved quote as soon as possible.
+- [ ] **Wire the live product.** Replace the static homepage chat mockup when BuildBot is
+      ready for public use.
+- [ ] **Anti-AI-slop skill.** Add the skill's `SKILL.md` to this repo or register it with
+      Codex so its exact rules can be applied during future copy work.
+- [ ] **Transparent logo and social image.** Add a transparent SVG wordmark and a real
+      `/images/og-default.png`; the current default social image path has no file.
+- [ ] **Founder photo.** Move the current Imgur-hosted photograph into local assets.
+- [ ] **Phone number.** Confirm that (614) 403-8014 remains the public sales number.
+- [ ] **Legal copy.** Have the privacy policy and terms reviewed for BuildBot before paid
+      customer onboarding. They currently focus primarily on Cottages Concierge.
 
 ## Decisions applied
 
-- Direction: Nightshift (navy #0E1B2E + brass #C8A55C), serif editorial voice, chat window
-  as the hero object. Chosen by the owner from three explored directions.
-- Product name: **Build Bot**. Each customer names and brands their own bot; called out as
-  a selling point ("Yours, not ours" section).
-- No Northeast Ohio / Ashtabula / Columbus copy anywhere (terms-of-service governing-law
-  clause kept, it's legal text, not marketing).
-- Voice: plain, confident, no jargon, no AI-tell phrases.
-- **Demo CTA (deviation from the handoff, owner-reported bug):** the handoff specified a
-  mailto link, but mailto silently fails on machines with no default mail app. The demo
-  section's Book-a-demo button now goes to /contact?service=chatbot (form preselects The
-  Build Bot); the prefilled mailto stays as a secondary "Or email ..." link, phone kept.
+- Pro Build Digital is the company. BuildBot is the flagship product. Cottages Concierge
+  is a separate product. Websites, automation, integrations, and invoicing are secondary
+  professional services.
+- BuildBot is for service businesses nationwide, not only contractors or Ohio businesses.
+- Customers approve their BuildBot before billing begins. "You don't pay until you're
+  happy" is not an open-ended post-launch refund promise.
+- Copy stays plain and factual. Avoid stock software language and claims the product cannot
+  demonstrate.

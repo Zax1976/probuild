@@ -1,31 +1,15 @@
 ﻿---
 import NightshiftLayout from '../layouts/NightshiftLayout.astro';
 
-const pageTitle = 'The Build Bot & Services - Pro Build Digital';
-const pageDescription = 'The Build Bot answers for your business 24/7 and captures leads. Pro Build Digital also builds websites, automation, and digital invoicing for small businesses.';
+const pageTitle = 'Websites, Automation & Invoicing | Pro Build Digital';
+const pageDescription = 'Professional websites, practical automations, integrations, and digital invoicing for small service businesses.';
 
-// Services data - the Build Bot leads; agency services follow.
+// Professional services. BuildBot has its own product-led homepage.
 // Anchor ids are kept: other pages link to /services#<id>.
 const services = [
   {
-    id: 'ai-chatbots',
-    number: '1.',
-    title: 'The Build Bot',
-    description: "Never miss a customer inquiry again. The Build Bot answers for your business 24/7, handles the common questions, and captures leads while you're busy working. You name it and brand it as your own.",
-    features: [
-      '24/7 automated customer support',
-      'Common question answering',
-      'Lead capture and qualification',
-      'Appointment scheduling',
-      'Custom responses for your business',
-      'Integration with your website',
-      'Performance analytics',
-    ],
-    perfectFor: "Busy contractors who can't always answer the phone, service businesses with common customer questions, and anyone who wants to capture leads 24/7.",
-  },
-  {
     id: 'website-development',
-    number: '2.',
+    number: '1.',
     title: 'Website Development',
     description: 'Get a professional website that works on all devices and brings in customers. We build fast, mobile-friendly websites that showcase your work and make it easy for customers to contact you.',
     features: [
@@ -41,7 +25,7 @@ const services = [
   },
   {
     id: 'automation',
-    number: '3.',
+    number: '2.',
     title: 'Automation',
     description: "Save hours every week with automated workflows. From invoicing to customer follow-ups, we'll automate the repetitive tasks so you can focus on what you do best.",
     features: [
@@ -53,11 +37,11 @@ const services = [
       'Lead nurturing workflows',
       'Custom automation setup',
     ],
-    perfectFor: 'Small business owners who want to streamline their operations, reduce manual work, and improve customer communication.',
+    perfectFor: 'Small business owners who want to cut repetitive work and improve customer communication.',
   },
   {
     id: 'digital-invoicing',
-    number: '4.',
+    number: '3.',
     title: 'Digital Invoicing',
     description: 'Get paid faster with professional digital invoices. Our system creates, sends, and tracks invoices automatically, with payment reminders that actually work.',
     features: [
@@ -77,17 +61,21 @@ const services = [
 <NightshiftLayout title={pageTitle} description={pageDescription}>
   <!-- Hero -->
   <section
+    id="ai-chatbots"
     class="relative px-6 md:px-16 pt-[72px] pb-20 text-center"
     style="background: radial-gradient(ellipse 50% 60% at 50% 30%, rgba(200,165,92,0.12) 0%, rgba(14,27,46,0) 70%);"
   >
-    <p class="ns-kicker">What we offer</p>
+    <p class="ns-kicker">Professional services</p>
     <h1 class="ns-h1 text-[clamp(2.25rem,1.5rem+2.5vw,3.625rem)] leading-[1.08] mt-4 mx-auto max-w-[760px]">
-      The Build Bot, and the tools around it.
+      Practical digital tools, built for your business.
     </h1>
     <p class="text-lg leading-[1.65] text-mist mt-[22px] mx-auto max-w-[540px]">
-      The Build Bot is the flagship. Websites, automation, and invoicing round it out, built the
-      same way: simple, fast, and made for small businesses.
+      We build websites, automations, integrations, and invoicing systems for small service
+      businesses. You work directly with the person doing the work.
     </p>
+    <a href="/" class="inline-flex items-center min-h-11 text-[15px] text-brass mt-4">
+      <span class="border-b border-brass/50 pb-0.5">Looking for BuildBot? Start here &rarr;</span>
+    </a>
   </section>
 
   <!-- Services Detailed -->
@@ -130,15 +118,15 @@ const services = [
     style="background: radial-gradient(ellipse 50% 60% at 50% 30%, rgba(200,165,92,0.12) 0%, rgba(14,27,46,0) 70%);"
   >
     <p class="ns-kicker">The next step</p>
-    <h2 class="ns-h2 mt-4 mx-auto max-w-[760px]">See it working for your business.</h2>
+    <h2 class="ns-h2 mt-4 mx-auto max-w-[760px]">Tell us what needs to work better.</h2>
     <p class="text-lg leading-[1.65] text-mist mt-[22px] mx-auto max-w-[540px]">
-      Book a 15-minute demo of the Build Bot, or tell us what your business needs and we'll put
-      together a plain-numbers plan.
+      Share the problem, the tools you already use, and what you want to change. We will tell you
+      what we can build and what it will cost.
     </p>
     <div class="flex items-center justify-center gap-7 mt-[38px] flex-wrap">
-      <a href="/#demo" class="btn-brass px-10 py-[17px]">Book a demo</a>
-      <a href="/contact" class="inline-flex items-center min-h-11 text-[15px] text-mist transition-colors">
-        <span class="border-b border-brass/50 pb-0.5">Contact us</span>
+      <a href="/contact" class="btn-brass px-10 py-[17px]">Start a conversation</a>
+      <a href="/#demo" class="inline-flex items-center min-h-11 text-[15px] text-mist transition-colors">
+        <span class="border-b border-brass/50 pb-0.5">Book a BuildBot demo</span>
       </a>
     </div>
   </section>

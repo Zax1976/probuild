@@ -1,62 +1,64 @@
 ---
 title: "Welcome to Pro Build Digital's Blog"
-description: "Discover how digital solutions can transform your small business operations and drive growth."
+description: "Practical guidance on websites, customer inquiries, automation, and invoicing for small service businesses."
 date: 2025-01-15
-tags: ["welcome", "digital-transformation", "small-business"]
+tags: ["welcome", "small-business", "websites", "automation"]
 author: "Pro Build Digital Team"
 ---
 
 # Welcome to Pro Build Digital's Blog
 
-We're excited to launch our blog and share valuable insights about digital solutions for small businesses and contractors. In today's competitive landscape, having the right digital tools isn't just an advantage—it's essential for success.
+This blog covers practical ways small service businesses can improve their websites,
+customer communication, invoicing, and day-to-day work.
 
 ## What You'll Find Here
 
-Our blog will cover a wide range of topics designed to help small business owners navigate the digital world:
+The focus is on work a small business owner can understand and use.
 
-### Website Development Insights
-- Best practices for creating professional, mobile-friendly websites
-- How to optimize your site for search engines
-- Converting visitors into customers with effective design
+### Websites
 
-### AI and Automation
-- Implementing AI chatbots to improve customer service
-- Automating repetitive tasks to save time and reduce errors
-- Using technology to scale your business operations
+- Building a clear, mobile-friendly website
+- Helping customers find the right service
+- Making contact forms easier to complete
+- Keeping pages fast and straightforward
 
-### Digital Marketing Strategies
-- Building an online presence that attracts customers
-- Content marketing for service-based businesses
-- Social media strategies that actually work
+### BuildBot and Automation
 
-## Why Digital Transformation Matters
+- Answering repeat customer questions
+- Capturing useful lead details
+- Cutting repetitive administrative work
+- Connecting the tools your business already uses
 
-Small businesses and contractors face unique challenges:
+### Getting Found
 
-- **Limited time** to manage marketing and customer communications
-- **Budget constraints** that make expensive solutions impractical
-- **Technical complexity** that can be overwhelming
+- Writing service pages around real customer questions
+- Publishing useful local information
+- Measuring which pages bring calls and inquiries
 
-That's where we come in. Our mission is to provide practical, affordable digital solutions that work for real businesses.
+## Why This Work Matters
 
-## Our Commitment to You
+Small business owners have limited time, firm budgets, and little patience for tools that
+create more work than they remove. Any recommendation here should solve a clear problem and
+be understandable before you pay for it.
 
-We believe every post here should earn its keep. Each one is designed to give you actionable insights you can implement immediately.
+## What You Can Expect
 
-### What Makes Us Different
+Each post should provide:
 
-1. **No Technical Jargon** - We explain things in plain English
-2. **Real-World Focus** - Solutions that work for actual businesses
-3. **Practical Advice** - Steps you can take today to improve your operations
+1. **Plain language** without technical filler
+2. **A real business problem** rather than a feature list
+3. **Steps you can use** without rebuilding everything
 
-## Get Started Today
+## Start With Your Current Setup
 
-Ready to transform your business with digital solutions? Here are three steps you can take right now:
+If you want to improve what you have now, begin with three questions:
 
-1. **Audit your current digital presence** - How does your website look on mobile devices?
-2. **Identify time-consuming tasks** - What could be automated to free up your time?
-3. **Talk to us** - We offer free consultations to discuss your specific needs
+1. Does your website explain what you do on a phone screen?
+2. Which customer questions take up the most time?
+3. Which repeated task causes the most missed follow-up?
+
+Those answers usually show where a website, BuildBot, or a small automation can help.
 
 ---
 
-*Have questions about digital solutions for your business? [Contact us](/contact) for a free consultation. We're here to help you build a stronger digital foundation.*
+*Have a question about your setup? [Contact us](/contact) and tell us what is getting in the way.*
