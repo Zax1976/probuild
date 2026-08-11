@@ -152,29 +152,6 @@ const articleSchema = {
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
 </NightshiftLayout>
 
-<!-- n8n Chat Widget - Deferred for performance -->
-<script>
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      var link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css';
-      document.head.appendChild(link);
-      import('https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js')
-        .then(function(module) {
-          module.createChat({
-            webhookUrl: 'https://zax76.app.n8n.cloud/webhook/2610f1f4-f38d-4b33-ba97-da199e6a15bc/chat',
-            mode: 'window', loadPreviousSession: false,
-            initialMessages: ['Welcome to Pro Build Digital!', 'What can I help you with today?'],
-            i18n: { en: { title: 'BuildBot', subtitle: 'Digital Solutions Assistant', getStarted: 'Start Chat' }},
-            showWelcomeScreen: false,
-            theme: { header: { background: '#0A1422', color: '#EAE6DA' }, button: { background: '#C8A55C', color: '#0E1B2E' }}
-          });
-        });
-    }, 3000);
-  });
-</script>
-
 <style is:global>
   /* Nightshift long-form prose — Newsreader serif body for reading comfort,
      Hanken for UI-ish fragments. Global (not scoped) because it styles the
