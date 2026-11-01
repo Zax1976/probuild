@@ -1,21 +1,17 @@
 ---
-import NightshiftLayout from '../layouts/NightshiftLayout.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageHero from '../components/PageHero.astro';
 
 const pageTitle = 'SMS Notifications - Pro Build Digital';
 const pageDescription = 'How property owners opt in to receive SMS notifications from Probuild Digital LLC through Cottages Concierge.';
 ---
 
-<NightshiftLayout title={pageTitle} description={pageDescription}>
-  <!-- Hero Section -->
-  <section class="px-6 md:px-16 pt-20 pb-12 text-center">
-    <p class="ns-kicker">Legal</p>
-    <h1 class="ns-h1 mt-4">SMS Notifications</h1>
-    <p class="text-lg text-mist max-w-2xl mx-auto mt-5">How Probuild Digital LLC obtains opt-in consent for SMS messages sent through Cottages Concierge.</p>
-  </section>
+<SiteLayout title={pageTitle} description={pageDescription}>
+  <PageHero title="SMS Notifications" lead="How Probuild Digital LLC obtains opt-in consent for SMS messages sent through Cottages Concierge." />
 
   <!-- Legal Content -->
-  <section class="pb-20 md:pb-24 pt-6">
-    <div class="legal-content max-w-3xl mx-auto px-4 md:px-6">
+  <section class="section surface-light">
+    <div class="wrap"><div class="longform legal">
       <p class="legal-meta">
         <strong>Effective Date:</strong> May 19, 2026<br>
         <strong>Last Updated:</strong> May 19, 2026
@@ -104,9 +100,9 @@ const pageDescription = 'How property owners opt in to receive SMS notifications
         <li><a href="/privacy-policy">https://probuilddigital.com/privacy-policy</a></li>
         <li><a href="/terms-of-service">https://probuilddigital.com/terms-of-service</a></li>
       </ul>
-    </div>
+    </div></div>
   </section>
-</NightshiftLayout>
+</SiteLayout>
 
 <style>
   /* Scoped consent UI mockup styles */
@@ -225,7 +221,7 @@ const pageDescription = 'How property owners opt in to receive SMS notifications
     counter-reset: msg;
   }
   .sample-msg-list li {
-    background: var(--surface);
+    background: var(--white);
     border: 1px solid var(--hairline);
     border-left: 3px solid var(--brass);
     padding: 0.9rem 1.15rem;
@@ -233,7 +229,7 @@ const pageDescription = 'How property owners opt in to receive SMS notifications
     border-radius: 0.5rem;
     font-size: 0.95rem;
     line-height: 1.6;
-    color: var(--text-mist);
+    color: var(--ink-2);
     position: relative;
   }
 </style>

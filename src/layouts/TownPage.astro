@@ -1,0 +1,110 @@
+---
+// Shared layout for the town pages. Each page passes its own intro paragraph.
+// TODO(owner): each town page has a visible TODO for one real local detail you write.
+import SiteLayout from './SiteLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import ShorelineMap from '../components/ShorelineMap.astro';
+import RateSheet from '../components/RateSheet.astro';
+import WorkCard from '../components/WorkCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { clientSites } from '../data/work';
+import { towns } from '../data/towns';
+
+interface Props {
+  town: string;
+  intro: string;
+}
+
+const { town, intro } = Astro.props;
+const others = towns.filter((t) => t.page && t.name !== town);
+
+const title = `Web Design in ${town}, Ohio | Pro Build Digital`;
+const description = `Websites for small businesses in ${town}, Ohio, with clear prices and real examples. Built by Zack Pearson, a web designer based in Saybrook.`;
+---
+
+<SiteLayout title={title} description={description}>
+  <PageHero title={`Web design in ${town}, Ohio`} lead={intro}>
+    <span class="todo town-todo">Add one real local detail about {town} here, in your own words.</span>
+    <div class="actions">
+      <a href="/start/" class="btn btn--brass">Start a project</a>
+      <a href="/pricing/" class="btn btn--line">See prices</a>
+    </div>
+  </PageHero>
+
+  <section class="town-map surface-dark" aria-label={`Map showing ${town} and Saybrook`}>
+    <div class="wrap">
+      <ShorelineMap variant="inset" highlight={town} />
+    </div>
+  </section>
+
+  <section class="section surface-white" aria-labelledby="prices-title">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <h2 id="prices-title" class="display-2">What it costs</h2>
+        <p class="lead muted">The same prices for every town I work in.</p>
+      </div>
+      <RateSheet />
+      <p class="more"><a href="/pricing/" class="text-link">See what each package includes</a></p>
+    </div>
+  </section>
+
+  <section class="section surface-light" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <h2 id="work-title" class="display-2">Recent work</h2>
+        <p class="lead muted">Both sites are live. Open them on your phone and click around.</p>
+      </div>
+      <div class="work-grid">
+        {clientSites.map((s) => <WorkCard site={s} />)}
+      </div>
+      <p class="more"><a href="/work/" class="text-link">See all my work</a></p>
+    </div>
+  </section>
+
+  <CtaBand title={`Tell me about your ${town} business`} />
+
+  <section class="section--tight surface-white" aria-label="Other towns">
+    <div class="wrap nearby">
+      <p>
+        I also build websites in {others.map((t, i) => (<><a href={t.page} class="text-link">{t.name}</a>{i < others.length - 2 ? ', ' : i === others.length - 2 ? ' and ' : '.'}</>))}
+      </p>
+    </div>
+  </section>
+</SiteLayout>
+
+<style>
+  .town-todo {
+    justify-self: start;
+  }
+
+  .town-map {
+    padding: 0 0 clamp(48px, 6vw, 88px);
+  }
+
+  .more {
+    margin: 36px 0 0;
+    font-weight: 600;
+  }
+
+  .work-grid {
+    display: grid;
+    gap: 64px;
+  }
+
+  @media (min-width: 900px) {
+    .work-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(40px, 4vw, 64px);
+    }
+  }
+
+  .nearby p {
+    margin: 0;
+    font-size: 1.0625rem;
+    color: var(--ink-2);
+  }
+
+  .nearby .text-link {
+    font-weight: 600;
+  }
+</style>

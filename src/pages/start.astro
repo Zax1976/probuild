@@ -1,0 +1,396 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/site';
+import { startOptions } from '../data/pricing';
+
+const title = 'Start a Project | Pro Build Digital';
+const description =
+  'Tell me about your business and get a website quote by email within one business day. No sales calls unless you ask for one.';
+
+const timelines = ['As soon as possible', 'In the next month', 'In 1 to 3 months', 'Just getting prices for now'];
+
+// Old ?service= values from the previous contact form, mapped to the new options.
+const legacyMap = Object.fromEntries(
+  startOptions.flatMap((o) => (o.legacy ?? []).map((l) => [l, o.value] as [string, string])),
+);
+---
+
+<SiteLayout title={title} description={description}>
+  <PageHero
+    title="Start a project"
+    lead="Tell me about your business. I'll email you a quote and a few questions within one business day."
+  />
+
+  <section class="section surface-light">
+    <div class="wrap start">
+      <form
+        id="start-form"
+        class="start__form"
+        action={site.formAction}
+        method="POST"
+        novalidate
+        data-legacy={JSON.stringify(legacyMap)}
+      >
+        <input type="hidden" name="_subject" value="New project request from probuilddigital.com" />
+        <div class="hp" aria-hidden="true">
+          <label for="f-gotcha">Leave this field empty</label>
+          <input id="f-gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="start__grid">
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input id="f-name" class="input" type="text" name="name" autocomplete="name" required />
+            <span class="field-error" id="f-name-error" hidden></span>
+          </div>
+
+          <div class="field">
+            <label for="f-business">Business name</label>
+            <input id="f-business" class="input" type="text" name="business" autocomplete="organization" required />
+            <span class="field-error" id="f-business-error" hidden></span>
+          </div>
+
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" class="input" type="email" name="email" autocomplete="email" required />
+            <span class="field-error" id="f-email-error" hidden></span>
+          </div>
+
+          <div class="field">
+            <label for="f-phone">Phone <span class="hint">(optional)</span></label>
+            <input id="f-phone" class="input" type="tel" name="phone" autocomplete="tel" />
+          </div>
+
+          <div class="field">
+            <label for="f-type">What kind of business is it?</label>
+            <input
+              id="f-type"
+              class="input"
+              type="text"
+              name="business_type"
+              placeholder="For example, bakery or roofing"
+              required
+            />
+            <span class="field-error" id="f-type-error" hidden></span>
+          </div>
+
+          <div class="field">
+            <label for="f-package">Which package interests you?</label>
+            <select id="f-package" class="input" name="package" required>
+              <option value="">Choose one</option>
+              {startOptions.map((o) => <option value={o.value}>{o.label}</option>)}
+            </select>
+            <span class="field-error" id="f-package-error" hidden></span>
+          </div>
+
+          <div class="field">
+            <label for="f-timeline">When do you want it?</label>
+            <select id="f-timeline" class="input" name="timeline">
+              <option value="">Choose one</option>
+              {timelines.map((t) => <option value={t}>{t}</option>)}
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="f-website">Current website <span class="hint">(optional)</span></label>
+            <input
+              id="f-website"
+              class="input"
+              type="text"
+              name="website"
+              inputmode="url"
+              autocomplete="url"
+              placeholder="yourbusiness.com"
+            />
+          </div>
+
+          <div class="field field--wide">
+            <label for="f-message">What do you need?</label>
+            <textarea
+              id="f-message"
+              class="input"
+              name="message"
+              rows="6"
+              required
+              placeholder="A few lines about your business and what you want the site to do."></textarea>
+            <span class="field-error" id="f-message-error" hidden></span>
+          </div>
+        </div>
+
+        <div class="start__submit">
+          <button type="submit" class="btn btn--ink">
+            <span data-label>Send my details</span>
+          </button>
+          <p class="start__promise">I reply by email within one business day. No sales calls unless you ask for one.</p>
+        </div>
+
+        <div class="start__status" role="status" aria-live="polite" tabindex="-1"></div>
+      </form>
+
+      <aside class="start__aside" aria-label="What happens next and other ways to reach me">
+        <h2 class="display-3">What happens next</h2>
+        <ol class="start__steps">
+          <li>You send the form.</li>
+          <li>I email a quote and a few questions within one business day.</li>
+          <li>I build, you review, and it goes live.</li>
+        </ol>
+
+        <div class="start__other">
+          <p class="start__talk">
+            {
+              site.bookingUrl ? (
+                <a href={site.bookingUrl} class="text-link" target="_blank" rel="noopener">
+                  Prefer to talk? Book a 15-minute call
+                </a>
+              ) : (
+                <>
+                  <span>Prefer to talk? Book a 15-minute call</span>
+                  <span class="todo">Add your booking link to src/data/site.ts</span>
+                </>
+              )
+            }
+          </p>
+          <p>
+            Or email <a href={`mailto:${site.email}`} class="text-link">{site.email}</a>
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</SiteLayout>
+
+<script>
+  const form = document.getElementById('start-form') as HTMLFormElement | null;
+
+  if (form) {
+    const params = new URLSearchParams(window.location.search);
+    const legacy: Record<string, string> = JSON.parse(form.dataset.legacy || '{}');
+    const select = form.querySelector<HTMLSelectElement>('#f-package')!;
+    const business = form.querySelector<HTMLInputElement>('#f-business')!;
+
+    // Preselect a package from ?service= (old links like /contact?service=chatbot still work).
+    const service = params.get('service');
+    if (service) {
+      const value = [...select.options].some((o) => o.value === service) ? service : legacy[service];
+      if (value) select.value = value;
+    }
+
+    // Carry over the name typed into the home page preview.
+    const name = params.get('business');
+    if (name && !business.value) business.value = name.slice(0, 80);
+
+    const status = form.querySelector<HTMLElement>('.start__status')!;
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const label = button.querySelector<HTMLElement>('[data-label]')!;
+
+    const rules: [string, (el: HTMLInputElement) => string][] = [
+      ['#f-name', (el) => (el.value.trim() ? '' : 'Enter your name.')],
+      ['#f-business', (el) => (el.value.trim() ? '' : 'Enter your business name.')],
+      [
+        '#f-email',
+        (el) =>
+          !el.value.trim()
+            ? 'Enter your email so I can send the quote.'
+            : /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim())
+              ? ''
+              : 'Check the email address. It should look like name@example.com.',
+      ],
+      ['#f-type', (el) => (el.value.trim() ? '' : 'Tell me what kind of business it is.')],
+      ['#f-package', (el) => (el.value ? '' : 'Choose a package, or pick "Not sure yet."')],
+      [
+        '#f-message',
+        (el) => (el.value.trim().length >= 10 ? '' : 'Add a sentence or two about what you need.'),
+      ],
+    ];
+
+    const check = (sel: string, fn: (el: HTMLInputElement) => string) => {
+      const el = form.querySelector<HTMLInputElement>(sel)!;
+      const err = form.querySelector<HTMLElement>(`${sel}-error`)!;
+      const msg = fn(el);
+      el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+      if (msg) {
+        el.setAttribute('aria-describedby', err.id);
+        err.textContent = msg;
+        err.hidden = false;
+      } else {
+        el.removeAttribute('aria-describedby');
+        err.hidden = true;
+      }
+      return !msg;
+    };
+
+    rules.forEach(([sel, fn]) => {
+      const el = form.querySelector<HTMLInputElement>(sel)!;
+      el.addEventListener('blur', () => el.getAttribute('aria-invalid') === 'true' && check(sel, fn));
+      el.addEventListener('input', () => el.getAttribute('aria-invalid') === 'true' && check(sel, fn));
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const results = rules.map(([sel, fn]) => check(sel, fn));
+      if (results.includes(false)) {
+        const firstBad = form.querySelector<HTMLElement>('[aria-invalid="true"]');
+        firstBad?.focus();
+        return;
+      }
+
+      button.disabled = true;
+      label.textContent = 'Sending…';
+      status.className = 'start__status';
+      status.textContent = '';
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        status.className = 'start__status is-sent';
+        status.textContent = "Sent. I'll email you within one business day.";
+        label.textContent = 'Sent';
+      } catch {
+        status.className = 'start__status is-error';
+        status.textContent =
+          "The form didn't send. Check your connection and try again, or email zack.pearson@probuilddigital.com.";
+        label.textContent = 'Send my details';
+        button.disabled = false;
+      }
+      status.focus();
+    });
+  }
+</script>
+
+<style>
+  .start {
+    display: grid;
+    gap: 56px;
+  }
+
+  @media (min-width: 1000px) {
+    .start {
+      grid-template-columns: minmax(0, 1.55fr) minmax(0, 0.8fr);
+      gap: clamp(48px, 6vw, 96px);
+      align-items: start;
+    }
+  }
+
+  .start__form {
+    padding: clamp(24px, 3.5vw, 44px);
+    border-radius: 12px;
+    background: var(--white);
+    border: 1px solid var(--rule);
+  }
+
+  .start__grid {
+    display: grid;
+    gap: 22px 24px;
+  }
+
+  @media (min-width: 720px) {
+    .start__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .field--wide {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .start__submit {
+    display: grid;
+    gap: 14px;
+    justify-items: start;
+    margin-top: 28px;
+  }
+
+  .start__submit .btn {
+    min-width: 220px;
+  }
+
+  .start__submit .btn:disabled {
+    opacity: 0.7;
+    cursor: progress;
+  }
+
+  .start__promise {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 0.9688rem;
+  }
+
+  .start__status {
+    margin-top: 18px;
+    font-weight: 600;
+    outline: none;
+  }
+
+  .start__status:empty {
+    display: none;
+  }
+
+  .start__status.is-sent {
+    padding: 14px 16px;
+    border-radius: 6px;
+    background: #e8f3ea;
+    color: #1d5b2c;
+  }
+
+  .start__status.is-error {
+    padding: 14px 16px;
+    border-radius: 6px;
+    background: #fdecea;
+    color: #8a1c12;
+  }
+
+  .start__aside {
+    display: grid;
+    gap: 22px;
+    align-content: start;
+  }
+
+  .start__steps {
+    list-style: decimal;
+    margin: 0;
+    padding-left: 1.3em;
+    display: grid;
+    gap: 10px;
+    font-family: var(--font-text);
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  .start__steps li::marker {
+    font-family: var(--font-display);
+    font-weight: 800;
+    color: var(--brass-ink);
+  }
+
+  .start__other {
+    display: grid;
+    gap: 10px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .start__other p {
+    margin: 0;
+    display: grid;
+    gap: 8px;
+    justify-items: start;
+  }
+
+  .start__talk {
+    font-weight: 600;
+  }
+</style>

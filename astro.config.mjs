@@ -17,6 +17,21 @@ const removeDisabledAuditPackages = {
   }
 };
 
+// Blog posts open with their own "# Title" line, which repeats the title the page
+// already shows as its one H1. Drop that leading line, and start any other
+// headings inside a post at H2. The post files themselves stay unchanged.
+function postHeadings() {
+  const walk = (node) => {
+    if (node.type === 'element' && node.tagName === 'h1') node.tagName = 'h2';
+    (node.children || []).forEach(walk);
+  };
+  return (tree) => {
+    const first = (tree.children || []).find((n) => n.type === 'element');
+    if (first && first.tagName === 'h1') tree.children.splice(tree.children.indexOf(first), 1);
+    walk(tree);
+  };
+}
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://probuilddigital.com',
@@ -36,5 +51,9 @@ export default defineConfig({
     }
   },
 
-  integrations: [sitemap()]
+  markdown: {
+    rehypePlugins: [postHeadings],
+  },
+
+  integrations: [sitemap({ filter: (page) => !page.includes('/404') })]
 });

@@ -1,0 +1,154 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const title = 'Automation and Invoicing for Small Businesses | Pro Build Digital';
+const description =
+  'Follow-up emails, reminders and invoices that send themselves, set up with n8n by Zack Pearson for small businesses in Ashtabula County.';
+
+const groups = [
+  {
+    title: 'Follow-ups and reminders',
+    text: 'Messages that go out on their own, so nothing slips while you are busy.',
+    items: [
+      'Follow-up emails after a quote or a job',
+      'Appointment reminders',
+      'Payment reminders',
+      'A note to you when a new lead comes in',
+    ],
+  },
+  {
+    title: 'Invoicing',
+    text: 'Invoices that build and send themselves, with online payment.',
+    items: [
+      'Invoices made from your job details',
+      'Online payment links',
+      'Reminders for unpaid invoices',
+      'A simple record of what has been paid',
+    ],
+  },
+  {
+    title: 'Connecting your apps',
+    text: 'Workflows that pass information between the tools you already use.',
+    items: [
+      'Form entries sent to your email, calendar or spreadsheet',
+      'Customer details copied into your contact list',
+      'Custom workflows for how your business runs',
+    ],
+  },
+];
+---
+
+<SiteLayout title={title} description={description}>
+  <PageHero
+    title="Automation and invoicing"
+    lead="I set up tools that handle repeat office work for you, like follow-up emails, reminders and invoices. Most of it runs on n8n, a tool that connects the apps you already use."
+  />
+
+  <section class="section surface-light" aria-labelledby="what-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="what-title" class="display-2">What I can set up</h2>
+      </div>
+      <div class="groups">
+        {
+          groups.map((g) => (
+            <article class="group">
+              <h3 class="display-3">{g.title}</h3>
+              <p class="prose-text muted">{g.text}</p>
+              <ul>
+                {g.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface-white" aria-labelledby="price-title">
+    <div class="wrap split">
+      <h2 id="price-title" class="display-2">How pricing works</h2>
+      <p class="prose-text">
+        Every automation is a little different, so each job gets its own price. Tell me what takes up your time, and
+        I'll email you a quote before anything is built.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    title="What would you like off your plate?"
+    text="Tell me about the task that eats your time. I'll email you a quote and a few questions within one business day."
+    href="/start/?service=automation"
+  />
+</SiteLayout>
+
+<style>
+  .groups {
+    display: grid;
+    gap: 40px;
+  }
+
+  @media (min-width: 900px) {
+    .groups {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(32px, 4vw, 56px);
+    }
+  }
+
+  .group {
+    display: grid;
+    gap: 14px;
+    align-content: start;
+    padding-top: 22px;
+    border-top: 2px solid var(--lake);
+  }
+
+  .group p {
+    margin: 0;
+  }
+
+  .group ul {
+    list-style: none;
+    margin: 6px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  .group li {
+    position: relative;
+    padding-left: 22px;
+    line-height: 1.45;
+  }
+
+  .group li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 11px;
+    height: 2px;
+    background: var(--brass-ink);
+  }
+
+  .split {
+    display: grid;
+    gap: 24px;
+  }
+
+  @media (min-width: 1000px) {
+    .split {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(48px, 6vw, 96px);
+      align-items: start;
+    }
+  }
+
+  .split .prose-text {
+    margin: 0;
+  }
+</style>

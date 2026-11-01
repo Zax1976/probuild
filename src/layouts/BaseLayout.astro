@@ -1,95 +1,74 @@
 ---
-// Import global styles - Vite will bundle these
+// Document head. Fonts are self-hosted (no Google Fonts or icon CDN requests).
+import '@fontsource-variable/archivo/wdth.css';
+import '@fontsource-variable/newsreader/wght.css';
+import '@fontsource-variable/newsreader/wght-italic.css';
 import '../styles/global.css';
+import archivoLatin from '@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url';
+import newsreaderLatin from '@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2?url';
+import { site } from '../data/site';
 
 interface Props {
   title: string;
-  description?: string;
-  keywords?: string;
+  description: string;
   ogImage?: string;
-  canonicalUrl?: string;
+  noindex?: boolean;
 }
 
-const {
-  title,
-  description = 'Pro Build Digital builds BuildBot, websites, automations, integrations, and digital invoicing for small service businesses.',
-  keywords = 'BuildBot, website chatbot, service business chatbot, website development, business automation, digital invoicing',
-  ogImage = '/images/og-default.png',
-  canonicalUrl = Astro.url.href,
-} = Astro.props;
+const { title, description, ogImage = '/images/og-default.png', noindex = false } = Astro.props;
 
-const siteUrl = 'https://probuilddigital.com';
+const path = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonicalUrl = new URL(path, site.url).href;
+const ogImageUrl = new URL(ogImage, site.url).href;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title}</title>
-  <meta name="description" content={description}>
-  <meta name="keywords" content={keywords}>
-  <meta name="author" content="Pro Build Digital">
-  <meta name="robots" content="index, follow">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={site.owner} />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
+    <meta name="theme-color" content="#0e1b2e" />
+    {!noindex && <link rel="canonical" href={canonicalUrl} />}
 
-  <!-- Canonical URL -->
-  <link rel="canonical" href={canonicalUrl}>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content={title}>
-  <meta property="og:description" content={description}>
-  <meta property="og:type" content="website">
-  <meta property="og:url" content={canonicalUrl}>
-  <meta property="og:image" content={`${siteUrl}${ogImage}`}>
-  <meta property="og:site_name" content="Pro Build Digital">
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link rel="apple-touch-icon" href="/images/logo.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content={title}>
-  <meta name="twitter:description" content={description}>
-  <meta name="twitter:image" content={`${siteUrl}${ogImage}`}>
+    <link rel="preload" href={archivoLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={newsreaderLatin} as="font" type="font/woff2" crossorigin />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/images/logo.png">
-  <link rel="apple-touch-icon" href="/images/logo.png">
+    <!-- Google Analytics, consent mode: analytics storage denied by default -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', wait_for_update: 500 });
+      gtag('js', new Date());
+      gtag('config', 'G-HTMETKH26Y', { anonymize_ip: true, cookie_flags: 'SameSite=None;Secure' });
+    </script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-HTMETKH26Y"></script>
 
-  <!-- DNS Prefetch for third-party resources -->
-  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-
-  <!-- Google Fonts - Async loading for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&family=Archivo:wght@700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&family=Archivo:wght@700;800;900&display=swap"></noscript>
-
-  <!-- Font Awesome - Async loading for performance -->
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
-
-  <!-- Google Analytics (with consent) -->
-  <script is:inline>
-    // Set default consent state before loading GA
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-
-    gtag('consent', 'default', {
-      'analytics_storage': 'denied',
-      'ad_storage': 'denied',
-      'wait_for_update': 500
-    });
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HTMETKH26Y"></script>
-  <script is:inline>
-    gtag('js', new Date());
-    gtag('config', 'G-HTMETKH26Y', {
-      'anonymize_ip': true,
-      'cookie_flags': 'SameSite=None;Secure'
-    });
-  </script>
-</head>
-<body class="font-sans antialiased">
-  <slot />
-</body>
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>

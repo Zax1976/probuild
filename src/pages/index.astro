@@ -1,422 +1,256 @@
 ---
-import NightshiftLayout from '../layouts/NightshiftLayout.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import NamePreview from '../components/NamePreview.astro';
+import RateSheet from '../components/RateSheet.astro';
+import WorkCard from '../components/WorkCard.astro';
+import ShorelineMap from '../components/ShorelineMap.astro';
+import { clientSites } from '../data/work';
+import { towns } from '../data/towns';
 
-const pageTitle = 'BuildBot - Website Chat for Service Businesses | Pro Build Digital';
-const pageDescription = 'BuildBot answers customer questions using your business information, collects lead details, and alerts you. We build it and put it live for you.';
+const title = 'Web Design in Ashtabula, Ohio | Pro Build Digital';
+const description =
+  'Websites for small businesses in Ashtabula County, Ohio, with clear prices and real examples. Built by Zack Pearson in Saybrook.';
 
-// Prefilled demo request so the email draft isn't empty
-const demoSubject = 'BuildBot demo request';
-const demoBody = [
-  'Hi Zack,',
-  '',
-  "I'd like to book a 15-minute BuildBot demo.",
-  '',
-  'Business name: ',
-  'Website (if any): ',
-  'Phone number: ',
-  'Best time to call: ',
-  '',
-  'Thanks!',
-].join('\n');
-const demoMailto = `mailto:zack.pearson@probuilddigital.com?subject=${encodeURIComponent(demoSubject)}&body=${encodeURIComponent(demoBody)}`;
-
-// Stats strip
-const stats = [
-  { heading: 'After hours', detail: 'It can answer nights, weekends, and holidays.' },
-  { heading: 'Useful details', detail: 'Name, number, and what the customer needs.' },
-  { heading: 'Your brand', detail: 'Your name, colors, and way of speaking.' },
-];
-
-const answerRules = [
-  'It does not invent prices.',
-  'It does not promise availability.',
-  'It does not make commitments you have not approved.',
-  'If the answer is missing, it says so and collects the question for you.',
-];
-
-// Example bots (invented examples, labeled as such on the page)
-const exampleBots = [
-  { name: '“Sarah” — Ridgeline Roofing', trade: 'Roofing' },
-  { name: '“Mo” — Lakeside Plumbing', trade: 'Plumbing' },
-  { name: '“Bella” — Main St. Salon', trade: 'Salon' },
-];
-
-// How it works (steps drafted by design; owner sign-off pending)
-const steps = [
-  {
-    num: '1.',
-    title: 'Book a demo',
-    desc: 'A 15-minute call where you watch the bot answer real questions about your business. No canned script, so you know exactly what customers will see.',
-  },
-  {
-    num: '2.',
-    title: 'We build and train it',
-    desc: 'We load it with your services, hours, service area, and approved answers. You choose its name and look. We handle the setup.',
-  },
-  {
-    num: '3.',
-    title: 'It goes live',
-    desc: 'We add it to your website, or give you a hosted link and QR code. Customer details reach you by email or text.',
-  },
-];
-
-const faqs = [
-  {
-    question: 'What information does BuildBot use?',
-    answer: 'We load the services, hours, service area, policies, and answers you approve. BuildBot uses that information when it responds.',
-  },
-  {
-    question: 'What happens when it does not know an answer?',
-    answer: 'It says that the information is not available and can collect the question and contact details for you. It does not guess.',
-  },
-  {
-    question: 'Will it work on my current website?',
-    answer: 'In most cases, yes. We handle the website embed. We can also provide a hosted link and QR kit when an embed is not the right fit.',
-  },
-  {
-    question: 'Can it use my name and colors?',
-    answer: 'Yes. You choose the name customers see, and we match the bot to your business colors and approved way of speaking.',
-  },
-  {
-    question: 'When do I start paying?',
-    answer: 'You review and approve your BuildBot first. Billing starts after approval at the locked founding rate of $99 per month.',
-  },
-  {
-    question: 'What kinds of businesses can use it?',
-    answer: 'BuildBot is for service businesses that answer repeat questions and need a better way to collect inquiries while the owner or team is busy.',
-  },
-];
-
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Pro Build Digital",
-  "description": "Home of BuildBot, a website assistant that answers from a business's approved information and captures customer inquiries. Pro Build Digital also builds websites, automations, and digital invoicing for small businesses.",
-  "url": "https://probuilddigital.com",
-  "logo": "https://probuilddigital.com/images/logo.png",
-  "telephone": "(614) 403-8014",
-  "email": "zack.pearson@probuilddigital.com",
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "US"
-  },
-  "areaServed": {
-    "@type": "Country",
-    "name": "United States"
-  },
-  "founder": {
-    "@type": "Person",
-    "name": "Zack Pearson",
-    "jobTitle": "Founder"
-  },
-  "foundingDate": "2025",
-  "sameAs": [
-    "https://www.linkedin.com/in/zachary-pearson1/"
-  ]
-};
-
-const softwareSchema = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "BuildBot",
-  "url": "https://probuilddigital.com/",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web",
-  "description": pageDescription,
-  "provider": {
-    "@type": "Organization",
-    "name": "Pro Build Digital"
-  },
-  "offers": {
-    "@type": "Offer",
-    "name": "Founding customer offer",
-    "price": "99",
-    "priceCurrency": "USD",
-    "url": "https://probuilddigital.com/#demo"
-  }
-};
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map((faq) => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.answer
-    }
-  }))
-};
+const townPages = towns.filter((t) => t.page);
 ---
 
-<NightshiftLayout title={pageTitle} description={pageDescription}>
-
-  <!-- ========================================
-       HERO - bot-first, static chat mockup
-       ======================================== -->
-  <section
-    class="relative px-6 md:px-16 pt-[72px] pb-24"
-    style="background: radial-gradient(ellipse 60% 55% at 68% 45%, rgba(200,165,92,0.14) 0%, rgba(14,27,46,0) 65%);"
-  >
-    <div class="max-w-[1312px] mx-auto grid lg:grid-cols-[1fr_420px] gap-12 lg:gap-[72px] items-center">
-      <div>
-        <p class="ns-kicker">Answers while you're working.</p>
-        <h1 class="ns-h1 mt-[18px]">Turn after-hours questions into leads you can follow up.</h1>
-        <p class="text-lg leading-[1.65] text-mist mt-6 max-w-[500px]">
-          BuildBot answers using your business information, collects the customer's details, and
-          alerts you while their interest is still fresh. It uses your name and your colors.
+<SiteLayout title={title} description={description}>
+  <section class="hero surface-dark">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <h1 class="display-1">Websites for small businesses in Ashtabula County</h1>
+        <p class="lead hero__lead">
+          I'm Zack Pearson, and I build websites for local businesses from Saybrook. You work with me directly, from
+          the first email to the day your site goes live.
         </p>
-        <div class="flex items-center flex-wrap gap-[26px] mt-9">
-          <a href="#demo" class="btn-brass">Book a demo</a>
-          <a href="#how" class="inline-flex items-center min-h-11 text-[15px] text-mist transition-colors">
-            <span class="border-b border-brass/50 pb-0.5">See how it works</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- TODO(owner): replace this static mockup with the live BuildBot embed once the product is ready for public use. -->
-      <div class="w-full max-w-[420px] mx-auto lg:mx-0 bg-night-surface border border-brass/25 rounded-[18px] overflow-hidden shadow-[0_0_80px_rgba(200,165,92,0.18),0_30px_60px_rgba(0,0,0,0.4)]">
-        <div class="flex items-center gap-[11px] bg-night-deep px-[18px] py-[15px] border-b border-cream/10">
-          <span class="w-[34px] h-[34px] rounded-full bg-brass text-night flex items-center justify-center font-wordmark font-extrabold text-sm" aria-hidden="true">S</span>
-          <div>
-            <div class="font-bold text-sm text-cream">Sarah at Ridgeline Roofing</div>
-            <div class="text-xs text-online">&#9679; Online &middot; 11:42pm</div>
-          </div>
-        </div>
-        <div class="p-[18px] flex flex-col gap-2.5">
-          <div class="self-end max-w-[84%] bg-bubble-user text-cream px-[15px] py-[11px] rounded-[16px_16px_5px_16px] text-sm leading-normal">
-            Half my shingles came off in the storm. How soon can someone look?
-          </div>
-          <div class="self-start max-w-[84%] bg-brass text-night px-[15px] py-[11px] rounded-[16px_16px_16px_5px] text-sm leading-normal font-medium">
-            I'm sorry about the damage. I can collect the address and a good number so Ridgeline Roofing can follow up as soon as possible.
-          </div>
-          <div class="self-end max-w-[84%] bg-bubble-user text-cream px-[15px] py-[11px] rounded-[16px_16px_5px_16px] text-sm leading-normal">
-            412 Harbor Ln. 440-555-0143. Thank you!!
-          </div>
-          <div class="flex items-center gap-2 mt-2">
-            <span class="flex-1 bg-night-deep border border-cream/15 rounded-full px-4 py-[11px] text-[13.5px] text-faint">Type your message&hellip;</span>
-            <span class="w-10 h-10 bg-brass text-night rounded-full flex items-center justify-center font-extrabold" aria-hidden="true">&uarr;</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================
-       STATS STRIP
-       ======================================== -->
-  <section class="border-y border-cream/10">
-    <div class="grid md:grid-cols-3">
-      {stats.map((stat, index) => (
-        <div class:list={[
-          'px-6 md:px-12 py-9',
-          index < stats.length - 1 && 'border-b md:border-b-0 md:border-r border-cream/10',
-        ]}>
-          <div class="font-serif-display text-[32px] text-brass">{stat.heading}</div>
-          <div class="text-[15px] text-mist mt-1.5">{stat.detail}</div>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <!-- ========================================
-       YOURS, NOT OURS
-       ======================================== -->
-  <section class="px-6 md:px-16 py-24">
-    <div class="max-w-[1312px] mx-auto grid lg:grid-cols-2 gap-12 lg:gap-[72px] items-center">
-      <div>
-        <p class="ns-kicker">Yours, not ours</p>
-        <h2 class="ns-h2 mt-4">Customers see your name, not ours.</h2>
-        <p class="text-[17px] leading-[1.65] text-mist mt-[22px] max-w-[480px]">
-          Every BuildBot carries your business's name, your colors, and your way of talking. To a
-          customer asking a question at 9pm, it feels like part of your company.
-        </p>
-      </div>
-      <div class="flex flex-col border border-cream/15 rounded-[14px] overflow-hidden">
-        {exampleBots.map((bot) => (
-          <div class="flex justify-between items-center px-[26px] py-[19px] bg-night-surface border-b border-cream/10 last:border-b-0 gap-4">
-            <span class="font-serif-display text-[19px] text-cream-bright">{bot.name}</span>
-            <span class="text-[13px] text-faint">{bot.trade}</span>
-          </div>
-        ))}
-        <div class="text-[12.5px] text-faint px-[26px] py-3 border-t border-cream/10">
-          Example names. Real customer bots will take their place as they launch.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================
-       ANSWER RULES
-       ======================================== -->
-  <section class="px-6 md:px-16 pb-24">
-    <div class="max-w-[1312px] mx-auto">
-      <div class="border-t border-cream/10 pt-[72px] grid lg:grid-cols-2 gap-12 lg:gap-[72px] items-start">
-        <div>
-          <p class="ns-kicker">Answers it can stand behind</p>
-          <h2 class="ns-h2 mt-4">It uses your information. It does not fill in the blanks.</h2>
-          <p class="text-[17px] leading-[1.65] text-mist mt-[22px] max-w-[500px]">
-            We build its answers from the services, policies, hours, and other information you
-            approve. When something is missing, BuildBot can collect the question for you instead
-            of making up an answer.
-          </p>
-        </div>
-        <div class="flex flex-col border border-cream/15 rounded-[14px] overflow-hidden">
-          {answerRules.map((rule) => (
-            <div class="flex items-start gap-3 px-[22px] py-[15px] bg-night-surface border-b border-cream/10 last:border-b-0">
-              <span class="text-brass" aria-hidden="true">&#10003;</span>
-              <span class="text-[15px] leading-[1.55] text-mist">{rule}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================
-       HOW IT WORKS
-       ======================================== -->
-  <section id="how" class="px-6 md:px-16 pb-24">
-    <div class="max-w-[1312px] mx-auto">
-      <div class="border-t border-cream/10 pt-[72px]">
-        <p class="ns-kicker">How it works</p>
-        <h2 class="ns-h2 mt-4">Live on your site in three steps.</h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-10 lg:gap-14 mt-14">
-        {steps.map((step) => (
-          <div>
-            <div class="font-serif-display italic text-[44px] text-brass leading-none">{step.num}</div>
-            <h3 class="font-sans font-bold text-[21px] text-cream mt-[18px] mb-2.5">{step.title}</h3>
-            <p class="text-[15.5px] leading-[1.65] text-mist">{step.desc}</p>
-          </div>
-        ))}
-      </div>
-      <p class="text-[14.5px] text-faint mt-13">
-        Setup is remote, so we work with small businesses anywhere in the U.S. We will agree on a
-        launch date after reviewing your content and website.
-      </p>
-    </div>
-  </section>
-
-  <!-- ========================================
-       ANOTHER PRO BUILD PRODUCT
-       ======================================== -->
-  <section class="px-6 md:px-16 pb-24">
-    <div class="max-w-[1312px] mx-auto">
-      <div class="border-t border-cream/10 pt-[72px] grid lg:grid-cols-2 gap-12 lg:gap-[72px] items-center">
-        <div>
-          <p class="ns-kicker">Another product from Pro Build</p>
-          <h2 class="ns-h2 mt-4">Cottages Concierge helps rental hosts stay off their phones.</h2>
-          <p class="text-[17px] leading-[1.65] text-mist mt-[22px] max-w-[480px]">
-            Cottages Concierge is a separate Pro Build Digital product for vacation rentals. It
-            answers property questions, handles sensitive details carefully, and alerts hosts to
-            booking interest or guest issues.
-          </p>
-          <a
-            href="https://cottagesconcierge.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center min-h-11 text-[15px] text-brass mt-4"
+        <p class="hero__found">
+          <svg viewBox="0 0 20 20" aria-hidden="true"
+            ><circle cx="8.5" cy="8.5" r="5.75" fill="none" stroke="currentColor" stroke-width="1.6"></circle><path
+              d="M12.8 12.8l4.4 4.4"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"></path></svg
           >
-            <span class="border-b border-brass/50 pb-0.5">Visit Cottages Concierge &rarr;</span>
-          </a>
-        </div>
-        <div class="bg-night-surface border border-cream/15 rounded-[14px] px-[26px] py-[22px]">
-          <div class="font-serif-display text-[19px] text-cream-bright">Cottages Concierge</div>
-          <div class="text-[13px] text-faint mt-0.5">Short-term rentals</div>
-          <p class="text-[15px] leading-[1.65] text-mist mt-3.5">
-            A guest asks about the lake house at midnight. The concierge answers from the
-            property's information. If the guest asks something it does not know, it says so and
-            passes the question to the host.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================
-       PROFESSIONAL SERVICES (secondary)
-       ======================================== -->
-  <section id="services" class="px-6 md:px-16 pb-24">
-    <div class="max-w-[1312px] mx-auto">
-      <div class="border-t border-cream/10 pt-[72px]">
-        <p class="ns-kicker">Need more than BuildBot?</p>
-        <h2 class="ns-h2 mt-4">We build the tools around it.</h2>
-        <p class="text-[17px] leading-[1.65] text-mist mt-[22px] max-w-[540px]">
-          BuildBot works with the website you already have. If the rest of your setup needs work,
-          we also build websites, automations, integrations, and digital invoicing for small
-          service businesses.
+          <span>Every site is built to show up in Google searches and in AI answers like ChatGPT.</span>
         </p>
-        <a href="/services" class="inline-flex items-center min-h-11 text-[15px] text-brass mt-4">
-          <span class="border-b border-brass/50 pb-0.5">See professional services &rarr;</span>
-        </a>
+        <div class="actions">
+          <a href="/start/" class="btn btn--brass">Start a project</a>
+          <a href="/pricing/" class="btn btn--line">See prices</a>
+        </div>
+      </div>
+
+      <div class="hero__demo">
+        <NamePreview />
       </div>
     </div>
   </section>
 
-  <!-- ========================================
-       FAQ
-       ======================================== -->
-  <section class="px-6 md:px-16 pb-24">
-    <div class="max-w-[1312px] mx-auto">
-      <div class="border-t border-cream/10 pt-[72px]">
-        <p class="ns-kicker">Questions before the demo</p>
-        <h2 class="ns-h2 mt-4">What business owners usually ask.</h2>
+  <section class="section surface-white" aria-labelledby="prices-title">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <h2 id="prices-title" class="display-2">What it costs</h2>
+        <p class="lead muted">
+          Two ways to get a site built, and a monthly plan if you want me to keep it running. You see the price before
+          any work starts.
+        </p>
       </div>
-      <div class="grid md:grid-cols-2 gap-4 mt-12">
-        {faqs.map((faq) => (
-          <div class="bg-night-surface border border-cream/15 rounded-[14px] px-[26px] py-[22px]">
-            <h3 class="font-sans font-bold text-[17px] text-cream">{faq.question}</h3>
-            <p class="text-[15px] leading-[1.65] text-mist mt-2">{faq.answer}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================
-       DEMO CTA
-       ======================================== -->
-  <section
-    id="demo"
-    class="px-6 md:px-16 py-24 border-t border-cream/10 text-center"
-    style="background: radial-gradient(ellipse 50% 60% at 50% 30%, rgba(200,165,92,0.12) 0%, rgba(14,27,46,0) 70%);"
-  >
-    <p class="ns-kicker">Founding customer offer</p>
-    <h2 class="ns-h2 text-[clamp(2.25rem,1.5rem+2.5vw,3.625rem)] leading-[1.08] mt-4 mx-auto max-w-[760px]">
-      We set it up for you &mdash; free. $99/month. You don't pay until you're happy.
-    </h2>
-    <p class="text-lg leading-[1.65] text-mist mt-[22px] mx-auto max-w-[540px]">
-      We load your content, apply your branding, and put BuildBot live on your website. If an
-      embed is not the right fit, we provide a hosted link and a ready-to-use QR kit.
-    </p>
-    <div class="max-w-[680px] mx-auto mt-9 bg-night-surface border border-brass/25 rounded-[14px] px-6 md:px-8 py-7 text-left">
-      <div class="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-[15px] text-mist">
-        <div class="flex items-start gap-3"><span class="text-brass" aria-hidden="true">&#10003;</span><span>Content loaded for you</span></div>
-        <div class="flex items-start gap-3"><span class="text-brass" aria-hidden="true">&#10003;</span><span>Your name and colors</span></div>
-        <div class="flex items-start gap-3"><span class="text-brass" aria-hidden="true">&#10003;</span><span>Website embed or hosted link</span></div>
-        <div class="flex items-start gap-3"><span class="text-brass" aria-hidden="true">&#10003;</span><span>Lead details sent to you</span></div>
-        <div class="flex items-start gap-3"><span class="text-brass" aria-hidden="true">&#10003;</span><span>No setup fee</span></div>
-        <div class="flex items-start gap-3"><span class="text-brass" aria-hidden="true">&#10003;</span><span>No contract. Cancel anytime.</span></div>
-      </div>
-      <p class="text-[14.5px] leading-[1.65] text-cream mt-6 pt-5 border-t border-cream/10">
-        You review and approve your BuildBot before billing starts.
+      <RateSheet />
+      <p class="rates-more">
+        <a href="/pricing/" class="text-link">See what each package includes and leaves out</a>
       </p>
     </div>
-    <div class="flex items-center justify-center gap-7 mt-[38px] flex-wrap">
-      <a href="/contact?service=chatbot" class="btn-brass px-10 py-[17px]">Book a demo</a>
-      <a href="tel:+16144038014" class="inline-flex items-center min-h-11 font-serif-display text-[26px] text-cream-bright">(614) 403-8014</a>
-    </div>
-    <p class="text-[14.5px] text-faint mt-6">
-      Available to the first 10 founding customers. Your $99 monthly price stays locked while
-      your account remains active.<br />
-      Or email
-      <a href={demoMailto} class="text-mist inline-flex items-center min-h-11 transition-colors"><span class="border-b border-brass/50 pb-0.5">zack.pearson@probuilddigital.com</span></a>
-    </p>
   </section>
 
-  <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-</NightshiftLayout>
+  <section class="section surface-light" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <h2 id="work-title" class="display-2">Recent work</h2>
+        <p class="lead muted">Both sites are live. Open them on your phone and click around.</p>
+      </div>
+      <div class="work-grid">
+        {clientSites.map((s) => <WorkCard site={s} />)}
+      </div>
+      <p class="rates-more">
+        <a href="/work/" class="text-link">See all work, including the products I run</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section surface-white" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="how-title" class="display-2">How it works</h2>
+      </div>
+      <ol class="steps">
+        <li>
+          <h3 class="display-3">You fill out the form</h3>
+          <p class="prose-text muted">Tell me about your business and what you need. It takes a few minutes.</p>
+        </li>
+        <li>
+          <h3 class="display-3">I email a quote</h3>
+          <p class="prose-text muted">
+            Within one business day you get a price and a few questions about your business.
+          </p>
+        </li>
+        <li>
+          <h3 class="display-3">I build, you review, it goes live</h3>
+          <p class="prose-text muted">You see the whole site and ask for changes before it goes live.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="surface-dark map-section" aria-labelledby="where-title">
+    <ShorelineMap variant="band">
+      <h2 id="where-title" class="display-2">From Painesville to Conneaut</h2>
+      <p class="lead map-section__lead">
+        I'm based in Saybrook and work with businesses across Ashtabula County and nearby towns in Lake County.
+      </p>
+      <ul class="map-section__links">
+        {
+          townPages.map((t) => (
+            <li>
+              <a href={t.page} class="text-link">
+                Web design in {t.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </ShorelineMap>
+  </section>
+
+  <section class="section surface-light" aria-labelledby="cta-title">
+    <div class="wrap cta">
+      <h2 id="cta-title" class="display-2">Tell me about your business</h2>
+      <div class="cta__body">
+        <p class="lead">
+          Fill out a short form and I'll email you a quote and a few questions within one business day.
+        </p>
+        <div class="actions">
+          <a href="/start/" class="btn btn--ink">Start a project</a>
+          <span class="muted small">No sales calls unless you ask for one.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</SiteLayout>
+
+<style>
+  .hero {
+    padding: clamp(48px, 6vw, 88px) 0 clamp(72px, 8vw, 120px);
+    overflow: hidden;
+  }
+
+  .hero__grid {
+    display: grid;
+    gap: 56px;
+  }
+
+  @media (min-width: 1100px) {
+    .hero__grid {
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: clamp(48px, 5vw, 88px);
+      align-items: center;
+    }
+  }
+
+  .hero__demo {
+    min-width: 0;
+  }
+
+  .hero__copy {
+    display: grid;
+    gap: 28px;
+    align-content: start;
+  }
+
+  .hero__copy .display-1 {
+    color: #f6f3ea;
+    max-width: 11.5em;
+  }
+
+  .hero__lead {
+    color: var(--cream);
+  }
+
+  .hero__found {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 0;
+    max-width: 30rem;
+    padding: 16px 0 0;
+    border-top: 1px solid var(--lake-line);
+    font-size: 1rem;
+    font-weight: 550;
+    line-height: 1.5;
+    color: var(--cream);
+  }
+
+  .hero__found svg {
+    width: 20px;
+    height: 20px;
+    flex: none;
+    margin-top: 2px;
+    color: var(--brass);
+  }
+
+  .rates-more {
+    margin: 36px 0 0;
+    font-weight: 600;
+  }
+
+  .work-grid {
+    display: grid;
+    gap: 64px;
+  }
+
+  @media (min-width: 900px) {
+    .work-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(40px, 4vw, 64px);
+    }
+  }
+
+  .map-section {
+    overflow: hidden;
+  }
+
+  .map-section__lead {
+    margin-top: 18px;
+    color: var(--cream);
+  }
+
+  .map-section__links {
+    list-style: none;
+    margin: 22px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    font-weight: 600;
+  }
+
+  .map-section__links a {
+    color: var(--cream);
+  }
+
+  .cta {
+    display: grid;
+    gap: 28px;
+  }
+
+  @media (min-width: 900px) {
+    .cta {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 64px;
+      align-items: end;
+    }
+  }
+
+  .cta__body {
+    display: grid;
+    gap: 26px;
+  }
+</style>

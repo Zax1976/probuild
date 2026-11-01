@@ -1,0 +1,55 @@
+---
+// Shared page frame: head, header, footer, business schema and the Build Bot chat.
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+import { towns, home } from '../data/towns';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+const { title, description, ogImage, noindex } = Astro.props;
+
+// LocalBusiness (ProfessionalService) with service area and no street address.
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${site.url}/#business`,
+  name: site.name,
+  legalName: site.legalName,
+  description:
+    'Website design and care plans for small businesses in Ashtabula County, Ohio, built by Zack Pearson in Saybrook.',
+  url: `${site.url}/`,
+  logo: `${site.url}/images/logo.png`,
+  image: `${site.url}/images/og-default.png`,
+  email: site.email,
+  telephone: site.phone.display,
+  founder: { '@type': 'Person', name: site.owner },
+  address: { '@type': 'PostalAddress', addressLocality: 'Saybrook', addressRegion: 'OH', addressCountry: 'US' },
+  areaServed: [home.name, ...towns.map((t) => t.name)].map((name) => ({
+    '@type': 'City',
+    name: `${name}, Ohio`,
+  })),
+  sameAs: [site.linkedIn],
+};
+---
+
+<BaseLayout title={title} description={description} ogImage={ogImage} noindex={noindex}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+  <slot name="head" slot="head" />
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <Header />
+  <main id="main">
+    <slot />
+  </main>
+  <Footer />
+
+  <!-- Build Bot website chat, on every page -->
+  <script is:inline src="https://chat.probuilddigital.com/embed.js" data-business="probuild" async></script>
+</BaseLayout>

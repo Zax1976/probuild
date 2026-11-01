@@ -1,0 +1,141 @@
+---
+import { Image } from 'astro:assets';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import WorkCard from '../components/WorkCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { clientSites, products } from '../data/work';
+
+const title = 'Website Designer in Ashtabula County, OH | Pro Build Digital';
+const description =
+  'Websites Zack Pearson has built for small businesses, plus the products he built and runs himself. A website designer based in Saybrook, Ohio.';
+---
+
+<SiteLayout title={title} description={description}>
+  <PageHero
+    title="Websites I've built"
+    lead="Client sites first, then the products I built and run myself. Every site here is live, so you can open it on your phone and click around."
+  />
+
+  <section class="section surface-light" aria-labelledby="clients-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="clients-title" class="display-2">Client sites</h2>
+      </div>
+      <div class="client-list">
+        {
+          clientSites.map((s) => (
+            <WorkCard site={s} headingLevel="h3" sizes="(min-width: 1100px) 720px, 92vw" />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface-white" aria-labelledby="products-title">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <h2 id="products-title" class="display-2">Products I built and run</h2>
+        <p class="lead muted">
+          These are my own businesses, not client work.
+        </p>
+      </div>
+      <div class="product-grid">
+        {
+          products.map((p) => {
+            const domain = new URL(p.url).hostname;
+            return (
+              <article class="product">
+                <figure class="browser product__shot">
+                  <div class="browser__bar" aria-hidden="true">
+                    <div class="browser__dots">
+                      <span />
+                      <span />
+                      <span />
+                    </div>
+                    <div class="browser__url">{domain}</div>
+                  </div>
+                  {p.image ? (
+                    <Image
+                      src={p.image}
+                      alt={`The home page of ${p.name}`}
+                      widths={[480, 720, 960, 1365]}
+                      sizes="(min-width: 1100px) 600px, (min-width: 900px) 46vw, 92vw"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="product__missing">
+                      <span class="todo">Add a screenshot to src/assets/work/</span>
+                    </div>
+                  )}
+                </figure>
+                <h3 class="display-3">{p.name}</h3>
+                <p class="prose-text">{p.line}</p>
+                <a href={p.url} class="text-link product__link" rel="noopener" target="_blank">
+                  Visit {domain}
+                  <span class="sr-only"> (opens in a new tab)</span>
+                </a>
+              </article>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Want a site like these?" />
+</SiteLayout>
+
+<style>
+  .client-list {
+    display: grid;
+    gap: clamp(64px, 8vw, 112px);
+  }
+
+  @media (min-width: 1000px) {
+    .client-list :global(.work-card) {
+      grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+      gap: clamp(40px, 5vw, 72px);
+      align-items: center;
+    }
+  }
+
+  .product-grid {
+    display: grid;
+    gap: 64px;
+  }
+
+  @media (min-width: 900px) {
+    .product-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(40px, 4vw, 64px);
+    }
+  }
+
+  .product {
+    display: grid;
+    gap: 18px;
+    align-content: start;
+  }
+
+  .product__shot {
+    margin: 0 0 8px;
+    box-shadow: 0 30px 60px -36px rgba(14, 27, 46, 0.45);
+  }
+
+  .product__missing {
+    aspect-ratio: 1365 / 723;
+    display: grid;
+    place-items: center;
+    background: #eef0ec;
+  }
+
+  .product p {
+    margin: 0;
+  }
+
+  .product__link {
+    justify-self: start;
+    font-weight: 600;
+  }
+</style>

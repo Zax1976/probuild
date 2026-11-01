@@ -1,0 +1,371 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import PlanDetail from '../components/PlanDetail.astro';
+import Faq, { type FaqItem } from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { builds, care, addOns, money } from '../data/pricing';
+import { site } from '../data/site';
+
+const title = 'Website Prices for Ashtabula County Small Businesses | Pro Build Digital';
+const description = `Website prices for small businesses in Ashtabula County, Ohio. A ${builds[0].name} for ${money(builds[0].price)}, a ${builds[1].name} for ${money(builds[1].price)}, and care plans from ${money(care[0].price)} a month.`;
+
+const faqs: FaqItem[] = [
+  {
+    q: 'Do I need to get on a call?',
+    a: "No. You can do everything by email, starting with the form. If you'd rather talk, ask for a call and I'll set one up.",
+  },
+  {
+    q: 'Who owns the website and the domain?',
+    a: 'You do. The domain is registered in your name, and the words and photos on the site belong to you.',
+    todo: 'Confirm your ownership terms for the domain, content and code.',
+  },
+  {
+    q: 'What if I want changes later?',
+    a: 'Small edits are part of the care plan. Bigger changes, like new pages, get a quote first so you know the cost before any work starts.',
+  },
+  {
+    q: 'How long does it take?',
+    a: `About ${builds[0].weeks} for the ${builds[0].name} and ${builds[1].weeks} for the ${builds[1].name}, counted from when I have your photos and details.`,
+    todo: 'Confirm these timelines (they come from src/data/pricing.ts).',
+  },
+  {
+    q: 'Can I cancel the care plan?',
+    a: 'Yes, you can cancel the care plan.',
+    todo: 'Add your cancellation terms, such as how much notice you need and what happens to hosting after someone cancels.',
+  },
+  {
+    q: 'Will my business show up in ChatGPT?',
+    a: 'No one can promise that. What I can do is set up your site so AI tools can read it clearly, with plain facts about your services, prices, hours and area, a questions and answers section, and business details marked up for search engines. That helps, but each AI tool decides what it shows.',
+  },
+];
+
+const found = [
+  {
+    title: 'Plain facts about your business',
+    text: 'Your services, prices, hours and the area you serve, written out clearly so people and AI tools can read them.',
+  },
+  {
+    title: 'A questions and answers section',
+    text: 'Short answers to the questions your customers ask you most.',
+  },
+  {
+    title: 'Business details marked up for search engines',
+    text: 'Your name, phone number, hours and service area are labeled in the page code (this is called schema), so search engines and AI tools know what each detail means.',
+  },
+  {
+    title: 'Help with your Google Business Profile',
+    text: 'I help you set up or clean up the free listing that shows your business on Google Maps and in local results.',
+  },
+];
+
+const area = { '@type': 'AdministrativeArea', name: 'Ashtabula County, Ohio' };
+const provider = { '@id': `${site.url}/#business` };
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    ...builds.map((p) => ({
+      '@type': 'Service',
+      name: p.name,
+      serviceType: 'Website design',
+      description: p.summary,
+      provider,
+      areaServed: area,
+      offers: { '@type': 'Offer', price: String(p.price), priceCurrency: 'USD' },
+    })),
+    ...care.map((p) => ({
+      '@type': 'Service',
+      name: p.name,
+      serviceType: 'Website hosting and care',
+      description: p.summary,
+      provider,
+      areaServed: area,
+      offers: {
+        '@type': 'Offer',
+        price: String(p.price),
+        priceCurrency: 'USD',
+        priceSpecification: {
+          '@type': 'UnitPriceSpecification',
+          price: String(p.price),
+          priceCurrency: 'USD',
+          unitText: 'MONTH',
+        },
+      },
+    })),
+  ],
+};
+---
+
+<SiteLayout title={title} description={description} ogImage="/images/og-pricing.png">
+  <PageHero
+    title="Website prices"
+    lead="Two ways to get a site built and two care plans to keep it running. You can see what it costs before you reach out."
+  />
+
+  <section id="website-development" class="section surface-light" aria-labelledby="builds-title">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <h2 id="builds-title" class="display-2">Building your site</h2>
+        <p class="lead muted">A one-time price. Pick the one that fits now. You can add pages later.</p>
+      </div>
+      <div class="plans">
+        {builds.map((plan) => <PlanDetail plan={plan} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface-white" aria-labelledby="care-title">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <h2 id="care-title" class="display-2">Keeping it running</h2>
+        <p class="lead muted">
+          A monthly plan so you don't have to deal with hosting, updates or small fixes. The chatbot plan adds the
+          Build Bot chat to your site.
+        </p>
+      </div>
+      <div class="plans">
+        {care.map((plan) => <PlanDetail plan={plan} timingLabel="When it starts" />)}
+      </div>
+
+      <h3 class="display-3 addons-title">Add-ons</h3>
+      <ul class="addons">
+        {
+          addOns.map((a) => (
+            <li>
+              <span class="addons__name">{a.name}</span>
+              <span class="addons__price">
+                {money(a.price)} {a.cadence}
+              </span>
+              {a.note && <span class="addons__note muted">{a.note}</span>}
+              {a.todo && <span class="todo">{a.todo}</span>}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section surface-light" aria-labelledby="next-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="next-title" class="display-2">What happens next</h2>
+      </div>
+      <ol class="steps">
+        <li>
+          <h3 class="display-3">You fill out the form</h3>
+          <p class="prose-text muted">Tell me about your business and which package you're thinking about.</p>
+        </li>
+        <li>
+          <h3 class="display-3">I email a quote and a few questions</h3>
+          <p class="prose-text muted">You hear back within one business day.</p>
+        </li>
+        <li>
+          <h3 class="display-3">I build, you review, it goes live</h3>
+          <p class="prose-text muted">You see the whole site and ask for changes before it goes live.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section surface-dark" aria-labelledby="found-title">
+    <div class="wrap found">
+      <div class="found__intro">
+        <h2 id="found-title" class="display-2">Built to be found in Google and AI answers</h2>
+        <p class="lead">
+          Every site I build includes four things that help search engines and AI tools like ChatGPT understand your
+          business.
+        </p>
+        <p class="found__promise">
+          They help, but no one can promise a top spot on Google or that an AI tool will mention your business, and I
+          won't promise that either.
+        </p>
+      </div>
+      <ul class="found__list">
+        {
+          found.map((f) => (
+            <li>
+              <h3>{f.title}</h3>
+              <p>{f.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section id="faq" class="section surface-light" aria-labelledby="faq-title">
+    <div class="wrap faq-wrap">
+      <h2 id="faq-title" class="display-2">Questions</h2>
+      <Faq items={faqs} />
+    </div>
+  </section>
+
+  <section class="section--tight surface-white other" aria-labelledby="other-title">
+    <div class="wrap other__row">
+      <h2 id="other-title" class="display-3">Automation and invoicing</h2>
+      <p class="muted">
+        <span id="automation"></span><span id="digital-invoicing"></span>
+        Follow-up emails, reminders and invoices that send themselves are priced per job.
+        <a href="/automation/" class="text-link">See how automation works</a>
+      </p>
+    </div>
+  </section>
+
+  <CtaBand />
+
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+</SiteLayout>
+
+<style>
+  .plans {
+    display: grid;
+    gap: 24px;
+  }
+
+  @media (min-width: 900px) {
+    .plans {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 32px;
+    }
+  }
+
+  .addons-title {
+    margin: clamp(48px, 6vw, 72px) 0 18px;
+  }
+
+  .addons {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 2px solid var(--lake);
+  }
+
+  .addons li {
+    display: grid;
+    gap: 6px 24px;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .addons__name {
+    font-weight: 650;
+  }
+
+  .addons__price {
+    font-weight: 800;
+    font-stretch: 112%;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .addons__note,
+  .addons .todo {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  .found {
+    display: grid;
+    gap: 48px;
+  }
+
+  @media (min-width: 1000px) {
+    .found {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: clamp(56px, 7vw, 112px);
+    }
+  }
+
+  .found__intro {
+    display: grid;
+    gap: 22px;
+    align-content: start;
+  }
+
+  .found__intro .display-2 {
+    color: #f6f3ea;
+  }
+
+  .found__promise {
+    margin: 0;
+    padding-top: 18px;
+    border-top: 1px solid var(--lake-line);
+    color: var(--mist);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 32rem;
+  }
+
+  .found__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+  }
+
+  .found__list li {
+    display: grid;
+    gap: 8px;
+    padding: 22px 0;
+    border-top: 1px solid var(--lake-line);
+  }
+
+  .found__list li:last-child {
+    border-bottom: 1px solid var(--lake-line);
+  }
+
+  .found__list h3 {
+    margin: 0;
+    font-size: 1.1875rem;
+    font-weight: 700;
+    color: #f6f3ea;
+  }
+
+  .found__list p {
+    margin: 0;
+    font-family: var(--font-text);
+    font-size: 1.125rem;
+    line-height: 1.55;
+    color: var(--cream);
+    max-width: 36em;
+  }
+
+  .faq-wrap {
+    display: grid;
+    gap: 32px;
+  }
+
+  @media (min-width: 1000px) {
+    .faq-wrap {
+      grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr);
+      gap: 64px;
+      align-items: start;
+    }
+  }
+
+  .other__row {
+    display: grid;
+    gap: 10px;
+  }
+
+  @media (min-width: 900px) {
+    .other__row {
+      grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr);
+      gap: 64px;
+      align-items: baseline;
+    }
+  }
+
+  .other__row p {
+    margin: 0;
+    font-size: 1.0625rem;
+  }
+
+  .other__row .text-link {
+    color: var(--ink);
+    font-weight: 600;
+    margin-left: 4px;
+  }
+</style>

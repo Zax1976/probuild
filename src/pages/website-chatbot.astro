@@ -1,0 +1,368 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Faq, { type FaqItem } from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { care, addOns, money } from '../data/pricing';
+
+const title = 'AI Chatbot for Small Business Websites | Build Bot by Pro Build Digital';
+const description =
+  'Build Bot answers customer questions on your website using your own business information, collects their details, and alerts you. Set up for you by Zack Pearson.';
+
+const chatAddOn = addOns.find((a) => a.id === 'chatbot-addon')!;
+
+const facts = [
+  { title: 'After hours', text: 'It can answer nights, weekends and holidays.' },
+  { title: 'Useful details', text: 'Name, number and what the customer needs.' },
+  { title: 'Your brand', text: 'Your name, colors and way of speaking.' },
+];
+
+const rules = [
+  'It does not invent prices.',
+  'It does not promise availability.',
+  'It does not make commitments you have not approved.',
+];
+
+const faqs: FaqItem[] = [
+  {
+    q: 'What information does Build Bot use?',
+    a: 'I load the services, hours, service area, policies and answers you approve. Build Bot uses that information when it responds.',
+  },
+  {
+    q: 'What happens when it does not know an answer?',
+    a: 'It says that the information is not available and can collect the question and contact details for you. It does not guess.',
+  },
+  {
+    q: 'Will it work on my current website?',
+    a: 'In most cases, yes. I handle adding it to your site. I can also give you a hosted link and QR code when adding it to the site is not the right fit.',
+  },
+  {
+    q: 'Can it use my name and colors?',
+    a: 'Yes. You choose the name customers see, and I match the chat to your business colors and way of speaking.',
+  },
+  {
+    q: 'When do I start paying?',
+    a: 'You review and approve your Build Bot first. Billing starts after you approve it.',
+    todo: 'Confirm billing timing and set a price for businesses that only want the chatbot.',
+  },
+  {
+    q: 'What kinds of businesses can use it?',
+    a: 'Build Bot is for businesses that answer the same questions over and over and want a better way to collect inquiries while they are busy.',
+  },
+];
+---
+
+<SiteLayout title={title} description={description} ogImage="/images/og-website-chatbot.png">
+  <PageHero
+    title="A website chatbot for small businesses"
+    lead="Build Bot answers questions using your business information, collects the customer's details, and alerts you while their interest is still fresh. It uses your name and your colors."
+  >
+    <div class="actions">
+      <a href="#try-it" class="btn btn--brass">Try it on this page</a>
+      <a href="/start/?service=website-chatbot" class="btn btn--line">Ask about the chatbot</a>
+    </div>
+  </PageHero>
+
+  <section class="facts-strip surface-white" aria-label="What it does">
+    <div class="wrap facts-strip__row">
+      {
+        facts.map((f) => (
+          <div>
+            <p class="facts-strip__title">{f.title}</p>
+            <p>{f.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section id="try-it" class="section surface-light" aria-labelledby="try-title">
+    <div class="wrap demo">
+      <div class="demo__copy">
+        <h2 id="try-title" class="display-2">Ask it something</h2>
+        <p class="lead">
+          This is the live chat on my own business. Ask it what I offer or how a project works, and see how it answers.
+        </p>
+      </div>
+      <div class="demo__frame">
+        <iframe
+          src="https://chat.probuilddigital.com/p/probuild"
+          title="Pro Build Digital chat assistant, live demo"
+          loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface-white" aria-labelledby="name-title">
+    <div class="wrap split">
+      <h2 id="name-title" class="display-2">Customers see your name, not mine</h2>
+      <p class="prose-text">
+        Every Build Bot carries your business name, your colors and your way of talking. To a customer asking a
+        question at 9pm, it feels like part of your business.
+      </p>
+    </div>
+  </section>
+
+  <section class="section surface-light" aria-labelledby="rules-title">
+    <div class="wrap split">
+      <div class="split__copy">
+        <h2 id="rules-title" class="display-2">It uses your information. It does not fill in the blanks.</h2>
+        <p class="prose-text">
+          I build its answers from the services, policies, hours and other information you approve. When something is
+          missing, Build Bot collects the question for you instead of making up an answer.
+        </p>
+      </div>
+      <ul class="rules">
+        {rules.map((r) => <li>{r}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section surface-white" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="how-title" class="display-2">How it works</h2>
+      </div>
+      <ol class="steps">
+        <li>
+          <h3 class="display-3">Tell me about your business</h3>
+          <p class="prose-text muted">Fill out the form and list a few questions your customers ask most often.</p>
+        </li>
+        <li>
+          <h3 class="display-3">I build and train it</h3>
+          <p class="prose-text muted">
+            I load it with your services, hours, service area and approved answers. You choose its name and look.
+          </p>
+        </li>
+        <li>
+          <h3 class="display-3">It goes live</h3>
+          <p class="prose-text muted">
+            I add it to your website, or give you a hosted link and QR code. Customer details reach you by email or
+            text.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section surface-dark" aria-labelledby="cost-title">
+    <div class="wrap split">
+      <h2 id="cost-title" class="display-2 cost__title">What it costs</h2>
+      <div class="cost">
+        <p class="lead">
+          If I build your site, the chatbot comes with the {care[1].name} plan for {money(care[1].price)} a month. You
+          can also add it to the {money(care[0].price)}
+          {care[0].name} for {money(chatAddOn.price)} a month.
+        </p>
+        <span class="todo">Decide the price for businesses that only want the chatbot on their current site.</span>
+        <p class="muted">
+          <a href="/pricing/" class="text-link">See all prices</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section surface-light" aria-labelledby="faq-title">
+    <div class="wrap faq-wrap">
+      <h2 id="faq-title" class="display-2">Questions</h2>
+      <Faq items={faqs} />
+    </div>
+  </section>
+
+  <section class="section--tight surface-white" aria-label="For vacation rentals">
+    <div class="wrap">
+      <p class="rental-note">
+        Run vacation rentals? <a href="https://cottagesconcierge.com/" class="text-link" rel="noopener"
+          >Cottages Concierge</a
+        > is my guest assistant built for rental hosts.
+      </p>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Want a chatbot on your site?"
+    text="Fill out a short form with a few questions your customers ask. I'll email you within one business day."
+    href="/start/?service=website-chatbot"
+    button="Ask about the chatbot"
+  />
+</SiteLayout>
+
+<style>
+  .facts-strip {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .facts-strip__row {
+    display: grid;
+    gap: 0;
+  }
+
+  @media (min-width: 800px) {
+    .facts-strip__row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .facts-strip__row > div + div {
+      border-left: 1px solid var(--rule);
+      padding-left: clamp(20px, 3vw, 40px);
+    }
+  }
+
+  .facts-strip__row > div {
+    padding-block: 28px;
+  }
+
+  @media (max-width: 799px) {
+    .facts-strip__row > div + div {
+      border-top: 1px solid var(--rule);
+    }
+  }
+
+  .facts-strip .facts-strip__title {
+    margin: 0 0 6px;
+    color: var(--ink);
+    font-size: 1.375rem;
+    font-weight: 800;
+    font-stretch: 112%;
+    letter-spacing: -0.015em;
+  }
+
+  .facts-strip p {
+    margin: 0;
+    color: var(--ink-2);
+  }
+
+  .demo {
+    display: grid;
+    gap: 40px;
+    align-items: center;
+  }
+
+  @media (min-width: 1000px) {
+    .demo {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(48px, 6vw, 96px);
+    }
+  }
+
+  .demo__copy {
+    display: grid;
+    gap: 20px;
+  }
+
+  .demo__copy p {
+    margin: 0;
+  }
+
+  .demo__frame {
+    justify-self: center;
+    width: min(100%, 420px);
+    height: 600px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    box-shadow: 0 40px 70px -40px rgba(14, 27, 46, 0.55);
+  }
+
+  .demo__frame iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .split {
+    display: grid;
+    gap: 28px;
+  }
+
+  @media (min-width: 1000px) {
+    .split {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(48px, 6vw, 96px);
+      align-items: start;
+    }
+  }
+
+  .split__copy {
+    display: grid;
+    gap: 20px;
+  }
+
+  .split .prose-text {
+    margin: 0;
+  }
+
+  .rules {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 2px solid var(--lake);
+  }
+
+  .rules li {
+    position: relative;
+    padding: 18px 0 18px 30px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 1.0625rem;
+    font-weight: 550;
+  }
+
+  .rules li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 1.5em;
+    width: 12px;
+    height: 7px;
+    border-left: 2px solid var(--brass-ink);
+    border-bottom: 2px solid var(--brass-ink);
+    transform: rotate(-45deg);
+  }
+
+  .cost__title {
+    color: #f6f3ea;
+  }
+
+  .cost {
+    display: grid;
+    gap: 18px;
+    justify-items: start;
+  }
+
+  .cost p {
+    margin: 0;
+  }
+
+  .cost .lead {
+    color: var(--cream);
+  }
+
+  .cost .text-link {
+    color: var(--cream);
+    font-weight: 600;
+  }
+
+  .faq-wrap {
+    display: grid;
+    gap: 32px;
+  }
+
+  @media (min-width: 1000px) {
+    .faq-wrap {
+      grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr);
+      gap: 64px;
+      align-items: start;
+    }
+  }
+
+  .rental-note {
+    margin: 0;
+    font-size: 1.0625rem;
+  }
+
+  .rental-note .text-link {
+    font-weight: 650;
+  }
+</style>

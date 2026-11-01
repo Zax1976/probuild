@@ -1,0 +1,53 @@
+---
+// Closing call to action used at the bottom of most pages.
+interface Props {
+  title?: string;
+  text?: string;
+  href?: string;
+  button?: string;
+}
+
+const {
+  title = 'Tell me about your business',
+  text = "Fill out a short form and I'll email you a quote and a few questions within one business day.",
+  href = '/start/',
+  button = 'Start a project',
+} = Astro.props;
+---
+
+<section class="section surface-light cta-band" aria-label="Start a project">
+  <div class="wrap cta-band__grid">
+    <h2 class="display-2">{title}</h2>
+    <div class="cta-band__body">
+      <p class="lead">{text}</p>
+      <div class="actions">
+        <a href={href} class="btn btn--ink">{button}</a>
+        <span class="muted small">No sales calls unless you ask for one.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-band {
+    border-top: 1px solid var(--rule);
+  }
+
+  .cta-band__grid {
+    display: grid;
+    gap: 28px;
+  }
+
+  @media (min-width: 900px) {
+    .cta-band__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 64px;
+      align-items: end;
+    }
+  }
+
+  .cta-band__body {
+    display: grid;
+    gap: 26px;
+  }
+</style>

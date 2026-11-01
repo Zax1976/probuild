@@ -1,0 +1,176 @@
+---
+// Summary of the build packages and care plans. Prices come from src/data/pricing.ts.
+import { builds, care, money } from '../data/pricing';
+
+interface Props {
+  limit?: number;
+}
+
+const { limit = 3 } = Astro.props;
+
+const columns = [
+  ...builds.map((b) => ({
+    name: b.name,
+    from: false,
+    price: money(b.price),
+    cadence: b.cadence,
+    summary: b.summary,
+    items: b.includes.slice(0, limit),
+    note: b.timeline,
+    todo: b.todo,
+  })),
+  {
+    name: 'Care plans',
+    from: true,
+    price: money(care[0].price),
+    cadence: care[0].cadence,
+    summary: 'Hosting, updates, small edits and a monthly check, so the site keeps working.',
+    items: [`${care[0].name}, ${money(care[0].price)} a month`, `${care[1].name}, ${money(care[1].price)} a month`],
+    note: care[0].timeline,
+    todo: undefined as string | undefined,
+  },
+];
+---
+
+<div class="rates">
+  {
+    columns.map((c) => (
+      <article class="rate">
+        <h3 class="rate__name">{c.name}</h3>
+        <p class="rate__price">
+          {c.from && <span class="rate__from">from</span>}
+          <span class="rate__amount">{c.price}</span>
+          <span class="rate__cadence">{c.cadence}</span>
+        </p>
+        <p class="rate__summary">{c.summary}</p>
+        <ul class="rate__list">
+          {c.items.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+        <p class="rate__note">{c.note}</p>
+        {c.todo && <span class="todo">{c.todo}</span>}
+      </article>
+    ))
+  }
+</div>
+
+<style>
+  .rates {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 2px solid var(--lake);
+  }
+
+  @media (min-width: 900px) {
+    .rates {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .rate + .rate {
+      border-left: 1px solid var(--rule);
+    }
+
+    .rate {
+      padding-inline: clamp(24px, 3vw, 40px);
+    }
+
+    .rate:first-child {
+      padding-left: 0;
+    }
+
+    .rate:last-child {
+      padding-right: 0;
+    }
+  }
+
+  .rate {
+    display: grid;
+    grid-template-rows: auto auto auto 1fr auto auto;
+    align-content: start;
+    gap: 14px;
+    padding-block: 28px 32px;
+  }
+
+  @media (max-width: 899px) {
+    .rate + .rate {
+      border-top: 1px solid var(--rule);
+    }
+  }
+
+  .rate__name {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+  }
+
+  .rate__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+    margin: 0;
+  }
+
+  .rate__from {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink-2);
+  }
+
+  .rate__amount {
+    font-weight: 800;
+    font-stretch: 125%;
+    font-size: clamp(2.75rem, 2.2rem + 1.9vw, 3.75rem);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  .rate__cadence {
+    flex-basis: 100%;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink-2);
+  }
+
+  .rate__summary {
+    margin: 0;
+    font-family: var(--font-text);
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  .rate__list {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 9px;
+    align-content: start;
+  }
+
+  .rate__list li {
+    position: relative;
+    padding-left: 22px;
+    font-size: 0.9688rem;
+    line-height: 1.45;
+  }
+
+  .rate__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 11px;
+    height: 2px;
+    background: var(--brass-ink);
+  }
+
+  .rate__note {
+    margin: 6px 0 0;
+    font-size: 0.9063rem;
+    color: var(--ink-2);
+  }
+</style>

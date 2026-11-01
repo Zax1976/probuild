@@ -1,0 +1,189 @@
+---
+import { site } from '../data/site';
+import { footerTowns } from '../data/towns';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-foot surface-deep">
+  <div class="wrap">
+    <div class="site-foot__grid">
+      <div class="site-foot__intro">
+        <a href="/" class="foot-wordmark" aria-label="Pro Build Digital, home">
+          <span>Pro Build</span><span>Digital</span>
+        </a>
+        <p class="muted">
+          Websites for small businesses in Ashtabula County, built by {site.owner} in {site.baseTown}, Ohio.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="foot-head">Towns I serve</h2>
+        <ul class="foot-list">
+          {
+            footerTowns.map((t) =>
+              t.page ? (
+                <li>
+                  <a href={t.page}>{t.name}</a>
+                </li>
+              ) : (
+                <li>{t.name}</li>
+              ),
+            )
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="foot-head">Pages</h2>
+        <ul class="foot-list">
+          <li><a href="/work/">Work</a></li>
+          <li><a href="/pricing/">Pricing</a></li>
+          <li><a href="/website-chatbot/">Website chatbot</a></li>
+          <li><a href="/automation/">Automation</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="foot-head">Contact</h2>
+        <ul class="foot-list">
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><a href={`tel:${site.phone.tel}`}>{site.phone.display}</a></li>
+          <li><a href="/start/">Start a project</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-foot__legal">
+      <span>&copy; {year} {site.legalName}</span>
+      <ul>
+        <li><a href="/privacy-policy/">Privacy</a></li>
+        <li><a href="/terms-of-service/">Terms</a></li>
+        <li><a href="/sms-consent/">SMS notifications</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-foot {
+    padding: clamp(56px, 7vw, 88px) 0 28px;
+    font-size: 0.9375rem;
+  }
+
+  .site-foot__grid {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 720px) {
+    .site-foot__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .site-foot__intro {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .site-foot__grid {
+      grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
+    }
+
+    .site-foot__intro {
+      grid-column: auto;
+    }
+  }
+
+  .site-foot__intro p {
+    max-width: 30ch;
+    margin: 14px 0 0;
+    line-height: 1.55;
+  }
+
+  .foot-wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 9px;
+    color: var(--cream);
+    text-decoration: none;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .foot-wordmark span:first-child {
+    font-weight: 900;
+    font-stretch: 112%;
+    font-size: 1.1875rem;
+  }
+
+  .foot-wordmark span:last-child {
+    font-weight: 700;
+    font-stretch: 112%;
+    font-size: 0.75rem;
+    letter-spacing: 0.26em;
+    color: var(--brass);
+  }
+
+  .foot-head {
+    margin: 0 0 14px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--cream);
+  }
+
+  .foot-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 2px;
+    color: var(--mist);
+  }
+
+  .foot-list li {
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+  }
+
+  .foot-list a,
+  .site-foot__legal a {
+    color: var(--mist);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  .foot-list a:hover,
+  .site-foot__legal a:hover {
+    color: var(--cream);
+    text-decoration: underline;
+    text-decoration-color: var(--brass);
+    text-underline-offset: 0.22em;
+  }
+
+  .site-foot__legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px 24px;
+    margin-top: 56px;
+    padding-top: 22px;
+    border-top: 1px solid var(--lake-line);
+    color: var(--mist);
+    font-size: 0.875rem;
+  }
+
+  .site-foot__legal ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+</style>

@@ -1,0 +1,42 @@
+---
+// Questions and answers as open/close rows. Adds FAQPage schema unless schema={false}.
+// An item's `todo` shows as a visible TODO for the owner and is left out of the schema.
+export interface FaqItem {
+  q: string;
+  a: string;
+  todo?: string;
+}
+
+interface Props {
+  items: FaqItem[];
+  schema?: boolean;
+}
+
+const { items, schema = true } = Astro.props;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+
+<div class="faq">
+  {
+    items.map((item) => (
+      <details>
+        <summary>{item.q}</summary>
+        <div class="faq__answer prose-text">
+          <p>{item.a}</p>
+          {item.todo && <span class="todo">{item.todo}</span>}
+        </div>
+      </details>
+    ))
+  }
+</div>
+
+{schema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}

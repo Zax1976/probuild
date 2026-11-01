@@ -1,0 +1,7 @@
+# Cloudflare Pages redirects. 301 means permanent, so search engines move
+# rankings to the new page. The query string carries over, so
+# /contact?service=chatbot lands on /start/?service=chatbot.
+/services      /pricing/   301
+/services/     /pricing/   301
+/contact       /start/     301
+/contact/      /start/     301
