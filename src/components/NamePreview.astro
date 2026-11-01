@@ -38,7 +38,7 @@ const themeCss = samples
   .join('\n');
 ---
 
-<div class="np" data-np>
+<div class="np" id="sample-site" data-np>
   <div class="np__field">
     <label for="np-name" class="np__label">Type your business name</label>
     <input
@@ -257,6 +257,20 @@ const themeCss = samples
     tabs.addEventListener('scroll', updateScroll, { passive: true });
     new ResizeObserver(updateScroll).observe(tabs);
 
+    // "See a sample site with your business name" links jump here and put the cursor in the box.
+    document.querySelectorAll<HTMLAnchorElement>('a[href="#sample-site"]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Only scroll when part of the sample is off screen (on wide screens it sits beside the headline).
+        const box = root.getBoundingClientRect();
+        if (box.top < 0 || box.bottom > window.innerHeight) {
+          const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          root.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'start' });
+        }
+        input.focus({ preventScroll: true });
+      });
+    });
+
     updateScroll();
     render();
   }
@@ -267,6 +281,7 @@ const themeCss = samples
     display: grid;
     gap: 20px;
     min-width: 0;
+    scroll-margin-top: 24px;
   }
 
   .np > * {
