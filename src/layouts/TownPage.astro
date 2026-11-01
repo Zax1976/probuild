@@ -1,6 +1,5 @@
 ---
-// Shared layout for the town pages. Each page passes its own intro paragraph.
-// TODO(owner): each town page has a visible TODO for one real local detail you write.
+// Shared layout for the town pages. Each page passes its own intro and one real local detail.
 import SiteLayout from './SiteLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import ShorelineMap from '../components/ShorelineMap.astro';
@@ -13,9 +12,10 @@ import { towns } from '../data/towns';
 interface Props {
   town: string;
   intro: string;
+  detail: string;
 }
 
-const { town, intro } = Astro.props;
+const { town, intro, detail } = Astro.props;
 const others = towns.filter((t) => t.page && t.name !== town);
 
 const title = `Web Design in ${town}, Ohio | Pro Build Digital`;
@@ -24,7 +24,7 @@ const description = `Websites for small businesses in ${town}, Ohio, with clear 
 
 <SiteLayout title={title} description={description}>
   <PageHero title={`Web design in ${town}, Ohio`} lead={intro}>
-    <span class="todo town-todo">Add one real local detail about {town} here, in your own words.</span>
+    <p class="lead town-detail">{detail}</p>
     <div class="actions">
       <a href="/start/" class="btn btn--brass">Start a project</a>
       <a href="/pricing/" class="btn btn--line">See prices</a>
@@ -73,8 +73,9 @@ const description = `Websites for small businesses in ${town}, Ohio, with clear 
 </SiteLayout>
 
 <style>
-  .town-todo {
-    justify-self: start;
+  .town-detail {
+    margin: 0;
+    color: var(--cream);
   }
 
   .town-map {

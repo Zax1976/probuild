@@ -3,7 +3,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import Faq, { type FaqItem } from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { care, addOns, money } from '../data/pricing';
+import { care, addOns, chatbotOnly, money } from '../data/pricing';
 
 const title = 'AI Chatbot for Small Business Websites | Build Bot by Pro Build Digital';
 const description =
@@ -42,8 +42,15 @@ const faqs: FaqItem[] = [
   },
   {
     q: 'When do I start paying?',
-    a: 'You review and approve your Build Bot first. Billing starts after you approve it.',
-    todo: 'Confirm billing timing and set a price for businesses that only want the chatbot.',
+    a: `You don't pay anything until you approve your Build Bot. Billing starts the day you approve it, or ${chatbotOnly.reviewDays} days after I send it for review if I haven't heard back.`,
+  },
+  {
+    q: 'Is there a setup fee?',
+    a: 'No. Setting it up is part of the monthly price.',
+  },
+  {
+    q: 'Is there a limit on chats?',
+    a: "The plan covers up to about 300 conversations a month. If you go over, the chat keeps working. If it happens a few months in a row, I'll reach out before anything changes.",
   },
   {
     q: 'What kinds of businesses can use it?',
@@ -154,7 +161,16 @@ const faqs: FaqItem[] = [
           can also add it to the {money(care[0].price)}
           {care[0].name} for {money(chatAddOn.price)} a month.
         </p>
-        <span class="todo">Decide the price for businesses that only want the chatbot on their current site.</span>
+        <p class="cost__own">
+          Already have a website? I can add my chatbot to it for {money(chatbotOnly.price)} {chatbotOnly.cadence}, with
+          no setup fee. I build it from your website and your answers to a few questions, then send it to you to try.
+          You don't pay anything until you approve it. If I haven't heard back {chatbotOnly.reviewDays} days after I
+          send it, billing starts then.
+        </p>
+        <p class="cost__own">
+          Cancel anytime by email. If I build your next website, the same {money(care[1].price)} a month also covers
+          hosting and care.
+        </p>
         <p class="muted">
           <a href="/pricing/" class="text-link">See all prices</a>
         </p>
@@ -341,6 +357,14 @@ const faqs: FaqItem[] = [
   }
 
   .cost .lead {
+    color: var(--cream);
+  }
+
+  .cost__own {
+    max-width: 36em;
+    font-family: var(--font-text);
+    font-size: 1.125rem;
+    line-height: 1.6;
     color: var(--cream);
   }
 

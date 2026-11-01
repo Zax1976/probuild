@@ -4,35 +4,44 @@ import PageHero from '../components/PageHero.astro';
 import PlanDetail from '../components/PlanDetail.astro';
 import Faq, { type FaqItem } from '../components/Faq.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { builds, care, addOns, money } from '../data/pricing';
+import { builds, care, addOns, chatbotOnly, upgradeMonths, money } from '../data/pricing';
 import { site } from '../data/site';
 
 const title = 'Website Prices for Ashtabula County Small Businesses | Pro Build Digital';
 const description = `Website prices for small businesses in Ashtabula County, Ohio. A ${builds[0].name} for ${money(builds[0].price)}, a ${builds[1].name} for ${money(builds[1].price)}, and care plans from ${money(care[0].price)} a month.`;
 
+const extraPage = addOns.find((a) => a.id === 'extra-page')!;
+
 const faqs: FaqItem[] = [
   {
     q: 'Do I need to get on a call?',
-    a: "No. You can do everything by email, starting with the form. If you'd rather talk, ask for a call and I'll set one up.",
+    a: site.bookingUrl
+      ? "No. You can do everything by email, starting with the form. If you'd rather talk, you can book a 15-minute call from the Start a project page."
+      : "No. You can do everything by email, starting with the form. If you'd rather talk, ask for a call and I'll set one up.",
   },
   {
     q: 'Who owns the website and the domain?',
-    a: 'You do. The domain is registered in your name, and the words and photos on the site belong to you.',
-    todo: 'Confirm your ownership terms for the domain, content and code.',
+    a: 'You do. Your domain is registered in your name, and the words and photos you send stay yours. The site and its code become yours once it is paid in full.',
   },
   {
     q: 'What if I want changes later?',
-    a: 'Small edits are part of the care plan. Bigger changes, like new pages, get a quote first so you know the cost before any work starts.',
+    a: `Small edits, like new hours, prices or photos, are part of the care plan. A new page is ${money(extraPage.price)}. Bigger changes get a price before any work starts.`,
   },
   {
     q: 'How long does it take?',
     a: `About ${builds[0].weeks} for the ${builds[0].name} and ${builds[1].weeks} for the ${builds[1].name}, counted from when I have your photos and details.`,
-    todo: 'Confirm these timelines (they come from src/data/pricing.ts).',
+  },
+  {
+    q: 'How do I pay?',
+    a: `Half to start and half when your site goes live. For the ${builds[0].name}, that's ${money(builds[0].price / 2)} and ${money(builds[0].price / 2)}. Care plans are billed monthly, starting the day your site goes live.`,
+  },
+  {
+    q: 'Can I start small and upgrade later?',
+    a: `Yes. If you move up to the ${builds[1].name} within ${upgradeMonths} months, the ${money(builds[0].price)} you paid counts toward the ${money(builds[1].price)}.`,
   },
   {
     q: 'Can I cancel the care plan?',
-    a: 'Yes, you can cancel the care plan.',
-    todo: 'Add your cancellation terms, such as how much notice you need and what happens to hosting after someone cancels.',
+    a: "Yes, anytime. Email me before your next billing date. There's no fee, and your site stays online for 30 more days so you have time to move it. I'll send you your site files and help point your domain to its new host.",
   },
   {
     q: 'Will my business show up in ChatGPT?',
@@ -111,6 +120,7 @@ const serviceSchema = {
       <div class="plans">
         {builds.map((plan) => <PlanDetail plan={plan} />)}
       </div>
+      <p class="plans-note">Need more pages? Each extra page is {money(extraPage.price)}.</p>
     </div>
   </section>
 
@@ -124,7 +134,7 @@ const serviceSchema = {
         </p>
       </div>
       <div class="plans">
-        {care.map((plan) => <PlanDetail plan={plan} timingLabel="When it starts" />)}
+        {care.map((plan) => <PlanDetail plan={plan} timingLabel="Billing" />)}
       </div>
 
       <h3 class="display-3 addons-title">Add-ons</h3>
@@ -137,11 +147,15 @@ const serviceSchema = {
                 {money(a.price)} {a.cadence}
               </span>
               {a.note && <span class="addons__note muted">{a.note}</span>}
-              {a.todo && <span class="todo">{a.todo}</span>}
             </li>
           ))
         }
       </ul>
+      <p class="chat-only">
+        Already have a website? I can add my chatbot to it for {money(chatbotOnly.price)}
+        {chatbotOnly.cadence}, with no setup fee.
+        <a href="/website-chatbot/" class="text-link">See how the chatbot works</a>
+      </p>
     </div>
   </section>
 
@@ -164,6 +178,16 @@ const serviceSchema = {
           <p class="prose-text muted">You see the whole site and ask for changes before it goes live.</p>
         </li>
       </ol>
+      {
+        site.bookingUrl && (
+          <p class="talk">
+            Prefer to talk?{' '}
+            <a href={site.bookingUrl} class="text-link" target="_blank" rel="noopener">
+              Book a 15-minute call
+            </a>
+          </p>
+        )
+      }
     </div>
   </section>
 
@@ -190,6 +214,34 @@ const serviceSchema = {
           ))
         }
       </ul>
+    </div>
+  </section>
+
+  <section id="terms" class="section surface-white" aria-labelledby="terms-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="terms-title" class="display-2">Ownership and care plan terms</h2>
+      </div>
+      <div class="terms">
+        <div class="terms__col">
+          <h3 class="display-3">Who owns what</h3>
+          <p>Your domain is yours. It's registered in your name, and you pay the yearly fee. I only need access so I can point it at your site.</p>
+          <p>The words and photos you send me stay yours. Please only send photos and words you have the right to use. Any words I write for you become yours once your site is paid in full.</p>
+          <p>Your site is yours once it's paid in full. If you ever leave, I'll send you a copy of your site's files and code, so any web designer can host it or change it.</p>
+          <p>I build with my own reusable tools. They stay mine, and you're free to keep using them as part of your site, even after you leave.</p>
+          <p>My chatbot, Build Bot, stays mine. If you stop using it, I'll send you a copy of your approved answers and the customer details it collected.</p>
+          <p>I may show your site in my portfolio. If you'd rather I didn't, tell me.</p>
+        </div>
+        <div class="terms__col">
+          <h3 class="display-3">How the care plan works</h3>
+          <p>The care plan is month to month, with no contract. Billing starts the day your site goes live.</p>
+          <p>Small edits are changes like new hours, prices, photos or a new question and answer. If a change will take more than about 30 minutes, I'll give you a price first. Bigger jobs are priced ahead of time or billed at $60 an hour.</p>
+          <p>You can cancel anytime by email before your next billing date. There's no cancellation fee, and I don't refund a month you've already paid for.</p>
+          <p>After you cancel, I keep your site online for 30 more days so you have time to move it. I'll send your site files and help point your domain to its new host.</p>
+          <p>Hosting comes with the care plan. If you'd rather host the site yourself, I'll hand over the files when it goes live.</p>
+          <p>If a payment is more than 30 days late, I'll email you first. After that, I may pause the site until the account is caught up.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -227,6 +279,58 @@ const serviceSchema = {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 32px;
     }
+  }
+
+  .plans-note {
+    margin: 28px 0 0;
+    font-weight: 600;
+  }
+
+  .chat-only {
+    margin: 28px 0 0;
+    font-size: 1.0625rem;
+  }
+
+  .chat-only .text-link,
+  .talk .text-link {
+    margin-left: 4px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .talk {
+    margin: 36px 0 0;
+    font-weight: 600;
+  }
+
+  .terms {
+    display: grid;
+    gap: 44px;
+  }
+
+  @media (min-width: 900px) {
+    .terms {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(40px, 5vw, 80px);
+    }
+  }
+
+  .terms__col {
+    display: grid;
+    gap: 14px;
+    align-content: start;
+  }
+
+  .terms__col h3 {
+    margin: 0 0 4px;
+  }
+
+  .terms__col p {
+    margin: 0;
+    font-family: var(--font-text);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    max-width: 36em;
   }
 
   .addons-title {

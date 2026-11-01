@@ -28,8 +28,8 @@ const personSchema = {
   >
     <Fragment slot="aside">
       <figure class="portrait">
-        <Image src={zack} alt="Zack Pearson" widths={[240, 360, 480]} sizes="(min-width: 1000px) 360px, 60vw" />
-        <figcaption><span class="todo">Confirm this photo or swap in a new one</span></figcaption>
+        <Image src={zack} alt="Zack Pearson, owner of Pro Build Digital" widths={[240, 360, 480]} sizes="(min-width: 1000px) 360px, 60vw" />
+        <figcaption>Zack Pearson, Saybrook Township</figcaption>
       </figure>
     </Fragment>
   </PageHero>
@@ -91,6 +91,12 @@ const personSchema = {
     gap: 12px;
     justify-items: start;
     max-width: 360px;
+  }
+
+  .portrait figcaption {
+    color: var(--mist);
+    font-size: 0.9375rem;
+    font-weight: 600;
   }
 
   .portrait img {

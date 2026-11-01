@@ -143,10 +143,11 @@ const legacyMap = Object.fromEntries(
                 <a href={site.bookingUrl} class="text-link" target="_blank" rel="noopener">
                   Prefer to talk? Book a 15-minute call
                 </a>
+                <span class="start__talk-note">Pick a time that works for you, and I'll call the number you give me.</span>
               ) : (
                 <>
                   <span>Prefer to talk? Book a 15-minute call</span>
-                  <span class="todo">Add your booking link to src/data/site.ts</span>
+                  <span class="todo">Add your Google Calendar booking page link to src/data/site.ts</span>
                 </>
               )
             }
@@ -392,5 +393,10 @@ const legacyMap = Object.fromEntries(
 
   .start__talk {
     font-weight: 600;
+  }
+
+  .start__talk-note {
+    font-weight: 400;
+    color: var(--ink-2);
   }
 </style>

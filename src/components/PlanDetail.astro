@@ -38,6 +38,14 @@ const headingId = `plan-${plan.id}`;
       <h4 class="plan__label">{timingLabel}</h4>
       <p class="plan__timing">{plan.timeline}</p>
     </div>
+    {
+      plan.payment && (
+        <div>
+          <h4 class="plan__label">How you pay</h4>
+          <p class="plan__timing">{plan.payment}</p>
+        </div>
+      )
+    }
   </div>
 
   {plan.todo && <span class="todo">{plan.todo}</span>}
