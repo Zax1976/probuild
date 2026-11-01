@@ -664,6 +664,7 @@ svg {
   }
 
   .longform a {
+    overflow-wrap: anywhere;
     color: var(--ink);
     text-decoration: underline;
     text-decoration-color: var(--brass-ink);

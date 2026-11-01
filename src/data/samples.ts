@@ -182,7 +182,7 @@ export const samples: Sample[] = [
       'transmission', 'muffler', 'mufflers', 'brake', 'brakes', 'detailing', 'towing', 'mechanic', 'mechanics', 'lube',
       'truck', 'trucks', 'diesel',
     ],
-    theme: { bg: '#121417', ink: '#f1f2f3', soft: '#a7adb4', accent: '#e2552d', onAccent: '#ffffff', rule: '#2a2e33', nameFont: 'display', nameWeight: 850, logoFont: 'display', logoWeight: 850, radius: '3px' },
+    theme: { bg: '#121417', ink: '#f1f2f3', soft: '#a7adb4', accent: '#e2552d', onAccent: '#121417', rule: '#2a2e33', nameFont: 'display', nameWeight: 850, logoFont: 'display', logoWeight: 850, radius: '3px' },
   },
   {
     id: 'winery',
