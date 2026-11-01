@@ -8,11 +8,10 @@ export const site = {
   baseTown: 'Saybrook',
   email: 'zack.pearson@probuilddigital.com',
 
-  // TODO(owner): the site shows the 614 number today. Switch both values here
-  // if you move to a 440 number.
+  // Google Voice number (440 is the local area code). It forwards to Zack's cell.
   phone: {
-    display: '(614) 403-8014',
-    tel: '+16144038014',
+    display: '(440) 276-1706',
+    tel: '+14402761706',
   },
 
   // TODO(owner): paste your scheduling link (Calendly, Google booking page, etc.).
