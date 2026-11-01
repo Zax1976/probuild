@@ -14,9 +14,8 @@ export const site = {
     tel: '+14402761706',
   },
 
-  // TODO(owner): paste your scheduling link (Calendly, Google booking page, etc.).
-  // While this is empty, the "Book a 15-minute call" link shows a TODO marker.
-  bookingUrl: '',
+  // Google Calendar booking page for 15-minute calls. Leave empty to hide the "Book a call" links.
+  bookingUrl: 'https://calendar.app.google/hrn3dBfGiwvzfDrt5',
 
   linkedIn: 'https://www.linkedin.com/in/zachary-pearson1/',
 
