@@ -372,7 +372,8 @@ const regions = [
     margin-inline: auto;
   }
 
-  @media (min-width: 1024px) {
+  /* Below 1180px the text sits above the map, so it never covers a town label. */
+  @media (min-width: 1180px) {
     .map--band .map__text {
       position: absolute;
       inset: 0 0 auto 0;
@@ -384,6 +385,10 @@ const regions = [
     .map--band .map__text > :global(*) {
       max-width: 30rem;
       pointer-events: auto;
+    }
+
+    .map--band .map__text > :global(p) {
+      max-width: 24rem;
     }
   }
 </style>

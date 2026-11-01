@@ -1,5 +1,5 @@
 ---
-// Shared layout for the town pages. Each page passes its own intro and one real local detail.
+// Shared layout for the town pages. Each page passes its own intro, which includes one real local detail.
 import SiteLayout from './SiteLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import ShorelineMap from '../components/ShorelineMap.astro';
@@ -12,10 +12,9 @@ import { towns } from '../data/towns';
 interface Props {
   town: string;
   intro: string;
-  detail: string;
 }
 
-const { town, intro, detail } = Astro.props;
+const { town, intro } = Astro.props;
 const others = towns.filter((t) => t.page && t.name !== town);
 
 const title = `Web Design in ${town}, Ohio | Pro Build Digital`;
@@ -24,7 +23,6 @@ const description = `Websites for small businesses in ${town}, Ohio, with clear 
 
 <SiteLayout title={title} description={description}>
   <PageHero title={`Web design in ${town}, Ohio`} lead={intro}>
-    <p class="lead town-detail">{detail}</p>
     <div class="actions">
       <a href="/start/" class="btn btn--brass">Start a project</a>
       <a href="/pricing/" class="btn btn--line">See prices</a>
@@ -61,23 +59,18 @@ const description = `Websites for small businesses in ${town}, Ohio, with clear 
     </div>
   </section>
 
-  <CtaBand title={`Tell me about your ${town} business`} />
+  <CtaBand />
 
   <section class="section--tight surface-white" aria-label="Other towns">
     <div class="wrap nearby">
       <p>
-        I also build websites in {others.map((t, i) => (<><a href={t.page} class="text-link">{t.name}</a>{i < others.length - 2 ? ', ' : i === others.length - 2 ? ' and ' : '.'}</>))}
+        I also work with businesses in {others.map((t, i) => (<><a href={t.page} class="text-link">{t.name}</a>{i < others.length - 2 ? ', ' : i === others.length - 2 ? ' and ' : '.'}</>))}
       </p>
     </div>
   </section>
 </SiteLayout>
 
 <style>
-  .town-detail {
-    margin: 0;
-    color: var(--cream);
-  }
-
   .town-map {
     padding: 0 0 clamp(48px, 6vw, 88px);
   }

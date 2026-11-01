@@ -105,19 +105,9 @@ const townPages = towns.filter((t) => t.page);
     <ShorelineMap variant="band">
       <h2 id="where-title" class="display-2">From Painesville to Conneaut</h2>
       <p class="lead map-section__lead">
-        I'm based in Saybrook and work with businesses across Ashtabula County and nearby towns in Lake County.
+        I'm based in Saybrook and work with businesses across Ashtabula County and into Lake County, including
+        {townPages.map((t, i) => (<><a href={t.page} class="text-link">{t.name}</a>{i < townPages.length - 2 ? ', ' : i === townPages.length - 2 ? ' and ' : '.'}</>))}
       </p>
-      <ul class="map-section__links">
-        {
-          townPages.map((t) => (
-            <li>
-              <a href={t.page} class="text-link">
-                Web design in {t.name}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
     </ShorelineMap>
   </section>
 
@@ -230,18 +220,8 @@ const townPages = towns.filter((t) => t.page);
     color: var(--cream);
   }
 
-  .map-section__links {
-    list-style: none;
-    margin: 22px 0 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 22px;
+  .map-section__lead .text-link {
     font-weight: 600;
-  }
-
-  .map-section__links a {
-    color: var(--cream);
   }
 
   .cta {
